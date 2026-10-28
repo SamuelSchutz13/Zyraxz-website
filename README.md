@@ -2,7 +2,7 @@
   <img src="assets/img/logos/zyraxz.svg" alt="" width="72" />
 </p>
 
-<h1 align="center">Zyraxz</h1>
+<h1 align="center">Zyraxz Website</h1>
 
 <p align="center">
   <b>English</b> · <a href="README.pt-BR.md">Português (Brasil)</a>
