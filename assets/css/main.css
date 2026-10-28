@@ -221,10 +221,6 @@ html { scroll-padding-top: 24px; }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: #8b8b8b; display: inline-block; flex: none; }
 .dot.on { background: #3fb950; }
 .av-wrap .dot { position: absolute; right: -1px; bottom: -1px; box-shadow: 0 0 0 2px var(--bg); }
-.dot.on::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 2s ease-out infinite; }
-.av-wrap .dot.on::after { inset: 0; }
-@keyframes ping { from { opacity: .6; scale: 1; } to { opacity: 0; scale: 2.4; } }
-@media (prefers-reduced-motion: reduce) { .dot.on::after { animation: none; } }
 .app-ic { width: 16px; height: 16px; object-fit: contain; flex: none; }
 
 .social { display: flex; gap: 16px; align-items: center; }
