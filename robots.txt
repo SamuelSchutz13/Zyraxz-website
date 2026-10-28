@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://samuelschutz13.github.io/sitemap.xml
+Sitemap: https://samuelschutz13.github.io/Zyraxz-website/sitemap.xml

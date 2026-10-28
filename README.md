@@ -1,7 +1,7 @@
 # Portfólio
 
 Site estático, sem build e sem dependências externas: fonte e ícones ficam no próprio projeto.
-Publicado no GitHub Pages pelo workflow `.github/workflows/deploy.yml`.
+Publicado em https://samuelschutz13.github.io/Zyraxz-website/ pelo workflow `.github/workflows/deploy.yml`.
 
 ```
 index.html                página inicial
