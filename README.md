@@ -38,7 +38,7 @@
 - **Timeline**: one stop per day showing which projects were born when.
 - **Project pages** with features, architecture, a privacy note and screenshots that open full size (arrows move between them).
 - **About me** (its own page, `sobre.html`): stack grouped by languages, frameworks, databases and testing, each linking to its official site; **recent commits** with each app's icon; a **languages bar** with the share of each language across my repositories; and the **contributions calendar** of the last year.
-- **Online status**: hover the name to see whether I committed in the last 24 hours, when and in which app.
+- **Coding status**: hover the name to see whether I committed in the last 24 hours, when and in which app.
 - **Settings** (⚙): pastel **light and dark themes**, **Portuguese and English** with flags. Both are remembered.
 - WebP screenshots with thumbnails for the cards, scroll reveal that respects reduced motion, a 404 page, `sitemap.xml`, canonical links and Open Graph previews.
 
@@ -83,7 +83,7 @@ browser  →  index.html + assets/js/*  →  github.json (or api.github.com when
 - **Languages**: every text exists in both languages in the HTML, marked `lang="pt"` or `lang="en"`. CSS hides the inactive one, so there is no translation file and no extra request.
 - **Theme and language** are applied in `<head>`, before the first paint, so the page never flashes the wrong theme.
 - **GitHub data**: stars, last push per repository (which decides the recent projects), the seven latest commits of the four most active repositories, bytes of code per language, and the contributions calendar, read from GitHub's public HTML fragment.
-- **Online**: green when the latest commit is less than 24 hours old.
+- **Coding**: green when the latest commit is less than 24 hours old.
 
 ### Project structure
 
@@ -111,7 +111,7 @@ assets/
 
 ## Known limitations
 
-- **"Online" is not live.** It means "committed in the last 24 hours", and the data refreshes once an hour.
+- **"Coding" is not live.** It means "committed in the last 24 hours", and the data refreshes once an hour.
 - GitHub pauses scheduled workflows after 60 days without activity in the repository. Any push or a manual run turns them back on.
 - The contributions calendar is read from GitHub's HTML, so a change in their markup can hide it until the script is updated.
 - The settings popup uses the HTML `popover` attribute, available in current Chrome, Edge, Firefox and Safari.

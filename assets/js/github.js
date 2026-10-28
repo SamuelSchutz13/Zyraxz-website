@@ -11,7 +11,7 @@ const apps = {
   Gityx: ['Gityx', 'img/logos/gityx.svg'], 'Match-Sim': ['MatchSim', 'img/logos/matchsim.svg'],
   FoculessPDF: ['FoculessPDF', 'img/logos/foculesspdf.svg'], FoculessYT: ['FoculessYT', 'img/logos/foculessyt.svg'],
   FoculessPad: ['FoculessPad', 'img/logos/foculesspad.svg'], 'AHK-SpotifyControl': ['Spotify Control', 'img/icons/spotify.svg'],
-  'Zyraxz-website': ['Zyraxz', 'img/logos/zyraxz.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
+  'Zyraxz-website': ['Zyraxz Website', 'img/logos/zyraxz.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'],
 };
 const app = repo => {
@@ -90,7 +90,7 @@ const renderCommits = (list, commits) => {
     all.replaceChildren(...cards.slice(2));
   }
 
-  // hover card on the name: "online" = committed in the last 24 h (data refreshes hourly)
+  // hover card on the name: "coding" = committed in the last 24 h (data refreshes hourly)
   const last = data?.commits?.[0];
   if (last) {
     const on = Date.now() - new Date(last.date) < 24 * 36e5;
@@ -100,8 +100,8 @@ const renderCommits = (list, commits) => {
     const where = document.createElement('a');
     where.className = 'status-app'; where.href = last.url; where.append(icon, name);
     status.querySelector('.status-text').innerHTML =
-      `<span lang="pt">${on ? 'Online · último' : 'Último'} commit ${ago(last.date, 'pt-BR')} em</span>` +
-      `<span lang="en">${on ? 'Online · last' : 'Last'} commit ${ago(last.date, 'en')} in</span> `;
+      `<span lang="pt">${on ? 'Codando · último' : 'Último'} commit ${ago(last.date, 'pt-BR')} em</span>` +
+      `<span lang="en">${on ? 'Coding · last' : 'Last'} commit ${ago(last.date, 'en')} in</span> `;
     status.querySelector('.status-text').append(where);
     status.hidden = false;
     document.querySelector('.who-empty').hidden = true;
