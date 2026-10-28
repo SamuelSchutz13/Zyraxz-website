@@ -95,7 +95,6 @@ assets/
   css/main.css            styles, light/dark themes and languages
   fonts/                  General Sans (woff2)
   js/prefs.js             theme and language from the settings popup, applied before paint
-  js/nav.js               highlights the section on screen in the menu
   js/filters.js           technology filter for the projects
   js/github.js            stars, recent projects, commits, contributions and online status
   js/reveal.js            cards rising in on scroll

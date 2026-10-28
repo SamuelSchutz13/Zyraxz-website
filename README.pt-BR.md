@@ -95,7 +95,6 @@ assets/
   css/main.css            estilos, temas claro/escuro e idiomas
   fonts/                  General Sans (woff2)
   js/prefs.js             tema e idioma do popup de configurações, aplicados antes de pintar a tela
-  js/nav.js               destaca no menu a seção que está na tela
   js/filters.js           filtro de projetos por tecnologia
   js/github.js            estrelas, projetos recentes, commits, contribuições e status online
   js/reveal.js            cartões surgindo ao rolar

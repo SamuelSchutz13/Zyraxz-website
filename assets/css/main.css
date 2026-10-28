@@ -133,11 +133,6 @@ pre.flow { background: var(--surface); border-radius: 12px; padding: 20px; overf
 .p-head .stack .stars { margin-left: 8px; }
 .p-body { padding-bottom: 32px; }
 
-/* nav: tabs with the current one highlighted */
-.tabs { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-radius: 999px; }
-.tabs a { padding: 7px 14px; border-radius: 999px; color: var(--muted); transition: color .2s, background .2s; }
-.tabs a:hover { color: var(--ink); }
-.tabs a[aria-current] { background: var(--ink); color: var(--bg); }
 html { scroll-padding-top: 24px; }
 
 /* settings popup */
@@ -154,7 +149,6 @@ html { scroll-padding-top: 24px; }
 .seg label:has(input:checked) { background: var(--surface); color: var(--ink); font-weight: 500; }
 .seg label:has(input:focus-visible) { outline: 2px solid var(--ink); outline-offset: 2px; }
 @media (max-width: 700px) {
-  .tabs a { padding: 6px 10px; font-size: 14px; }
   #settings { top: 76px; right: 16px; }
 }
 
