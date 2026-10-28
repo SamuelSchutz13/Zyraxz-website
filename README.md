@@ -26,7 +26,7 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/preview.png" alt="Home page in the dark theme: name with online status, the headline and the two most recent projects" />
+  <img src=".github/assets/home.png" alt="Home page in the dark theme: name with the coding status, the headline and the two most recent projects" />
 </p>
 
 > [!NOTE]
