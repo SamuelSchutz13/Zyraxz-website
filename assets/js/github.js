@@ -87,16 +87,6 @@ const renderCommits = (list, commits) => {
     status.hidden = false;
     document.querySelector('.who-empty').hidden = true;
   }
-  const song = data?.spotify;
-  if (song) {
-    const np = document.querySelector('.np');
-    np.href = song.url;
-    np.querySelector('img').src = song.image;
-    np.querySelector('.np-track').textContent = song.track;
-    np.querySelector('.np-artist').textContent = song.artist;
-    np.hidden = false;
-    document.querySelector('.who-empty').hidden = true;
-  }
 
   // contributions calendar: only in the Action's file (it needs a server to fetch)
   const contrib = document.getElementById('contrib');

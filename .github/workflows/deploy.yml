@@ -31,10 +31,6 @@ jobs:
         run: node .github/scripts/github-data.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # optional: last song on Spotify (repo Settings → Secrets → Actions)
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
         continue-on-error: true # without the file the site falls back to the public API
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

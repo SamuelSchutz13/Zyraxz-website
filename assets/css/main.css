@@ -220,7 +220,7 @@ html { scroll-padding-top: 24px; }
 .lb-next { right: 16px; top: 50%; translate: 0 -50%; }
 @media (max-width: 700px) { .lightbox { padding: 64px 12px; } .lb-prev, .lb-next { top: auto; bottom: 16px; translate: none; } }
 
-/* hover card on the name: online status + last song (github.js fills it) */
+/* hover card on the name: online status (github.js fills it) */
 .who { position: relative; }
 .av-wrap { position: relative; display: inline-flex; }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: #8b8b8b; display: inline-block; flex: none; }
@@ -235,9 +235,3 @@ html { scroll-padding-top: 24px; }
 .who:hover .who-card, .who:focus-within .who-card { opacity: 1; translate: 0 0; pointer-events: auto; }
 .who-card::before { content: ""; position: absolute; inset: -12px 0 auto; height: 12px; } /* keeps hover alive across the gap */
 .status { display: flex; align-items: center; gap: 10px; font-size: 14px; }
-.np { display: flex; align-items: center; gap: 12px; padding: 8px; margin: -8px; border-radius: 10px; transition: background .2s; }
-.np:hover { background: var(--hover); }
-.np img { width: 48px; height: 48px; border-radius: 6px; }
-.np small { display: block; font-size: 12px; color: var(--muted); }
-.np b { display: block; font-weight: 500; font-size: 14px; line-height: 1.3; }
-.np-artist { display: block; font-size: 13px; color: var(--muted); }

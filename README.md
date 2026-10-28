@@ -24,8 +24,7 @@ assets/
   img/favicon.svg, og.png ícone da aba e prévia ao compartilhar o link
 .github/
   workflows/deploy.yml    publica o site a cada push e de hora em hora
-  scripts/github-data.mjs gera assets/data/github.json (dados do GitHub e do Spotify) antes de publicar
-  scripts/spotify-auth.mjs ajudante para gerar o token do Spotify (roda só no seu computador)
+  scripts/github-data.mjs gera assets/data/github.json (dados do GitHub) antes de publicar
 ```
 
 ## Dados do GitHub
@@ -35,14 +34,10 @@ recentes e o calendário de contribuições em `assets/data/github.json`. O site
 então os visitantes nunca esbarram no limite de 60 consultas/hora da API pública.
 Abrindo o `index.html` direto do disco, o arquivo não existe e o site consulta a API como reserva.
 
-## Cartão do nome (status e Spotify)
+## Cartão do nome (status)
 
-Passando o mouse em "Zyraxz" aparece um cartão com:
-
-- **Online**: bolinha verde quando houve commit nas últimas 24 h (os dados atualizam de hora em hora).
-- **Ouvindo por último**: a última música tocada no Spotify. É opcional e precisa de três secrets no repositório
-  (Settings → Secrets and variables → Actions): `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` e `SPOTIFY_REFRESH_TOKEN`.
-  O refresh token sai do `spotify-auth.mjs`. Sem os secrets, o cartão só mostra o status.
+Passando o mouse em "Zyraxz" aparece um cartão com o status: bolinha verde e "Online" quando houve
+commit nas últimas 24 h (os dados atualizam de hora em hora), senão a data do último commit.
 
 ## Idiomas
 
