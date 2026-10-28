@@ -38,7 +38,6 @@
 - **Página de cada projeto** com funcionalidades, arquitetura, nota de privacidade e capturas que abrem em tela cheia (com setas entre elas).
 - **Sobre mim**: stack dividida em linguagens, frameworks, bancos e testes, cada uma com link para o site oficial; **commits recentes** com o ícone de cada app; e o **calendário de contribuições** do último ano.
 - **Status online**: passando o mouse no nome, mostra se commitei nas últimas 24 horas, quando e em qual app.
-- **Terminal**: aperte <kbd>`</kbd> (ou o botão `>_`) e digite `help`: liste e abra projetos, veja a stack e os últimos commits, troque tema e idioma… e tem um easter egg com `sudo`.
 - **Configurações** (⚙): **tema claro e escuro** em tons pastel, **português e inglês** com bandeiras. As escolhas ficam salvas.
 - Capturas em WebP com miniaturas para os cartões, animação ao rolar que respeita "reduzir movimento", página 404, `sitemap.xml`, links canônicos e prévia ao compartilhar (Open Graph).
 
@@ -100,7 +99,6 @@ assets/
   js/github.js            estrelas, projetos recentes, commits, contribuições e status online
   js/reveal.js            cartões surgindo ao rolar
   js/lightbox.js          capturas em tela cheia
-  js/terminal.js          o terminal (tecla ` ou botão >_)
   img/logos/              ícones dos projetos (de cada repositório)
   img/icons/              ícones das tecnologias
   img/projects/           capturas em WebP (thumbs/ tem as versões de 800 px dos cartões)

@@ -73,7 +73,6 @@ const renderCommits = (list, commits) => {
 
 (async () => {
   const data = await load();
-  window.githubData = data; // read by the terminal's "commits" command
   const list = document.getElementById('commits');
 
   document.querySelectorAll('.stars[data-repo]').forEach(el => {

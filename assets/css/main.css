@@ -234,25 +234,4 @@ html { scroll-padding-top: 24px; }
 .status-app { display: inline-flex; align-items: center; gap: 6px; margin-left: 6px; font-weight: 500; vertical-align: -3px; }
 .status-app:hover { text-decoration: underline; }
 
-/* terminal (terminal.js): always dark, like a real one */
-.term-btn { background: var(--surface); color: var(--ink); border: 0; height: 38px; padding: 0 12px; border-radius: 999px; font: 600 13px/1 ui-monospace, Consolas, monospace; cursor: pointer; transition: background .2s, transform .2s; }
-.term-btn:hover { background: var(--hover); transform: translateY(-1px); }
-.terminal { margin: auto; width: min(760px, calc(100vw - 32px)); max-width: none; padding: 0; border: 0; border-radius: 14px; overflow: hidden; background: #141311; color: #e8e0cf; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); }
-.terminal::backdrop { background: rgba(10, 9, 8, .55); }
-.term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 14px; background: #201e1b; font: 13px ui-monospace, Consolas, monospace; color: #9a9080; }
-.term-bar i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
-.term-bar i:nth-child(2) { background: #febc2e; }
-.term-bar i:nth-child(3) { background: #28c840; }
-.term-bar span { margin-left: 8px; flex: 1; text-align: center; padding-right: 40px; }
-.term-bar button { background: none; border: 0; color: #9a9080; font-size: 20px; cursor: pointer; line-height: 1; }
-.term-bar button:hover { color: #e8e0cf; }
-.term-body { height: min(420px, 60vh); overflow-y: auto; padding: 16px 18px; font: 14px/1.6 ui-monospace, Consolas, monospace; }
-.term-out pre { margin: 0 0 6px; white-space: pre-wrap; font: inherit; }
-.term-out .cmd { color: #f1d87a; }
-.term-out .err { color: #ff8a80; }
-.term-out .hint { color: #9a9080; }
-.term-line { display: flex; gap: 10px; align-items: center; }
-.term-line label { color: #3fb950; white-space: nowrap; }
-.term-line input { flex: 1; min-width: 0; background: none; border: 0; outline: none; color: #e8e0cf; font: inherit; caret-color: #f1d87a; }
 .social { display: flex; gap: 16px; align-items: center; }
-kbd { font: 600 .85em ui-monospace, Consolas, monospace; background: var(--surface); padding: .1em .45em; border-radius: 6px; color: var(--ink); }
