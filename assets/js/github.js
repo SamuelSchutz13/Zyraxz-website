@@ -11,7 +11,7 @@ const apps = {
   Gityx: ['Gityx', 'img/logos/gityx.svg'], 'Match-Sim': ['MatchSim', 'img/logos/matchsim.svg'],
   FoculessPDF: ['FoculessPDF', 'img/logos/foculesspdf.svg'], FoculessYT: ['FoculessYT', 'img/logos/foculessyt.svg'],
   FoculessPad: ['FoculessPad', 'img/logos/foculesspad.svg'], 'AHK-SpotifyControl': ['Spotify Control', 'img/icons/spotify.svg'],
-  'Zyraxz-website': ['Zyraxz', 'img/favicon.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
+  'Zyraxz-website': ['Zyraxz', 'img/logos/zyraxz.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'],
 };
 const app = repo => {
