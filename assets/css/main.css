@@ -268,11 +268,6 @@ html { scroll-padding-top: 24px; }
 .status-app { display: inline-flex; align-items: center; gap: 4px; color: var(--ink); }
 .status .app-ic { width: 13px; height: 13px; }
 
-/* technology filter: icon buttons */
-.filters button.ic { width: 38px; height: 38px; padding: 0; display: grid; place-items: center; }
-.filters button.ic img { width: 20px; height: 20px; object-fit: contain; }
-.filters button.ic[aria-pressed="true"] { background: var(--surface); box-shadow: inset 0 0 0 2px var(--mark); }
-.filters button.ic:hover { transform: translateY(-2px); }
 .filters button { transition: background .2s, color .2s, transform .2s, box-shadow .2s; }
 @media (max-width: 700px) {
   .who-text { display: none; }
@@ -285,3 +280,14 @@ section[hidden] { display: none; }
 .card .shot { position: relative; }
 .stars.badge { position: absolute; top: 12px; right: 12px; margin: 0; padding: 6px 12px; border-radius: 12px; background: rgba(20, 19, 17, .55); color: #f3ead8; font-weight: 500; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
 .stars.badge svg { fill: #f1d87a; }
+
+/* education timeline (About page) */
+.edu { list-style: none; position: relative; margin: 0 0 8px; padding-left: 26px; display: grid; gap: 22px; }
+.edu::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; background: var(--surface); }
+.edu li { position: relative; display: grid; gap: 2px; }
+.edu li::before { content: ""; position: absolute; left: -26px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); box-shadow: inset 0 0 0 2px var(--mark); }
+.edu li.now::before { background: var(--mark); }
+.edu-when { font-size: 13px; color: var(--muted); }
+.edu b { font-weight: 500; }
+.edu-where { font-size: 14px; color: var(--muted); }
+.edu-tag { background: var(--mark); color: #2b2620; padding: 1px 7px; border-radius: 6px; font-size: 12px; }
