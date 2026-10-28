@@ -91,7 +91,7 @@ navegador  →  index.html + assets/js/*  →  github.json (ou api.github.com qu
 index.html                página inicial
 sobre.html                sobre mim: stack, commits, linguagens e contribuições
 404.html                  página de "não encontrado" (GitHub Pages)
-projects/*.html           uma página por projeto principal
+projects/*.html           uma página por projeto
 sitemap.xml, robots.txt   para buscadores
 assets/
   css/main.css            estilos, temas claro/escuro e idiomas

@@ -91,7 +91,7 @@ browser  →  index.html + assets/js/*  →  github.json (or api.github.com when
 index.html                home page
 sobre.html                about me: stack, commits, languages and contributions
 404.html                  "not found" page (GitHub Pages)
-projects/*.html           one page per main project
+projects/*.html           one page per project
 sitemap.xml, robots.txt   for search engines
 assets/
   css/main.css            styles, light/dark themes and languages
