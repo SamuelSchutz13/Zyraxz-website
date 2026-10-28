@@ -18,7 +18,7 @@ const repos = (await json(`https://api.github.com/users/${user}/repos?sort=pushe
 
 const per = await Promise.all(repos.slice(0, 4).map(r =>
   json(`https://api.github.com/repos/${user}/${r.name}/commits?per_page=5`).then(cs => cs.map(c => ({
-    repo: r.name, avatar: c.author?.avatar_url, msg: c.commit.message.split('\n')[0],
+    repo: r.name, msg: c.commit.message.split('\n')[0],
     date: c.commit.author.date, url: c.html_url,
   })))));
 

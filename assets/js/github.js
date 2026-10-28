@@ -39,7 +39,7 @@ const load = async () => {
     const pushed = Object.fromEntries(repos.map(r => [r.name, r.pushed_at]));
     const per = await Promise.all(repos.slice(0, 4).map(r =>
       json(`https://api.github.com/repos/${user}/${r.name}/commits?per_page=5`).then(cs => cs.map(c => ({
-        repo: r.name, avatar: c.author?.avatar_url, msg: c.commit.message.split('\n')[0],
+        repo: r.name, msg: c.commit.message.split('\n')[0],
         date: c.commit.author.date, url: c.html_url,
       })))));
     const commits = per.flat().filter(c => !c.msg.startsWith('Merge'))
@@ -61,12 +61,12 @@ const ago = (d, locale = html.lang) => {
 const renderCommits = (list, commits) => {
   list.replaceChildren(...commits.map(c => {
     const li = document.createElement('li'), a = document.createElement('a');
-    const msg = document.createElement('span'), meta = document.createElement('span'), av = new Image(36, 36);
-    av.className = 'av'; av.src = c.avatar || base + 'img/avatar.png'; av.alt = '';
+    const msg = document.createElement('span'), meta = document.createElement('span');
+    const { name, icon: av } = app(c.repo);
+    av.className = 'av'; av.width = av.height = 36;
     a.href = c.url; msg.className = 'msg'; meta.className = 'meta';
     msg.textContent = c.msg;
-    const { name, icon } = app(c.repo);
-    meta.append(icon, `${name} · ${ago(c.date)}`);
+    meta.append(`${name} · ${ago(c.date)}`);
     a.append(msg, meta); li.append(av, a); return li;
   }));
 };
