@@ -37,7 +37,7 @@
 - **Projetos recentes**: os dois repositórios com push mais recente, e logo abaixo **todos os projetos**, do mais novo para o mais antigo, com **filtro por tecnologia**.
 - **Linha do tempo**: um ponto por dia mostrando quando cada projeto nasceu.
 - **Página de cada projeto** com funcionalidades, arquitetura, nota de privacidade e capturas que abrem em tela cheia (com setas entre elas).
-- **Sobre mim**: stack dividida em linguagens, frameworks, bancos e testes, cada uma com link para o site oficial; **commits recentes** com o ícone de cada app; uma **barra de linguagens** com a fatia de cada linguagem nos meus repositórios; e o **calendário de contribuições** do último ano.
+- **Sobre mim** (página própria, `sobre.html`): stack dividida em linguagens, frameworks, bancos e testes, cada uma com link para o site oficial; **commits recentes** com o ícone de cada app; uma **barra de linguagens** com a fatia de cada linguagem nos meus repositórios; e o **calendário de contribuições** do último ano.
 - **Status online**: passando o mouse no nome, mostra se commitei nas últimas 24 horas, quando e em qual app.
 - **Configurações** (⚙): **tema claro e escuro** em tons pastel, **português e inglês** com bandeiras. As escolhas ficam salvas.
 - Capturas em WebP com miniaturas para os cartões, animação ao rolar que respeita "reduzir movimento", página 404, `sitemap.xml`, links canônicos e prévia ao compartilhar (Open Graph).
@@ -89,6 +89,7 @@ navegador  →  index.html + assets/js/*  →  github.json (ou api.github.com qu
 
 ```
 index.html                página inicial
+sobre.html                sobre mim: stack, commits, linguagens e contribuições
 404.html                  página de "não encontrado" (GitHub Pages)
 projects/*.html           uma página por projeto principal
 sitemap.xml, robots.txt   para buscadores

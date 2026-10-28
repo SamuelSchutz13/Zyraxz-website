@@ -240,9 +240,9 @@ html { scroll-padding-top: 24px; }
 #linha-do-tempo h2 { margin-bottom: 6px; }
 .tl-sub { color: var(--muted); margin-bottom: 40px; }
 .timeline { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; position: relative; }
-.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 38px; height: 3px; border-radius: 3px; background: var(--surface); }
+.timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 44px; height: 3px; border-radius: 3px; background: var(--surface); } /* centre of the 15px node: 26 + 12 + 7.5 - 1.5 */
 .timeline li { position: relative; padding-right: 16px; }
-.timeline time { display: block; font-weight: 500; margin-bottom: 10px; }
+.timeline time { display: block; font-weight: 500; height: 26px; line-height: 26px; margin-bottom: 12px; }
 .timeline .node { display: block; width: 15px; height: 15px; border-radius: 50%; background: var(--mark); box-shadow: 0 0 0 5px var(--bg); position: relative; margin-bottom: 18px; }
 .tl-items { display: grid; gap: 8px; }
 .tl-items a { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: var(--muted); transition: color .2s; }
@@ -264,3 +264,10 @@ html { scroll-padding-top: 24px; }
   .timeline .node { position: absolute; left: -28px; top: 3px; margin: 0; }
   .timeline time { margin-bottom: 8px; }
 }
+
+/* About page link, page title, theme icons */
+.nav-link { color: var(--muted); font-size: 15px; transition: color .2s; }
+.nav-link:hover { color: var(--ink); }
+.page-title { font-size: clamp(36px, 5vw, 56px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; margin: 24px 0 40px; }
+.about p:not(.lead) { margin-bottom: 28px; line-height: 1.6; }
+.seg svg { width: 16px; height: 16px; flex: none; }
