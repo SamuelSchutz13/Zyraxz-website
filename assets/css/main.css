@@ -201,3 +201,7 @@ html { scroll-padding-top: 24px; }
 .chips li:has(a):hover { background: var(--hover); }
 .seg label { display: flex; align-items: center; justify-content: center; gap: 8px; }
 .flag { width: 20px; height: 14px; object-fit: cover; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0, 0, 0, .15); }
+
+/* scroll reveal (reveal.js); skipped entirely for reduced motion */
+.reveal :is(.card, .gallery figure, .chips, .contrib, .shot-lg) { opacity: 0; translate: 0 24px; transition: opacity .6s ease, translate .6s cubic-bezier(.2, .7, .2, 1), transform .25s, background .25s; }
+.reveal :is(.card, .gallery figure, .chips, .contrib, .shot-lg).in { opacity: 1; translate: 0 0; }

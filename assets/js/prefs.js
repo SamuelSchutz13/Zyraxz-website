@@ -9,6 +9,7 @@ const apply = {
 };
 apply.theme(pref('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
 apply.lang(pref('lang') || (navigator.language.toLowerCase().startsWith('pt') ? 'pt' : 'en'));
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('reveal'); // see reveal.js
 
 // settings popup: one radio group per preference
 document.addEventListener('DOMContentLoaded', () => {

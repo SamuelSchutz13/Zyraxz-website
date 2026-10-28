@@ -6,6 +6,7 @@ Publicado no GitHub Pages pelo workflow `.github/workflows/deploy.yml`.
 ```
 index.html                página inicial
 404.html                  página de "não encontrado" (GitHub Pages)
+sitemap.xml, robots.txt   para buscadores
 projects/*.html           uma página por projeto principal
 assets/
   css/main.css            estilos, temas claro/escuro e idiomas
@@ -14,9 +15,11 @@ assets/
   js/nav.js               destaca no menu a seção que está na tela
   js/filters.js           filtro de projetos por tecnologia
   js/github.js            estrelas, projetos recentes, commits e contribuições
+  js/reveal.js            cartões surgindo ao rolar (desligado para quem prefere menos movimento)
   img/icons/              ícones das tecnologias (Simple Icons, CC0)
   img/logos/              ícones dos projetos (dos repositórios)
-  img/projects/           capturas de tela
+  img/projects/           capturas de tela em WebP (até 1600px) usadas nas páginas dos projetos
+  img/projects/thumbs/    miniaturas de 800px usadas nos cartões
   img/favicon.svg, og.png ícone da aba e prévia ao compartilhar o link
 .github/
   workflows/deploy.yml    publica o site a cada push e de hora em hora
