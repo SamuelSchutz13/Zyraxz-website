@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MatchSim — Zyraxz</title>
+<meta name="description" content="Simulador do futebol brasileiro: parta da tabela real e escreva o resto da temporada.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MatchSim — Zyraxz">
+<meta property="og:description" content="Simulador do futebol brasileiro: parta da tabela real e escreva o resto da temporada.">
+<meta property="og:image" content="https://samuelschutz13.github.io/assets/img/og.png">
+<meta property="og:url" content="https://samuelschutz13.github.io/">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1d1b19">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../assets/img/avatar.png">
+<script src="../assets/js/prefs.js"></script>
+<link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<script src="../assets/js/github.js" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/filters.js" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="../index.html"><img src="../assets/img/avatar.png" width="236" height="236" alt="">Zyraxz</a>
+    <nav aria-label="Principal">
+      <div class="tabs">
+        <a href="../index.html#recentes" data-sec="recentes"><span lang="pt">Recentes</span><span lang="en">Recent</span></a>
+        <a href="../index.html#projetos" data-sec="projetos" aria-current="true"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
+        <a href="../index.html#sobre" data-sec="sobre"><span lang="pt">Sobre</span><span lang="en">About</span></a>
+      </div>
+      <button class="gear" type="button" popovertarget="settings" aria-label="Configurações / Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+      <div id="settings" popover>
+        <p class="set-title"><span lang="pt">Tema</span><span lang="en">Theme</span></p>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="theme" value="light"><span lang="pt">Claro</span><span lang="en">Light</span></label>
+          <label><input type="radio" name="theme" value="dark"><span lang="pt">Escuro</span><span lang="en">Dark</span></label>
+        </div>
+        <p class="set-title"><span lang="pt">Idioma</span><span lang="en">Language</span></p>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="lang" value="pt">Português</label>
+          <label><input type="radio" name="lang" value="en">English</label>
+        </div>
+      </div>
+      <a href="https://github.com/SamuelSchutz13" title="GitHub"><img class="gh" src="../assets/img/icons/github-white.svg" width="22" height="22" alt="GitHub"></a>
+    </nav>
+  </header>
+
+  <a class="back" href="../index.html#projetos">← <span lang="pt">Todos os projetos</span><span lang="en">All projects</span></a>
+  <div class="p-head" data-repo="Match-Sim">
+    <div>
+      <h1><img class="logo-p" src="../assets/img/logos/matchsim.svg" width="52" height="52" alt="">MatchSim</h1>
+      <p><span lang="pt">Simulador do futebol brasileiro: parta da tabela real e escreva o resto da temporada.</span><span lang="en">Brazilian football simulator: start from the real table and write the rest of the season.</span></p>
+      <p class="stack"><img src="../assets/img/icons/vuedotjs.svg" width="22" height="22" alt="Vue" title="Vue"><img src="../assets/img/icons/typescript.svg" width="22" height="22" alt="TypeScript" title="TypeScript"><img src="../assets/img/icons/tailwindcss.svg" width="22" height="22" alt="Tailwind" title="Tailwind"><img src="../assets/img/icons/nodedotjs.svg" width="22" height="22" alt="Node.js" title="Node.js"><img src="../assets/img/icons/vite.svg" width="22" height="22" alt="Vite" title="Vite"><span class="stars" data-repo="Match-Sim" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></p>
+    </div>
+    <div class="btns">
+      
+      <a class="btn" href="https://github.com/SamuelSchutz13/Match-Sim"><img src="../assets/img/icons/github-white.svg" width="18" height="18" alt=""><span lang="pt">Ver no GitHub</span><span lang="en">View on GitHub</span></a>
+    </div>
+  </div>
+
+  <div class="shot-lg"><img src="../assets/img/projects/matchsim-seriea.png" width="1256" height="808" alt="Tabela da Série A no MatchSim"></div>
+
+  <div class="p-body">
+    <section>
+      <h2><span lang="pt">O que faz</span><span lang="en">What it does</span></h2>
+      <ul class="feat"><li lang="pt"><b>Série A e Série B</b>: escolha a rodada, digite os placares e veja a tabela recalcular na hora, com ▲▼ de posições ganhas ou perdidas.</li><li lang="en"><b>Série A and B</b>: pick the round, type the scores and watch the table recalculate, with ▲▼ for positions gained or lost.</li><li lang="pt"><b>Copa do Brasil</b>: chaveamento com ida, volta, agregado e pênaltis.</li><li lang="en"><b>Copa do Brasil</b>: bracket with home and away legs, aggregate and penalties.</li><li lang="pt"><b>Estaduais</b>: Paulistão, Carioca, Mineiro e Gauchão, com grupos e mata-mata.</li><li lang="en"><b>State leagues</b>: Paulistão, Carioca, Mineiro and Gauchão, with groups and knockouts.</li><li lang="pt"><b>Detalhes da partida</b>: gols, cartões, estatísticas e a escalação tática num campinho.</li><li lang="en"><b>Match details</b>: goals, cards, stats and the tactical lineup on a pitch.</li><li lang="pt"><b>Perfil do time</b> com a sala de troféus.</li><li lang="en"><b>Team profile</b> with the trophy room.</li></ul>
+    </section>
+    <section>
+      <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
+      <p><span lang="pt">A ESPN não informa o número da rodada, então o servidor reconstrói as rodadas pelas datas, incluindo jogos adiados. Na Série A 2026 o resultado bate com as rodadas oficiais.</span><span lang="en">ESPN doesn't provide round numbers, so the server rebuilds rounds from match dates, postponed games included. For Série A 2026 the result matches the official rounds.</span></p>
+      <pre class="flow">web/  Vue 3 + Vite + shadcn-vue + Tailwind  →  /api  →  server/  Node (TypeScript)  →  API da ESPN</pre>
+      <div class="note"><span lang="pt"><b>Projeto educacional.</b> Os dados vêm da API pública (não oficial) da ESPN. Sem relação com a ESPN, a CBF ou os clubes.</span><span lang="en"><b>Educational project.</b> Data comes from ESPN's public (unofficial) API. Not affiliated with ESPN, CBF or the clubs.</span></div>
+    </section>
+  </div>
+
+  <section>
+    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <div class="gallery">
+      <figure><div class="shot-lg"><img src="../assets/img/projects/matchsim-partida.png" width="1256" height="808" loading="lazy" alt="Escalação tática no campinho"></div><figcaption><span lang="pt">Escalação tática no campinho</span><span lang="en">Tactical lineup on the pitch</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/matchsim-copa.png" width="1256" height="808" loading="lazy" alt="Chaveamento da Copa do Brasil"></div><figcaption><span lang="pt">Chaveamento da Copa do Brasil</span><span lang="en">Copa do Brasil bracket</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/matchsim-estaduais.png" width="1256" height="908" loading="lazy" alt="Estaduais"></div><figcaption><span lang="pt">Estaduais</span><span lang="en">State leagues</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/matchsim-time.png" width="1256" height="988" loading="lazy" alt="Perfil do time com títulos"></div><figcaption><span lang="pt">Perfil do time com títulos</span><span lang="en">Team profile with titles</span></figcaption></figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Zyraxz</span>
+    <a href="https://github.com/SamuelSchutz13" title="GitHub"><img class="gh" src="../assets/img/icons/github-white.svg" width="22" height="22" alt="GitHub"></a>
+  </footer>
+</div>
+</body>
+</html>

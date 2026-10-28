@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gityx — Zyraxz</title>
+<meta name="description" content="O Git do seu repositório no navegador: grafo de commits, mudanças ao vivo, estatísticas e testes. Roda na sua máquina, sem IA, e nunca escreve no repositório.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gityx — Zyraxz">
+<meta property="og:description" content="O Git do seu repositório no navegador: grafo de commits, mudanças ao vivo, estatísticas e testes. Roda na sua máquina, sem IA, e nunca escreve no repositório.">
+<meta property="og:image" content="https://samuelschutz13.github.io/assets/img/og.png">
+<meta property="og:url" content="https://samuelschutz13.github.io/">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1d1b19">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../assets/img/avatar.png">
+<script src="../assets/js/prefs.js"></script>
+<link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<script src="../assets/js/github.js" defer></script>
+<script src="../assets/js/nav.js" defer></script>
+<script src="../assets/js/filters.js" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="../index.html"><img src="../assets/img/avatar.png" width="236" height="236" alt="">Zyraxz</a>
+    <nav aria-label="Principal">
+      <div class="tabs">
+        <a href="../index.html#recentes" data-sec="recentes"><span lang="pt">Recentes</span><span lang="en">Recent</span></a>
+        <a href="../index.html#projetos" data-sec="projetos" aria-current="true"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
+        <a href="../index.html#sobre" data-sec="sobre"><span lang="pt">Sobre</span><span lang="en">About</span></a>
+      </div>
+      <button class="gear" type="button" popovertarget="settings" aria-label="Configurações / Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+      <div id="settings" popover>
+        <p class="set-title"><span lang="pt">Tema</span><span lang="en">Theme</span></p>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="theme" value="light"><span lang="pt">Claro</span><span lang="en">Light</span></label>
+          <label><input type="radio" name="theme" value="dark"><span lang="pt">Escuro</span><span lang="en">Dark</span></label>
+        </div>
+        <p class="set-title"><span lang="pt">Idioma</span><span lang="en">Language</span></p>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="lang" value="pt">Português</label>
+          <label><input type="radio" name="lang" value="en">English</label>
+        </div>
+      </div>
+      <a href="https://github.com/SamuelSchutz13" title="GitHub"><img class="gh" src="../assets/img/icons/github-white.svg" width="22" height="22" alt="GitHub"></a>
+    </nav>
+  </header>
+
+  <a class="back" href="../index.html#projetos">← <span lang="pt">Todos os projetos</span><span lang="en">All projects</span></a>
+  <div class="p-head" data-repo="Gityx">
+    <div>
+      <h1><img class="logo-p" src="../assets/img/logos/gityx.svg" width="52" height="52" alt="">Gityx</h1>
+      <p><span lang="pt">O Git do seu repositório no navegador: grafo de commits, mudanças ao vivo, estatísticas e testes. Roda na sua máquina, sem IA, e nunca escreve no repositório.</span><span lang="en">Your repository's Git in the browser: commit graph, live changes, stats and tests. Runs on your machine, without AI, and never writes to the repository.</span></p>
+      <p class="stack"><img src="../assets/img/icons/nestjs.svg" width="22" height="22" alt="NestJS" title="NestJS"><img src="../assets/img/icons/react.svg" width="22" height="22" alt="React" title="React"><img src="../assets/img/icons/shadcnui-white.svg" width="22" height="22" alt="shadcn/ui" title="shadcn/ui"><img src="../assets/img/icons/tailwindcss.svg" width="22" height="22" alt="Tailwind" title="Tailwind"><img src="../assets/img/icons/typescript.svg" width="22" height="22" alt="TypeScript" title="TypeScript"><img src="../assets/img/icons/jest.svg" width="22" height="22" alt="Jest" title="Jest"><span class="stars" data-repo="Gityx" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></p>
+    </div>
+    <div class="btns">
+      
+      <a class="btn" href="https://github.com/SamuelSchutz13/Gityx"><img src="../assets/img/icons/github-white.svg" width="18" height="18" alt=""><span lang="pt">Ver no GitHub</span><span lang="en">View on GitHub</span></a>
+    </div>
+  </div>
+
+  <div class="shot-lg"><img src="../assets/img/projects/gityx-history.png" width="1440" height="860" alt="Histórico de commits em grafo no Gityx"></div>
+
+  <div class="p-body">
+    <section>
+      <h2><span lang="pt">O que faz</span><span lang="en">What it does</span></h2>
+      <ul class="feat"><li lang="pt"><b>Visão geral</b>: branch, mudanças pendentes, último teste e os números do projeto.</li><li lang="en"><b>Overview</b>: branch, pending changes, last test run and the project's numbers.</li><li lang="pt"><b>Stack detectada</b> a partir de <code>package.json</code>, <code>go.mod</code>, Dockerfile e mais, com ícone e versão.</li><li lang="en"><b>Detected stack</b> from <code>package.json</code>, <code>go.mod</code>, Dockerfile and more, with icon and version.</li><li lang="pt"><b>Gráficos</b>: linhas por linguagem, tipos de commit, commits por semana, calendário de atividade.</li><li lang="en"><b>Charts</b>: lines by language, commit types, commits per week, activity calendar.</li><li lang="pt"><b>Mudanças ao vivo</b> com diff destacado e busca por texto ou regex.</li><li lang="en"><b>Live changes</b> with highlighted diffs and search by text or regex.</li><li lang="pt"><b>Testes</b>: Jest, Vitest, Go, pytest, cargo e outros encontrados automaticamente.</li><li lang="en"><b>Tests</b>: Jest, Vitest, Go, pytest, cargo and more found automatically.</li><li lang="pt"><b>Exportação</b> em HTML offline, Markdown ou JSON.</li><li lang="en"><b>Export</b> to offline HTML, Markdown or JSON.</li></ul>
+    </section>
+    <section>
+      <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
+      <p><span lang="pt">O servidor observa os arquivos e avisa o navegador por Server-Sent Events quando algo muda. Um teste de fumaça quebra o build se o site referenciar qualquer URL externa.</span><span lang="en">The server watches files and notifies the browser through Server-Sent Events when something changes. A smoke test fails the build if the website references any outside URL.</span></p>
+      <pre class="flow">browser (React + shadcn/ui)  ⇄  REST + SSE em 127.0.0.1  ⇄  NestJS  ⇄  git (execFile)</pre>
+      <div class="note"><span lang="pt"><b>Só leitura.</b> O Git roda com <code>execFile</code> e listas de argumentos, nunca por shell. Nenhum commit, checkout, stage, fetch ou push.</span><span lang="en"><b>Read-only.</b> Git runs through <code>execFile</code> with argument arrays, never a shell. No commit, checkout, stage, fetch or push.</span></div>
+    </section>
+  </div>
+
+  <section>
+    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <div class="gallery">
+      <figure><div class="shot-lg"><img src="../assets/img/projects/gityx-overview.png" width="1440" height="1520" loading="lazy" alt="Visão geral com stack e gráficos"></div><figcaption><span lang="pt">Visão geral com stack e gráficos</span><span lang="en">Overview with stack and charts</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/gityx-changes.png" width="1440" height="860" loading="lazy" alt="Mudanças ao vivo"></div><figcaption><span lang="pt">Mudanças ao vivo</span><span lang="en">Live changes</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/gityx-tests.png" width="1440" height="860" loading="lazy" alt="Execução de testes com log"></div><figcaption><span lang="pt">Execução de testes com log</span><span lang="en">Test run with log</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/gityx-light.png" width="1440" height="900" loading="lazy" alt="Tema claro"></div><figcaption><span lang="pt">Tema claro</span><span lang="en">Light theme</span></figcaption></figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Zyraxz</span>
+    <a href="https://github.com/SamuelSchutz13" title="GitHub"><img class="gh" src="../assets/img/icons/github-white.svg" width="22" height="22" alt="GitHub"></a>
+  </footer>
+</div>
+</body>
+</html>
