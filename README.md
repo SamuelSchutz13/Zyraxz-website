@@ -131,3 +131,4 @@ assets/
 - Font: [General Sans](https://www.fontshare.com/fonts/general-sans) by Indian Type Foundry (ITF Free Font License), served by the site itself.
 - Technology icons: [Simple Icons](https://simpleicons.org) (CC0). Playwright logo from [playwright.dev](https://playwright.dev).
 - Screenshots and project icons come from each project's own repository.
+- Institution logos belong to Unoesc and SENAI. SENAI logo: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:SENAI_logo_2024.png), CC BY-SA 4.0 (cropped).

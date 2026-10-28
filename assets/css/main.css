@@ -290,4 +290,10 @@ section[hidden] { display: none; }
 .edu-when { font-size: 13px; color: var(--muted); }
 .edu b { font-weight: 500; }
 .edu-where { font-size: 14px; color: var(--muted); }
-.edu-tag { background: var(--mark); color: #2b2620; padding: 1px 7px; border-radius: 6px; font-size: 12px; }
+.edu-tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(234, 88, 12, .14); color: #c2410c; padding: 1px 8px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+.edu-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; } /* "not finished yet" */
+:root[data-theme="dark"] .edu-tag { color: #fb923c; background: rgba(251, 146, 60, .14); }
+.edu-where { display: flex; align-items: center; gap: 6px; }
+.edu-logo { width: 18px; height: 18px; object-fit: contain; flex: none; filter: brightness(0); opacity: .85; } /* monochrome: black on light */
+:root[data-theme="dark"] .edu-logo { filter: brightness(0) invert(1); opacity: .9; } /* white on dark */
+.edu-logo.wide { width: auto; height: 12px; }
