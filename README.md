@@ -38,6 +38,7 @@
 - **Project pages** with features, architecture, a privacy note and screenshots that open full size (arrows move between them).
 - **About me**: stack grouped by languages, frameworks, databases and testing, each linking to its official site; **recent commits** with each app's icon; and the **contributions calendar** of the last year.
 - **Online status**: hover the name to see whether I committed in the last 24 hours, when and in which app.
+- **Terminal**: press <kbd>`</kbd> (or the `>_` button) and type `help`: list and open projects, show the stack and latest commits, switch theme and language… and there is a `sudo` easter egg.
 - **Settings** (⚙): pastel **light and dark themes**, **Portuguese and English** with flags. Both are remembered.
 - WebP screenshots with thumbnails for the cards, scroll reveal that respects reduced motion, a 404 page, `sitemap.xml`, canonical links and Open Graph previews.
 
@@ -99,6 +100,7 @@ assets/
   js/github.js            stars, recent projects, commits, contributions and online status
   js/reveal.js            cards rising in on scroll
   js/lightbox.js          full-size screenshots
+  js/terminal.js          the terminal (` key or the >_ button)
   img/logos/              project icons (from each repository)
   img/icons/              technology icons
   img/projects/           screenshots in WebP (thumbs/ holds the 800 px card versions)
