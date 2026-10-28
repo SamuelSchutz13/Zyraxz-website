@@ -20,4 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (input.name === 'lang') document.dispatchEvent(new Event('langchange'));
     });
   });
+
+  // the popup is pinned to the header, so it closes once the page scrolls away from it
+  const settings = document.getElementById('settings');
+  addEventListener('scroll', () => {
+    if (settings.matches(':popover-open')) settings.hidePopover();
+  }, { passive: true });
 });

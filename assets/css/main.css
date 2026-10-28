@@ -185,12 +185,17 @@ html { scroll-padding-top: 24px; }
 .contrib-grid i[data-l="4"] { background: var(--mark); }
 
 /* contact */
-.contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding-right: 24px; }
+.contact { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px 40px; padding: 32px; }
 .contact:hover { transform: none; }
 .contact h2 { margin-bottom: 8px; }
-.contact .body { padding: 32px; }
+.contact .body { padding: 0; }
+.contact .btn { white-space: nowrap; }
 
 /* 404 */
 .notfound h1 { font-size: clamp(80px, 14vw, 160px); }
 .notfound p { margin-bottom: 28px; }
-@media (max-width: 700px) { .contact { padding: 0 24px 24px 0; } .contact .btn { margin-left: 24px; } }
+@media (max-width: 700px) { .contact { grid-template-columns: 1fr; padding: 24px; } .contact .btn { justify-self: start; } }
+
+/* tech chips link to each official site */
+.chips a { display: flex; align-items: center; gap: 8px; }
+.chips li:has(a):hover { background: var(--hover); }
