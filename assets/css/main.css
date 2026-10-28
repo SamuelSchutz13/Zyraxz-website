@@ -235,3 +235,7 @@ html { scroll-padding-top: 24px; }
 .who:hover .who-card, .who:focus-within .who-card { opacity: 1; translate: 0 0; pointer-events: auto; }
 .who-card::before { content: ""; position: absolute; inset: -12px 0 auto; height: 12px; } /* keeps hover alive across the gap */
 .status { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.app-ic { width: 16px; height: 16px; object-fit: contain; flex: none; }
+.status-text { line-height: 1.4; }
+.status-app { display: inline-flex; align-items: center; gap: 5px; font-weight: 500; vertical-align: -3px; }
+.status-app:hover { text-decoration: underline; }

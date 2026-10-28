@@ -5,6 +5,23 @@ const hidden = ['REST-API-Test', 'Blog.ts-backend', 'eCommerce-Backend', 'ai-job
 const html = document.documentElement;
 const base = document.querySelector('script[src$="github.js"]').src.replace(/js\/github\.js$/, '');
 
+// display name and icon of each repo, for the commit list and the status card
+const apps = {
+  TitanLive: ['TitanLive', 'img/logos/titanlive.svg'], Restyx: ['Restyx', 'img/logos/restyx.svg'],
+  Gityx: ['Gityx', 'img/logos/gityx.svg'], 'Match-Sim': ['MatchSim', 'img/logos/matchsim.svg'],
+  FoculessPDF: ['FoculessPDF', 'img/logos/foculesspdf.svg'], FoculessYT: ['FoculessYT', 'img/logos/foculessyt.svg'],
+  FoculessPad: ['FoculessPad', 'img/logos/foculesspad.svg'], 'AHK-SpotifyControl': ['Spotify Control', 'img/icons/spotify.svg'],
+  'Zyraxz-website': ['Zyraxz', 'img/favicon.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
+  'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'],
+};
+const app = repo => {
+  const [name, logo] = apps[repo] || [repo, null];
+  const icon = document.createElement('img');
+  icon.className = 'app-ic'; icon.width = icon.height = 16; icon.alt = '';
+  icon.src = logo ? base + logo : base + 'img/icons/github-white.svg';
+  return { name, icon };
+};
+
 const load = async () => {
   // on the published site an hourly GitHub Action writes this file, so visitors never hit the API limit
   try {
@@ -42,16 +59,14 @@ const ago = (d, locale = html.lang) => {
 };
 
 const renderCommits = (list, commits) => {
-  const logos = Object.fromEntries([...document.querySelectorAll('[data-repo]')]
-    .map(el => [el.dataset.repo, el.querySelector('.logo-p')?.src]).filter(x => x[1]));
   list.replaceChildren(...commits.map(c => {
     const li = document.createElement('li'), a = document.createElement('a');
     const msg = document.createElement('span'), meta = document.createElement('span'), av = new Image(36, 36);
     av.className = 'av'; av.src = c.avatar || base + 'img/avatar.png'; av.alt = '';
     a.href = c.url; msg.className = 'msg'; meta.className = 'meta';
     msg.textContent = c.msg;
-    if (logos[c.repo]) { const lg = new Image(16, 16); lg.src = logos[c.repo]; lg.alt = ''; meta.append(lg); }
-    meta.append(`${c.repo} · ${ago(c.date)}`);
+    const { name, icon } = app(c.repo);
+    meta.append(icon, `${name} · ${ago(c.date)}`);
     a.append(msg, meta); li.append(av, a); return li;
   }));
 };
@@ -81,9 +96,13 @@ const renderCommits = (list, commits) => {
     const on = Date.now() - new Date(last.date) < 24 * 36e5;
     document.querySelectorAll('.who .dot').forEach(d => { d.hidden = false; d.classList.toggle('on', on); });
     const status = document.querySelector('.status');
+    const { name, icon } = app(last.repo);
+    const where = document.createElement('a');
+    where.className = 'status-app'; where.href = last.url; where.append(icon, name);
     status.querySelector('.status-text').innerHTML =
-      `<span lang="pt">${on ? 'Online · último' : 'Último'} commit ${ago(last.date, 'pt-BR')} em ${last.repo}</span>` +
-      `<span lang="en">${on ? 'Online · last' : 'Last'} commit ${ago(last.date, 'en')} in ${last.repo}</span>`;
+      `<span lang="pt">${on ? 'Online · último' : 'Último'} commit ${ago(last.date, 'pt-BR')} em</span>` +
+      `<span lang="en">${on ? 'Online · last' : 'Last'} commit ${ago(last.date, 'en')} in</span> `;
+    status.querySelector('.status-text').append(where);
     status.hidden = false;
     document.querySelector('.who-empty').hidden = true;
   }
