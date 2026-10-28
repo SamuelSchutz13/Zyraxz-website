@@ -199,3 +199,5 @@ html { scroll-padding-top: 24px; }
 /* tech chips link to each official site */
 .chips a { display: flex; align-items: center; gap: 8px; }
 .chips li:has(a):hover { background: var(--hover); }
+.seg label { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.flag { width: 20px; height: 14px; object-fit: cover; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0, 0, 0, .15); }
