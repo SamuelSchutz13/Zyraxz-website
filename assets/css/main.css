@@ -34,7 +34,7 @@ header { display: flex; justify-content: space-between; align-items: center; pad
 header nav { display: flex; gap: 24px; color: var(--muted); font-size: 15px; }
 header nav a:hover { color: var(--ink); }
 .logo { display: flex; align-items: center; gap: 12px; font-weight: 500; }
-.logo img { width: 32px; height: 32px; border-radius: 8px; }
+.logo img { width: 32px; height: 32px; border-radius: 50%; }
 
 .intro { padding-block: 96px 112px; max-width: 720px; }
 .intro h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
@@ -74,7 +74,7 @@ footer a:hover { color: var(--ink); }
 #commits li { position: relative; padding-left: 52px; min-height: 36px; }
 #commits li + li { margin-top: 20px; }
 #commits li:not(:last-child)::before { content: ""; position: absolute; left: 17px; top: 40px; bottom: -18px; width: 2px; border-radius: 2px; background: var(--hover); }
-#commits .av { position: absolute; left: 0; top: 0; width: 36px; height: 36px; padding: 6px; border-radius: 10px; background: var(--bg); object-fit: contain; }
+#commits .av { position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: 50%; }
 #commits a { display: block; border-radius: 8px; }
 #commits a:hover .msg { text-decoration: underline; }
 #commits .msg { display: block; overflow-wrap: anywhere; line-height: 1.4; }
