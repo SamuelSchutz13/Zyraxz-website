@@ -26,7 +26,7 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/home.png" alt="Página inicial no tema escuro: nome com o status "codando", o título e os dois projetos mais recentes" />
+  <img src=".github/assets/home.png" alt="Página inicial no tema escuro: nome com o status codando, o título e os dois projetos mais recentes" />
 </p>
 
 > [!NOTE]
