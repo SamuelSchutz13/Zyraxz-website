@@ -39,7 +39,13 @@ const contributions = await fetch(`https://github.com/users/${user}/contribution
   })
   .catch(() => ({ total: 0, days: [] }));
 
+// bytes of code per language, summed over every listed repository
+const languages = Object.entries((await Promise.all(repos.map(r => json(r.languages_url).catch(() => ({})))))
+  .reduce((sum, langs) => { for (const [k, v] of Object.entries(langs)) sum[k] = (sum[k] || 0) + v; return sum; }, {}))
+  .map(([name, bytes]) => ({ name, bytes })).sort((a, b) => b.bytes - a.bytes);
+
 const data = {
+  languages,
   t: Date.now(),
   stars: Object.fromEntries(repos.map(r => [r.name, r.stargazers_count])),
   pushed: Object.fromEntries(repos.map(r => [r.name, r.pushed_at])),

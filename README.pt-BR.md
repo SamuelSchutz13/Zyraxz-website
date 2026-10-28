@@ -35,8 +35,9 @@
 ## Funcionalidades
 
 - **Projetos recentes**: os dois repositórios com push mais recente, e logo abaixo **todos os projetos**, do mais novo para o mais antigo, com **filtro por tecnologia**.
+- **Linha do tempo**: um ponto por dia mostrando quando cada projeto nasceu.
 - **Página de cada projeto** com funcionalidades, arquitetura, nota de privacidade e capturas que abrem em tela cheia (com setas entre elas).
-- **Sobre mim**: stack dividida em linguagens, frameworks, bancos e testes, cada uma com link para o site oficial; **commits recentes** com o ícone de cada app; e o **calendário de contribuições** do último ano.
+- **Sobre mim**: stack dividida em linguagens, frameworks, bancos e testes, cada uma com link para o site oficial; **commits recentes** com o ícone de cada app; uma **barra de linguagens** com a fatia de cada linguagem nos meus repositórios; e o **calendário de contribuições** do último ano.
 - **Status online**: passando o mouse no nome, mostra se commitei nas últimas 24 horas, quando e em qual app.
 - **Configurações** (⚙): **tema claro e escuro** em tons pastel, **português e inglês** com bandeiras. As escolhas ficam salvas.
 - Capturas em WebP com miniaturas para os cartões, animação ao rolar que respeita "reduzir movimento", página 404, `sitemap.xml`, links canônicos e prévia ao compartilhar (Open Graph).
@@ -81,7 +82,7 @@ navegador  →  index.html + assets/js/*  →  github.json (ou api.github.com qu
 
 - **Idiomas**: cada texto existe nas duas línguas no próprio HTML, marcado com `lang="pt"` ou `lang="en"`. O CSS esconde o inativo, então não há arquivo de tradução nem pedido extra.
 - **Tema e idioma** são aplicados no `<head>`, antes de pintar a tela, então a página nunca pisca com o tema errado.
-- **Dados do GitHub**: estrelas, último push de cada repositório (que decide os projetos recentes), os sete commits mais novos dos quatro repositórios mais ativos e o calendário de contribuições, lido do fragmento HTML público do GitHub.
+- **Dados do GitHub**: estrelas, último push de cada repositório (que decide os projetos recentes), os sete commits mais novos dos quatro repositórios mais ativos, bytes de código por linguagem e o calendário de contribuições, lido do fragmento HTML público do GitHub.
 - **Online**: verde quando o último commit tem menos de 24 horas.
 
 ### Estrutura

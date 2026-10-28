@@ -35,8 +35,9 @@
 ## Features
 
 - **Recent projects**: the two repositories pushed most recently, then **all projects** below, newest first, with a **filter by technology**.
+- **Timeline**: one stop per day showing which projects were born when.
 - **Project pages** with features, architecture, a privacy note and screenshots that open full size (arrows move between them).
-- **About me**: stack grouped by languages, frameworks, databases and testing, each linking to its official site; **recent commits** with each app's icon; and the **contributions calendar** of the last year.
+- **About me**: stack grouped by languages, frameworks, databases and testing, each linking to its official site; **recent commits** with each app's icon; a **languages bar** with the share of each language across my repositories; and the **contributions calendar** of the last year.
 - **Online status**: hover the name to see whether I committed in the last 24 hours, when and in which app.
 - **Settings** (⚙): pastel **light and dark themes**, **Portuguese and English** with flags. Both are remembered.
 - WebP screenshots with thumbnails for the cards, scroll reveal that respects reduced motion, a 404 page, `sitemap.xml`, canonical links and Open Graph previews.
@@ -81,7 +82,7 @@ browser  →  index.html + assets/js/*  →  github.json (or api.github.com when
 
 - **Languages**: every text exists in both languages in the HTML, marked `lang="pt"` or `lang="en"`. CSS hides the inactive one, so there is no translation file and no extra request.
 - **Theme and language** are applied in `<head>`, before the first paint, so the page never flashes the wrong theme.
-- **GitHub data**: stars, last push per repository (which decides the recent projects), the seven latest commits of the four most active repositories, and the contributions calendar, read from GitHub's public HTML fragment.
+- **GitHub data**: stars, last push per repository (which decides the recent projects), the seven latest commits of the four most active repositories, bytes of code per language, and the contributions calendar, read from GitHub's public HTML fragment.
 - **Online**: green when the latest commit is less than 24 hours old.
 
 ### Project structure

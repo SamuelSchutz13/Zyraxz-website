@@ -107,6 +107,23 @@ const renderCommits = (list, commits) => {
     document.querySelector('.who-empty').hidden = true;
   }
 
+  // languages bar: only in the Action's file (it needs one request per repository)
+  const langs = document.getElementById('langs');
+  if (langs && data?.languages?.length) {
+    const colors = { TypeScript: '#3178c6', JavaScript: '#f1e05a', Vue: '#41b883', Go: '#00add8', Python: '#3572a5',
+      CSS: '#663399', HTML: '#e34c26', Lua: '#000080', AutoHotkey: '#6594b9', PHP: '#4f5d95', Shell: '#89e051' };
+    const total = data.languages.reduce((n, l) => n + l.bytes, 0);
+    const top = data.languages.slice(0, 6);
+    const rest = total - top.reduce((n, l) => n + l.bytes, 0);
+    if (rest > 0) top.push({ name: html.lang === 'en' ? 'Other' : 'Outros', bytes: rest, other: true });
+    const pct = b => (b / total * 100);
+    document.getElementById('lang-bar').innerHTML = top
+      .map(l => `<i style="width:${pct(l.bytes)}%;background:${l.other ? 'var(--hover)' : colors[l.name] || '#9a9080'}" title="${l.name}"></i>`).join('');
+    document.getElementById('lang-legend').innerHTML = top
+      .map(l => `<li><i style="background:${l.other ? 'var(--hover)' : colors[l.name] || '#9a9080'}"></i>${l.other ? '<span lang="pt">Outros</span><span lang="en">Other</span>' : l.name} <span class="muted">${pct(l.bytes).toFixed(1)}%</span></li>`).join('');
+    langs.hidden = false;
+  }
+
   // contributions calendar: only in the Action's file (it needs a server to fetch)
   const contrib = document.getElementById('contrib');
   if (contrib && data?.contributions?.days?.length) {
