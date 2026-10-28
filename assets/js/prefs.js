@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#settings input[type="radio"]').forEach(input => {
     input.checked = root.dataset[input.name] === input.value;
     input.addEventListener('change', () => {
+      // a theme switch flips every color at once; otherwise the cards that fade lag behind the rest
+      if (input.name === 'theme') { root.classList.add('theme-switch'); requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switch'))); }
       apply[input.name](input.value);
       save(input.name, input.value);
       if (input.name === 'lang') document.dispatchEvent(new Event('langchange'));

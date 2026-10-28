@@ -26,7 +26,7 @@ strong, b { font-weight: 600; }
   color-scheme: light;
 }
 :root[data-theme="light"] img[src$="-white.svg"] { filter: invert(.85); }
-body { transition: background .3s, color .3s; }
+.theme-switch, .theme-switch * { transition: none !important; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg); color: var(--ink); font: 400 17px/1.55 "General Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
