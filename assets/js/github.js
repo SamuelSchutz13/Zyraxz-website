@@ -119,8 +119,11 @@ const renderCommits = (list, commits) => {
     const pct = b => (b / total * 100);
     document.getElementById('lang-bar').innerHTML = top
       .map(l => `<i style="width:${pct(l.bytes)}%;background:${l.other ? 'var(--hover)' : colors[l.name] || '#9a9080'}" title="${l.name}"></i>`).join('');
+    const icons = { TypeScript: 'typescript', JavaScript: 'javascript', Vue: 'vuedotjs', Go: 'go', Python: 'python',
+      CSS: 'css', HTML: 'html5', Lua: 'lua', AutoHotkey: 'autohotkey-white', PHP: 'php', Shell: 'gnubash' };
+    const icon = l => icons[l.name] ? `<img src="${base}img/icons/${icons[l.name]}.svg" width="16" height="16" style="width:16px;height:16px" alt="">` : '';
     document.getElementById('lang-legend').innerHTML = top
-      .map(l => `<li><i style="background:${l.other ? 'var(--hover)' : colors[l.name] || '#9a9080'}"></i>${l.other ? '<span lang="pt">Outros</span><span lang="en">Other</span>' : l.name} <span class="muted">${pct(l.bytes).toFixed(1)}%</span></li>`).join('');
+      .map(l => `<li><i style="background:${l.other ? 'var(--hover)' : colors[l.name] || '#9a9080'}"></i>${icon(l)}${l.other ? '<span lang="pt">Outros</span><span lang="en">Other</span>' : l.name} <span class="muted">${pct(l.bytes).toFixed(1)}%</span></li>`).join('');
     langs.hidden = false;
   }
 
