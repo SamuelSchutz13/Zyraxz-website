@@ -42,6 +42,16 @@
 - **Configurações** (⚙): **tema claro e escuro** em tons pastel, **português e inglês** com bandeiras. As escolhas ficam salvas.
 - Capturas em WebP com miniaturas para os cartões, animação ao rolar que respeita "reduzir movimento", página 404, `sitemap.xml`, links canônicos e prévia ao compartilhar (Open Graph).
 
+## Telas
+
+**Sobre mim** no tema claro: stack, commits recentes, linguagens e contribuições.
+
+<p align="center"><img src="assets/img/projects/zyraxz-sobre.webp" alt="Página Sobre mim no tema claro" /></p>
+
+**Página de projeto**: funcionalidades, como funciona e capturas que abrem em tela cheia.
+
+<p align="center"><img src="assets/img/projects/zyraxz-projeto.webp" alt="Página do Gityx no tema escuro" /></p>
+
 ## Como rodar
 
 Não há nada para instalar. Clone e sirva a pasta:

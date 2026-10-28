@@ -287,5 +287,5 @@ section[hidden] { display: none; }
 
 /* stars as a translucent badge over the card screenshot */
 .card .shot { position: relative; }
-.stars.badge { position: absolute; top: 12px; right: 12px; margin: 0; padding: 5px 11px; border-radius: 999px; background: rgba(20, 19, 17, .55); color: #f3ead8; font-weight: 500; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
+.stars.badge { position: absolute; top: 12px; right: 12px; margin: 0; padding: 6px 12px; border-radius: 12px; background: rgba(20, 19, 17, .55); color: #f3ead8; font-weight: 500; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
 .stars.badge svg { fill: #f1d87a; }

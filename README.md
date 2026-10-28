@@ -42,6 +42,16 @@
 - **Settings** (⚙): pastel **light and dark themes**, **Portuguese and English** with flags. Both are remembered.
 - WebP screenshots with thumbnails for the cards, scroll reveal that respects reduced motion, a 404 page, `sitemap.xml`, canonical links and Open Graph previews.
 
+## Screenshots
+
+**About me** in the light theme: stack, recent commits, languages and contributions.
+
+<p align="center"><img src="assets/img/projects/zyraxz-sobre.webp" alt="About page in the light theme" /></p>
+
+**Project page**: features, how it works and screenshots that open full size.
+
+<p align="center"><img src="assets/img/projects/zyraxz-projeto.webp" alt="Gityx project page in the dark theme" /></p>
+
 ## Getting started
 
 There is nothing to install. Clone it and serve the folder:
