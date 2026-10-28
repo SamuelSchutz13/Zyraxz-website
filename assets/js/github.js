@@ -3,7 +3,7 @@
 const user = 'SamuelSchutz13';
 const hidden = ['REST-API-Test', 'Blog.ts-backend', 'eCommerce-Backend', 'ai-job-search', user];
 const html = document.documentElement;
-const base = document.querySelector('script[src$="github.js"]').src.replace(/js\/github\.js$/, '');
+const base = document.querySelector('script[src*="js/github.js"]').src.replace(/js\/github\.js.*$/, ''); // src carries ?v=<hash>
 
 // display name and icon of each repo, for the commit list and the status card
 const apps = {
