@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,13 +74,17 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">Não tem framework nem build: são páginas HTML, um CSS e alguns scripts pequenos. Uma tarefa do GitHub Actions roda de hora em hora, busca estrelas, commits, linguagens e contribuições, salva num arquivo JSON e publica o site.</span><span lang="en">There is no framework and no build: just HTML pages, one stylesheet and a few small scripts. A GitHub Actions job runs every hour, fetches stars, commits, languages and contributions, saves them to a JSON file and publishes the site.</span></p>
-      <pre class="flow">GitHub Actions (de hora em hora)  →  github-data.mjs  →  github.json  →  GitHub Pages  →  HTML + CSS + JS puro</pre>
       <div class="note"><span lang="pt"><b>Nenhum pedido a terceiros.</b> A fonte e todos os ícones são servidos pelo próprio site, e os dados do GitHub vêm de um arquivo gerado no deploy. Quem visita só conversa com o GitHub Pages.</span><span lang="en"><b>No third-party requests.</b> The font and every icon are served by the site itself, and the GitHub data comes from a file built at deploy time. Visitors only talk to GitHub Pages.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/Zyraxz-website.git</span>
+<span class="k">cd</span> Zyraxz-website
+
+<span class="k">python</span> <span class="n">-m</span> <span class="s">http.server</span> 8000   <span class="c"><span lang="pt"># ou: npx serve</span><span lang="en"># or: npx serve</span></span></pre>
     </section>
   </div>
 
   <section>
-    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
       <figure><div class="shot-lg"><img src="../assets/img/projects/zyraxz-sobre.webp" width="1440" height="900" loading="lazy" alt="Página "Sobre mim" no tema claro"></div><figcaption><span lang="pt">Página "Sobre mim" no tema claro</span><span lang="en">The About page in the light theme</span></figcaption></figure>
       <figure><div class="shot-lg"><img src="../assets/img/projects/zyraxz-projeto.webp" width="1440" height="900" loading="lazy" alt="Página de um projeto"></div><figcaption><span lang="pt">Página de um projeto</span><span lang="en">A project page</span></figcaption></figure>

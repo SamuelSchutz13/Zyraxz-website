@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,13 +74,24 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">A API confere o tipo de cada arquivo pelos bytes, não pela extensão, antes de chegar a uma ferramenta. A edição usa pdf-lib, a conversão em imagem usa o mesmo renderizador do Firefox (pdf.js) e a compressão só troca uma foto se ela realmente ficar menor.</span><span lang="en">The API checks each file's type from its bytes, not its extension, before it reaches a tool. Editing uses pdf-lib, PDF to image uses Firefox's own renderer (pdf.js), and compression only swaps a photo when it really gets smaller.</span></p>
-      <pre class="flow">web/  Vue 3 + Vite + shadcn-vue  →  multipart/form-data  →  NestJS API  →  pdf-lib · pdf.js · canvas</pre>
       <div class="note"><span lang="pt"><b>Seus arquivos nunca são guardados.</b> Os uploads ficam só na memória da API e são descartados assim que a resposta sai. Nada é gravado em disco, e o site não usa analytics, cookies de rastreio nem fontes ou scripts de terceiros.</span><span lang="en"><b>Your files are never stored.</b> Uploads live only in the API's memory and are dropped as soon as the response is sent. Nothing touches the disk, and the site uses no analytics, tracking cookies or third-party fonts and scripts.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/FoculessPDF.git</span>
+<span class="k">cd</span> FoculessPDF
+
+<span class="c"><span lang="pt"># terminal 1: API (http://localhost:3000, docs em /docs)</span><span lang="en"># terminal 1: API (http://localhost:3000, docs at /docs)</span></span>
+<span class="k">npm</span> install
+<span class="k">npm</span> run start:dev
+
+<span class="c"><span lang="pt"># terminal 2: site (http://localhost:5173)</span><span lang="en"># terminal 2: website (http://localhost:5173)</span></span>
+<span class="k">cd</span> web
+<span class="k">npm</span> install
+<span class="k">npm</span> run dev</pre>
     </section>
   </div>
 
   <section>
-    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
       <figure><div class="shot-lg"><img src="../assets/img/projects/foculesspdf-merge.webp" width="1440" height="900" loading="lazy" alt="Juntar PDF: arraste os arquivos e pronto"></div><figcaption><span lang="pt">Juntar PDF: arraste os arquivos e pronto</span><span lang="en">Merge PDF: drop the files and go</span></figcaption></figure>
       <figure><div class="shot-lg"><img src="../assets/img/projects/foculesspdf-light.webp" width="1440" height="900" loading="lazy" alt="Tema claro"></div><figcaption><span lang="pt">Tema claro</span><span lang="en">Light theme</span></figcaption></figure>

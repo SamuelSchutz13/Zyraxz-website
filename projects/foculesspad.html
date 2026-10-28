@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,13 +74,24 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">A senha passa pelo Argon2id no navegador e vira duas chaves: uma prova que você sabe a senha, a outra cifra cada edição com AES-256-GCM. O servidor só guarda e repassa bytes cifrados.</span><span lang="en">In the browser the password goes through Argon2id and becomes two keys: one proves you know the password, the other encrypts every edit with AES-256-GCM. The server only stores and relays encrypted bytes.</span></p>
-      <pre class="flow">web/  Vue 3 + Vite + CodeMirror 6 + Yjs  →  REST + WebSocket  →  NestJS API  →  SQLite</pre>
       <div class="note"><span lang="pt"><b>Notas com senha são cifradas de ponta a ponta.</b> A criptografia roda no seu navegador: o servidor nunca vê o texto nem a senha, só bytes cifrados.</span><span lang="en"><b>Protected notes are end-to-end encrypted.</b> Encryption runs in your browser: the server never sees the text or the password, only encrypted bytes.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/FoculessPad.git</span>
+<span class="k">cd</span> FoculessPad
+
+<span class="c"><span lang="pt"># terminal 1: API (http://localhost:3000, docs em /docs)</span><span lang="en"># terminal 1: API (http://localhost:3000, docs at /docs)</span></span>
+<span class="k">npm</span> install
+<span class="k">npm</span> run start:dev
+
+<span class="c"><span lang="pt"># terminal 2: site (http://localhost:5173)</span><span lang="en"># terminal 2: website (http://localhost:5173)</span></span>
+<span class="k">cd</span> web
+<span class="k">npm</span> install
+<span class="k">npm</span> run dev</pre>
     </section>
   </div>
 
   <section>
-    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
       <figure><div class="shot-lg"><img src="../assets/img/projects/foculesspad-light.webp" width="1440" height="900" loading="lazy" alt="Tema claro"></div><figcaption><span lang="pt">Tema claro</span><span lang="en">Light theme</span></figcaption></figure>
     </div>

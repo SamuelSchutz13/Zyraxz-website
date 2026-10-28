@@ -39,3 +39,29 @@ if (shots.length) {
     if (e.key === 'ArrowRight') show(index + 1);
   });
 }
+
+// Galleries: every screen in one frame (the most common ratio of the set), with an "n / total"
+// in each caption; several screens become a carousel you swipe/scroll natively or move with the arrows.
+document.querySelectorAll('.gallery').forEach(gallery => {
+  const figs = [...gallery.children];
+  const ratios = figs.map(f => { const im = f.querySelector('img'); return (im.getAttribute('width') / im.getAttribute('height')).toFixed(2); });
+  const n = r => ratios.filter(x => x === r).length;
+  const ar = ratios.reduce((best, r) => n(r) > n(best) || (n(r) === n(best) && +r > +best) ? r : best); // ties: the wider one
+  gallery.parentElement.style.setProperty('--ar', ar);
+  if (figs.length < 2) return;
+  figs.forEach((f, i) => f.querySelector('figcaption')?.insertAdjacentHTML('beforeend', `<span class="car-count">${i + 1} / ${figs.length}</span>`));
+  const wrap = document.createElement('div');
+  wrap.className = 'carousel';
+  gallery.before(wrap);
+  const chevron = d => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
+  wrap.innerHTML = `
+    <button type="button" class="car-prev" aria-label="Anterior / Previous">${chevron('M15 5l-7 7 7 7')}</button>
+    <button type="button" class="car-next" aria-label="Próxima / Next">${chevron('M9 5l7 7-7 7')}</button>`;
+  wrap.prepend(gallery);
+  const step = () => figs[1].offsetLeft - figs[0].offsetLeft; // slide width + gap
+  const current = () => Math.round(gallery.scrollLeft / step());
+  const smooth = document.documentElement.classList.contains('reveal'); // prefs.js: motion is welcome
+  const go = i => gallery.scrollTo({ left: ((i + figs.length) % figs.length) * step(), behavior: smooth ? 'smooth' : 'auto' });
+  wrap.querySelector('.car-prev').addEventListener('click', () => go(current() - 1));
+  wrap.querySelector('.car-next').addEventListener('click', () => go(current() + 1));
+});

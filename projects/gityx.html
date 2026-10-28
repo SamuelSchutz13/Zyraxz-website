@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,13 +74,21 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">O servidor observa os arquivos e avisa o navegador por Server-Sent Events quando algo muda. Um teste de fumaça quebra o build se o site referenciar qualquer URL externa.</span><span lang="en">The server watches files and notifies the browser through Server-Sent Events when something changes. A smoke test fails the build if the website references any outside URL.</span></p>
-      <pre class="flow">browser (React + shadcn/ui)  ⇄  REST + SSE em 127.0.0.1  ⇄  NestJS  ⇄  git (execFile)</pre>
       <div class="note"><span lang="pt"><b>Só leitura.</b> O Git roda com <code>execFile</code> e listas de argumentos, nunca por shell. Nenhum commit, checkout, stage, fetch ou push.</span><span lang="en"><b>Read-only.</b> Git runs through <code>execFile</code> with argument arrays, never a shell. No commit, checkout, stage, fetch or push.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/Gityx.git</span>
+<span class="k">cd</span> Gityx
+<span class="k">npm</span> install
+<span class="k">npm</span> run build
+<span class="k">npm</span> link          <span class="c"><span lang="pt"># deixa o comando `gityx` disponível em qualquer lugar</span><span lang="en"># makes the `gityx` command available everywhere</span></span>
+
+<span class="k">gityx</span>                          <span class="c"><span lang="pt"># sobe o servidor e abre o navegador</span><span lang="en"># starts the server and opens the browser</span></span>
+<span class="k">gityx</span> <span class="n">--port</span> 8080 <span class="n">--open=false</span></pre>
     </section>
   </div>
 
   <section>
-    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
       <figure><div class="shot-lg"><img src="../assets/img/projects/gityx-overview.webp" width="1440" height="1520" loading="lazy" alt="Visão geral com stack e gráficos"></div><figcaption><span lang="pt">Visão geral com stack e gráficos</span><span lang="en">Overview with stack and charts</span></figcaption></figure>
       <figure><div class="shot-lg"><img src="../assets/img/projects/gityx-changes.webp" width="1440" height="860" loading="lazy" alt="Mudanças ao vivo"></div><figcaption><span lang="pt">Mudanças ao vivo</span><span lang="en">Live changes</span></figcaption></figure>

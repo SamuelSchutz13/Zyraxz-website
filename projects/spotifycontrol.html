@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,8 +74,11 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">O script acha o processo do Spotify, pega a janela dele (inclusive escondida) e manda a mensagem <code>WM_APPCOMMAND</code> do Windows, a mesma que as teclas de mídia do teclado enviam.</span><span lang="en">The script finds the Spotify process, gets its window (hidden ones included) and sends it the Windows <code>WM_APPCOMMAND</code> message, the same one a keyboard's media keys send.</span></p>
-      <pre class="flow">Ctrl + Alt + →  →  AutoHotkey v2  →  WM_APPCOMMAND  →  Spotify.exe (mesmo minimizado)</pre>
       <div class="note"><span lang="pt"><b>Não atrapalha outros players.</b> O comando vai direto para o Spotify, então o YouTube ou outra música aberta no navegador continuam como estão.</span><span lang="en"><b>Doesn't touch other players.</b> The command goes straight to Spotify, so YouTube or other music in the browser stays as it is.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/AHK-SpotifyControl.git</span>
+<span class="c"><span lang="pt"># instale o AutoHotkey v2, aponte o #Include de Main.ahk para Audio.ahk</span><span lang="en"># install AutoHotkey v2, point the #Include in Main.ahk to Audio.ahk</span></span>
+<span class="c"><span lang="pt"># e dê dois cliques em Main.ahk</span><span lang="en"># and double-click Main.ahk</span></span></pre>
     </section>
   </div>
 

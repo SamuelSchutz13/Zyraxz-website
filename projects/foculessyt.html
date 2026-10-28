@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,13 +74,24 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">Usa o yt-dlp, a única ferramenta que acompanha as mudanças do YouTube, com 4 fragmentos em paralelo. Só links do YouTube chegam a ele, e ele roda sem shell, então a API não vira um baixador genérico.</span><span lang="en">It uses yt-dlp, the only tool that keeps up with YouTube's changes, with 4 parallel fragments. Only YouTube links reach it, and it runs without a shell, so the API never becomes a generic downloader.</span></p>
-      <pre class="flow">web/  Vue 3 + Vite + shadcn-vue  →  JSON  →  NestJS API  →  yt-dlp + ffmpeg  →  pasta temporária  →  stream</pre>
       <div class="note"><span lang="pt"><b>Os vídeos nunca ficam guardados.</b> Cada download vai para uma pasta temporária, é enviado para você e apagado assim que a resposta termina.</span><span lang="en"><b>Videos are never kept.</b> Each download goes to a temporary folder, is streamed to you and deleted as soon as the response ends.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/FoculessYT.git</span>
+<span class="k">cd</span> FoculessYT
+
+<span class="c"><span lang="pt"># terminal 1: API (http://localhost:3000, docs em /docs)</span><span lang="en"># terminal 1: API (http://localhost:3000, docs at /docs)</span></span>
+<span class="k">npm</span> install
+<span class="k">npm</span> run start:dev
+
+<span class="c"><span lang="pt"># terminal 2: site (http://localhost:5173)</span><span lang="en"># terminal 2: website (http://localhost:5173)</span></span>
+<span class="k">cd</span> web
+<span class="k">npm</span> install
+<span class="k">npm</span> run dev</pre>
     </section>
   </div>
 
   <section>
-    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
       <figure><div class="shot-lg"><img src="../assets/img/projects/foculessyt-light.webp" width="1440" height="900" loading="lazy" alt="Tema claro"></div><figcaption><span lang="pt">Tema claro</span><span lang="en">Light theme</span></figcaption></figure>
     </div>

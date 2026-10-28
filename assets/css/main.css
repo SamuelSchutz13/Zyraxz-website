@@ -10,6 +10,7 @@ strong, b { font-weight: 600; }
   --ink: #f3ead8;
   --muted: #b8ad9b;
   --mark: #f1d87a;
+  --hl: #ffe92e; /* highlighter yellow, only for <mark> */
   --m: clamp(20px, 4vw, 48px);
   color-scheme: dark;
 }
@@ -21,6 +22,7 @@ strong, b { font-weight: 600; }
   --ink: #2b2620;
   --muted: #6a6053;
   --mark: #fbe38e;
+  --hl: #fff04d;
   color-scheme: light;
 }
 :root[data-theme="light"] img[src$="-white.svg"] { filter: invert(.85); }
@@ -59,7 +61,7 @@ header nav { align-items: center; }
 .others .card h3 { font-size: 18px; }
 .card h3 { display: flex; align-items: center; gap: 10px; }
 .card h3 .logo-p { width: 28px; height: 28px; object-fit: contain; }
-mark { background: var(--mark); color: #2b2620; padding: .05em .3em; margin: 0 -.1em; border-radius: .3em .2em .35em .25em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+mark { background: linear-gradient(100deg, color-mix(in srgb, var(--hl) 75%, transparent), var(--hl) .4em, var(--hl) calc(100% - .4em), color-mix(in srgb, var(--hl) 80%, transparent)); color: #1d1b19; padding: .05em .3em; margin: 0 -.1em; border-radius: .3em .2em .35em .25em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
 footer { padding-block: 40px 56px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 footer a:hover { color: var(--ink); }
@@ -121,13 +123,38 @@ footer a:hover { color: var(--ink); }
 .feat b { font-weight: 500; }
 .note { background: var(--surface); border-radius: 12px; padding: 24px; margin-top: 32px; }
 .note b { font-weight: 500; }
-pre.flow { background: var(--surface); border-radius: 12px; padding: 20px; overflow-x: auto; font: 13px/1.6 ui-monospace, Consolas, monospace; color: var(--muted); margin-top: 16px; }
-.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-bottom: 112px; }
-.gallery figure { margin: 0; }
-.gallery figcaption { color: var(--muted); font-size: 14px; margin-top: 10px; }
+/* code blocks (flow and run commands) in VS Code's default themes: Dark+ and Light+ */
+pre.flow { --code-bg: #1e1e1e; --code-fg: #d4d4d4; --code-o: #c586c0; --code-f: #4ec9b0; --code-s: #ce9178; --code-n: #9cdcfe; --code-k: #dcdcaa; --code-c: #6a9955;
+  background: var(--code-bg); border-radius: 12px; padding: 20px; overflow-x: auto; font: 13px/1.7 ui-monospace, Consolas, monospace; color: var(--code-fg); margin-top: 16px; }
+:root[data-theme="light"] pre.flow { --code-bg: #ffffff; --code-fg: #000000; --code-o: #af00db; --code-f: #267f99; --code-s: #a31515; --code-n: #001080; --code-k: #795e26; --code-c: #008000; box-shadow: 0 0 0 1px var(--border); }
+pre.flow .o { color: var(--code-o); } /* arrows, operators */
+pre.flow .f { color: var(--code-f); } /* frameworks and tools */
+pre.flow .s { color: var(--code-s); } /* protocols, data, urls */
+pre.flow .n { color: var(--code-n); } /* folders, hosts, flags */
+pre.flow .k { color: var(--code-k); } /* commands */
+pre.flow .c { color: var(--code-c); } /* notes, comments */
+.run-h { font-size: 16px; font-weight: 500; margin: 32px 0 0; }
+.gallery { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 112px; }
+.gallery::-webkit-scrollbar { display: none; }
+/* each screen is a card with its caption over the image; --ar is the project's usual screen ratio (lightbox.js) */
+.gallery figure { margin: 0; flex: 0 0 100%; scroll-snap-align: start; position: relative; background: var(--surface); border-radius: 12px; overflow: hidden; }
+.gallery .shot-lg { border-radius: 0; }
+.gallery .shot-lg img { display: block; width: 100%; aspect-ratio: var(--ar, 16 / 10); object-fit: contain; object-position: center; }
+.gallery figcaption { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; justify-content: space-between; align-items: end; gap: 12px; font-size: 14px; pointer-events: none; }
+/* caption and counter as separate translucent badges, like the stars on the cards */
+.gallery figcaption > span { padding: 6px 12px; border-radius: 12px; background: rgba(20, 19, 17, .55); color: #f3ead8; font-weight: 500; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
+.car-count { flex: none; font-variant-numeric: tabular-nums; }
+/* carousel arrows (lightbox.js wraps galleries with more than one screen), centered on the image */
+.carousel { position: relative; container-type: inline-size; padding-bottom: 112px; }
+.carousel .gallery { padding-bottom: 0; }
+.carousel > button { position: absolute; top: calc(50cqw / var(--ar, 1.6) - 22px); display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: rgba(20, 18, 16, .6); color: #f3ead8; cursor: pointer; transition: background .2s; }
+.carousel > button:hover { background: rgba(20, 18, 16, .85); }
+.carousel > button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.car-prev { left: 12px; }
+.car-next { right: 12px; }
 .card .more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 14px; color: var(--ink); }
 @media (max-width: 700px) {
-  .p-body, .gallery { grid-template-columns: 1fr; gap: 32px; }
+  .p-body { grid-template-columns: 1fr; gap: 32px; }
   header nav { gap: 12px; }
   .logo { font-size: 0; gap: 0; }
 }
@@ -199,8 +226,8 @@ html { scroll-padding-top: 24px; }
 .flag { width: 20px; height: 14px; object-fit: cover; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0, 0, 0, .15); }
 
 /* scroll reveal (reveal.js); skipped entirely for reduced motion */
-.reveal :is(.card, .gallery figure, .chips, .contrib, .shot-lg) { opacity: 0; translate: 0 24px; transition: opacity .6s ease, translate .6s cubic-bezier(.2, .7, .2, 1), transform .25s, background .25s; }
-.reveal :is(.card, .gallery figure, .chips, .contrib, .shot-lg).in { opacity: 1; translate: 0 0; }
+.reveal :is(.card, .gallery, .chips, .contrib, .shot-lg:not(.gallery *)) { opacity: 0; translate: 0 24px; transition: opacity .6s ease, translate .6s cubic-bezier(.2, .7, .2, 1), transform .25s, background .25s; }
+.reveal :is(.card, .gallery, .chips, .contrib, .shot-lg:not(.gallery *)).in { opacity: 1; translate: 0 0; }
 
 /* lightbox (lightbox.js) */
 .shot-lg img { cursor: zoom-in; }

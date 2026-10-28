@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,15 +74,18 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">O servidor NestJS só faz a sinalização e o chat. A mídia vai direto entre os navegadores. Testado com Jest no servidor e Playwright com navegadores reais entrando em salas reais.</span><span lang="en">The NestJS server only handles signaling and chat. Media flows directly between browsers. Tested with Jest on the server and Playwright with real browsers joining real rooms.</span></p>
-      <pre class="flow">browser (Vite + TypeScript)  ⇄  Socket.IO  ⇄  NestJS (sinalização, chat)
-        ⇅ WebRTC (tela + voz, ponta a ponta, TURN quando precisa)
-browser  ⇄  browser</pre>
       <div class="note"><span lang="pt"><b>Nada fica salvo.</b> As salas existem só na memória do servidor. Mensagens e arquivos são repassados para quem está na sala e somem quando você sai. Áudio e vídeo vão direto entre os navegadores via WebRTC.</span><span lang="en"><b>Nothing is stored.</b> Rooms live only in the server's memory. Messages and files are relayed to whoever is in the room and disappear when you leave. Audio and video go peer to peer over WebRTC.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/TitanLive.git</span>
+<span class="k">cd</span> TitanLive
+
+<span class="k">cd</span> server <span class="o">&amp;&amp;</span> <span class="k">npm</span> install <span class="o">&amp;&amp;</span> <span class="k">npm</span> run start:dev   <span class="c"># http://localhost:3000</span>
+<span class="k">cd</span> <span class="s">../web</span> <span class="o">&amp;&amp;</span> <span class="k">npm</span> install <span class="o">&amp;&amp;</span> <span class="k">npm</span> run dev         <span class="c"># http://localhost:5173</span></pre>
     </section>
   </div>
 
   <section>
-    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
       <figure><div class="shot-lg"><img src="../assets/img/projects/titanlive-home.webp" width="1280" height="800" loading="lazy" alt="Tela inicial: crie uma sala ou cole um link"></div><figcaption><span lang="pt">Tela inicial: crie uma sala ou cole um link</span><span lang="en">Home: create a room or paste a link</span></figcaption></figure>
       <figure><div class="shot-lg"><img src="../assets/img/projects/titanlive-home-light.webp" width="1280" height="800" loading="lazy" alt="Tema claro, em inglês"></div><figcaption><span lang="pt">Tema claro, em inglês</span><span lang="en">Light theme, in English</span></figcaption></figure>

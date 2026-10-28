@@ -21,9 +21,9 @@
 <link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <script src="../assets/js/github.js?v=779b38cf" defer></script>
 <script src="../assets/js/filters.js?v=90160bf8" defer></script>
-<script src="../assets/js/reveal.js?v=31c127db" defer></script>
-<script src="../assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="../assets/css/main.css?v=9385dda6">
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=0383a481">
 </head>
 <body>
 <div class="wrap">
@@ -74,15 +74,21 @@
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
       <p><span lang="pt">Um comando, <code>restyx</code>, sobe o servidor e abre o navegador. A coleção fica em <code>.restyx.json</code> na pasta do projeto, sem segredos, então pode ir para o Git.</span><span lang="en">One command, <code>restyx</code>, starts the server and opens the browser. The collection is saved in <code>.restyx.json</code> in the project folder, with no secrets, so it can be committed.</span></p>
-      <pre class="flow">restyx (CLI)  →  NestJS em 127.0.0.1 + token  ⇄  React + shadcn/ui
-                     ↓
-              suas APIs (http/https)</pre>
       <div class="note"><span lang="pt"><b>Nada sai da sua máquina além das requisições que você envia.</b> O servidor escuta só em 127.0.0.1, a página exige um token aleatório e não há telemetria, conta, CDN ou fonte remota.</span><span lang="en"><b>Nothing leaves your machine except the requests you send.</b> The server listens on 127.0.0.1 only, the page needs a random token, and there is no telemetry, account, CDN or remote font.</span></div>
+      <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
+      <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/Restyx.git</span>
+<span class="k">cd</span> Restyx
+<span class="k">npm</span> install
+<span class="k">npm</span> run build
+<span class="k">npm</span> link          <span class="c"><span lang="pt"># deixa o comando `restyx` disponível em qualquer lugar</span><span lang="en"># makes the `restyx` command available everywhere</span></span>
+
+<span class="k">restyx</span>                          <span class="c"><span lang="pt"># sobe o servidor e abre o navegador</span><span lang="en"># starts the server and opens the browser</span></span>
+<span class="k">restyx</span> <span class="n">--port</span> 8080 <span class="n">--open=false</span></pre>
     </section>
   </div>
 
   <section>
-    <h2><span lang="pt">Telas</span><span lang="en">Screens</span></h2>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
       <figure><div class="shot-lg"><img src="../assets/img/projects/restyx-method.webp" width="2160" height="1290" loading="lazy" alt="Seletor de método, cada um com sua cor"></div><figcaption><span lang="pt">Seletor de método, cada um com sua cor</span><span lang="en">Method picker, each with its own color</span></figcaption></figure>
       <figure><div class="shot-lg"><img src="../assets/img/projects/restyx-history.webp" width="2160" height="1290" loading="lazy" alt="Histórico com status, tempo e tamanho"></div><figcaption><span lang="pt">Histórico com status, tempo e tamanho</span><span lang="en">History with status, time and size</span></figcaption></figure>
