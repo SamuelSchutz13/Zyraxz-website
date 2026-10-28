@@ -16,6 +16,7 @@ assets/
   js/filters.js           filtro de projetos por tecnologia
   js/github.js            estrelas, projetos recentes, commits e contribuições
   js/reveal.js            cartões surgindo ao rolar (desligado para quem prefere menos movimento)
+  js/lightbox.js          amplia as capturas ao clicar, com setas entre as telas
   img/icons/              ícones das tecnologias (Simple Icons, CC0)
   img/logos/              ícones dos projetos (dos repositórios)
   img/projects/           capturas de tela em WebP (até 1600px) usadas nas páginas dos projetos
@@ -23,7 +24,8 @@ assets/
   img/favicon.svg, og.png ícone da aba e prévia ao compartilhar o link
 .github/
   workflows/deploy.yml    publica o site a cada push e de hora em hora
-  scripts/github-data.mjs gera assets/data/github.json (dados do GitHub) antes de publicar
+  scripts/github-data.mjs gera assets/data/github.json (dados do GitHub e do Spotify) antes de publicar
+  scripts/spotify-auth.mjs ajudante para gerar o token do Spotify (roda só no seu computador)
 ```
 
 ## Dados do GitHub
@@ -32,6 +34,15 @@ A cada hora o workflow roda `github-data.mjs`, que salva estrelas, data do últi
 recentes e o calendário de contribuições em `assets/data/github.json`. O site lê esse arquivo,
 então os visitantes nunca esbarram no limite de 60 consultas/hora da API pública.
 Abrindo o `index.html` direto do disco, o arquivo não existe e o site consulta a API como reserva.
+
+## Cartão do nome (status e Spotify)
+
+Passando o mouse em "Zyraxz" aparece um cartão com:
+
+- **Online**: bolinha verde quando houve commit nas últimas 24 h (os dados atualizam de hora em hora).
+- **Ouvindo por último**: a última música tocada no Spotify. É opcional e precisa de três secrets no repositório
+  (Settings → Secrets and variables → Actions): `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` e `SPOTIFY_REFRESH_TOKEN`.
+  O refresh token sai do `spotify-auth.mjs`. Sem os secrets, o cartão só mostra o status.
 
 ## Idiomas
 

@@ -39,7 +39,27 @@ const contributions = await fetch(`https://github.com/users/${user}/contribution
   })
   .catch(() => ({ total: 0, days: [] }));
 
+// last song played on Spotify; only when the three SPOTIFY_* secrets are set (see spotify-auth.mjs)
+const spotify = await (async () => {
+  const { SPOTIFY_CLIENT_ID: id, SPOTIFY_CLIENT_SECRET: secret, SPOTIFY_REFRESH_TOKEN: refresh } = process.env;
+  if (!id || !secret || !refresh) return null;
+  const auth = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: { Authorization: `Basic ${Buffer.from(`${id}:${secret}`).toString('base64')}`, 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ grant_type: 'refresh_token', refresh_token: refresh }),
+  }).then(r => r.json());
+  const res = await fetch('https://api.spotify.com/v1/me/player/recently-played?limit=1', { headers: { Authorization: `Bearer ${auth.access_token}` } });
+  const item = res.ok ? (await res.json()).items?.[0] : null;
+  if (!item) return null;
+  const { track } = item;
+  return {
+    track: track.name, artist: track.artists.map(a => a.name).join(', '),
+    image: track.album.images.at(-1)?.url, url: track.external_urls.spotify, played: item.played_at,
+  };
+})().catch(() => null);
+
 const data = {
+  spotify,
   t: Date.now(),
   stars: Object.fromEntries(repos.map(r => [r.name, r.stargazers_count])),
   pushed: Object.fromEntries(repos.map(r => [r.name, r.pushed_at])),

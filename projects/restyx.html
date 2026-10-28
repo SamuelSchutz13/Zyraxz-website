@@ -23,12 +23,20 @@
 <script src="../assets/js/nav.js" defer></script>
 <script src="../assets/js/filters.js" defer></script>
 <script src="../assets/js/reveal.js" defer></script>
+<script src="../assets/js/lightbox.js" defer></script>
 <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <div class="wrap">
   <header>
-    <a class="logo" href="../index.html"><img src="../assets/img/avatar.png" width="236" height="236" alt="">Zyraxz</a>
+    <div class="who">
+      <a class="logo" href="../index.html"><span class="av-wrap"><img src="../assets/img/avatar.png" width="236" height="236" alt=""><i class="dot" hidden></i></span>Zyraxz</a>
+      <div class="who-card" role="tooltip">
+        <p class="status" hidden><i class="dot"></i><span class="status-text"></span></p>
+        <a class="np" hidden><img alt="" width="48" height="48"><span><small><span lang="pt">Ouvindo por último</span><span lang="en">Last listened to</span></small><b class="np-track"></b><span class="np-artist"></span></span></a>
+        <p class="muted who-empty"><span lang="pt">Desenvolvedor full-stack</span><span lang="en">Full-stack developer</span></p>
+      </div>
+    </div>
     <nav aria-label="Principal">
       <div class="tabs">
         <a href="../index.html#recentes" data-sec="recentes"><span lang="pt">Recentes</span><span lang="en">Recent</span></a>

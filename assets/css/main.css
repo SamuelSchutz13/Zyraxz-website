@@ -205,3 +205,39 @@ html { scroll-padding-top: 24px; }
 /* scroll reveal (reveal.js); skipped entirely for reduced motion */
 .reveal :is(.card, .gallery figure, .chips, .contrib, .shot-lg) { opacity: 0; translate: 0 24px; transition: opacity .6s ease, translate .6s cubic-bezier(.2, .7, .2, 1), transform .25s, background .25s; }
 .reveal :is(.card, .gallery figure, .chips, .contrib, .shot-lg).in { opacity: 1; translate: 0 0; }
+
+/* lightbox (lightbox.js) */
+.shot-lg img { cursor: zoom-in; }
+.lightbox { max-width: none; max-height: none; width: 100vw; height: 100vh; margin: 0; padding: 56px 72px; border: 0; background: transparent; color: #f3ead8; }
+.lightbox[open] { display: grid; grid-template-rows: 1fr auto; place-items: center; gap: 12px; }
+.lightbox::backdrop { background: rgba(10, 9, 8, .9); }
+.lightbox img { max-width: 100%; max-height: calc(100vh - 140px); width: auto; height: auto; object-fit: contain; border-radius: 10px; }
+.lb-caption { color: #b8ad9b; font-size: 15px; }
+.lightbox button { position: fixed; background: rgba(255, 255, 255, .1); color: #f3ead8; border: 0; width: 44px; height: 44px; border-radius: 50%; font-size: 26px; line-height: 1; cursor: pointer; transition: background .2s; }
+.lightbox button:hover { background: rgba(255, 255, 255, .2); }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev { left: 16px; top: 50%; translate: 0 -50%; }
+.lb-next { right: 16px; top: 50%; translate: 0 -50%; }
+@media (max-width: 700px) { .lightbox { padding: 64px 12px; } .lb-prev, .lb-next { top: auto; bottom: 16px; translate: none; } }
+
+/* hover card on the name: online status + last song (github.js fills it) */
+.who { position: relative; }
+.av-wrap { position: relative; display: inline-flex; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #8b8b8b; display: inline-block; flex: none; }
+.dot.on { background: #3fb950; }
+.av-wrap .dot { position: absolute; right: -1px; bottom: -1px; box-shadow: 0 0 0 2px var(--bg); }
+.dot.on::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 2s ease-out infinite; }
+.av-wrap .dot.on::after { inset: 0; }
+.status .dot { position: relative; }
+@keyframes ping { from { opacity: .6; scale: 1; } to { opacity: 0; scale: 2.4; } }
+@media (prefers-reduced-motion: reduce) { .dot.on::after { animation: none; } }
+.who-card { position: absolute; top: calc(100% + 10px); left: 0; z-index: 20; width: 290px; padding: 14px; border-radius: 14px; background: var(--surface); box-shadow: 0 16px 40px rgba(0, 0, 0, .25); display: grid; gap: 12px; opacity: 0; translate: 0 -6px; pointer-events: none; transition: opacity .2s, translate .2s; }
+.who:hover .who-card, .who:focus-within .who-card { opacity: 1; translate: 0 0; pointer-events: auto; }
+.who-card::before { content: ""; position: absolute; inset: -12px 0 auto; height: 12px; } /* keeps hover alive across the gap */
+.status { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.np { display: flex; align-items: center; gap: 12px; padding: 8px; margin: -8px; border-radius: 10px; transition: background .2s; }
+.np:hover { background: var(--hover); }
+.np img { width: 48px; height: 48px; border-radius: 6px; }
+.np small { display: block; font-size: 12px; color: var(--muted); }
+.np b { display: block; font-weight: 500; font-size: 14px; line-height: 1.3; }
+.np-artist { display: block; font-size: 13px; color: var(--muted); }

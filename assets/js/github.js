@@ -35,9 +35,9 @@ const load = async () => {
   }
 };
 
-const ago = d => {
+const ago = (d, locale = html.lang) => {
   const m = Math.round((Date.now() - new Date(d)) / 60000);
-  const f = new Intl.RelativeTimeFormat(html.lang, { numeric: 'auto' });
+  const f = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
   return m < 60 ? f.format(-m, 'minute') : m < 1440 ? f.format(-Math.round(m / 60), 'hour') : f.format(-Math.round(m / 1440), 'day');
 };
 
@@ -73,6 +73,29 @@ const renderCommits = (list, commits) => {
     cards.sort((a, b) => b.dataset.pushed.localeCompare(a.dataset.pushed));
     recent.replaceChildren(...cards.slice(0, 2));
     all.replaceChildren(...cards.slice(2));
+  }
+
+  // hover card on the name: "online" = committed in the last 24 h (data refreshes hourly)
+  const last = data?.commits?.[0];
+  if (last) {
+    const on = Date.now() - new Date(last.date) < 24 * 36e5;
+    document.querySelectorAll('.who .dot').forEach(d => { d.hidden = false; d.classList.toggle('on', on); });
+    const status = document.querySelector('.status');
+    status.querySelector('.status-text').innerHTML =
+      `<span lang="pt">${on ? 'Online · último' : 'Último'} commit ${ago(last.date, 'pt-BR')} em ${last.repo}</span>` +
+      `<span lang="en">${on ? 'Online · last' : 'Last'} commit ${ago(last.date, 'en')} in ${last.repo}</span>`;
+    status.hidden = false;
+    document.querySelector('.who-empty').hidden = true;
+  }
+  const song = data?.spotify;
+  if (song) {
+    const np = document.querySelector('.np');
+    np.href = song.url;
+    np.querySelector('img').src = song.image;
+    np.querySelector('.np-track').textContent = song.track;
+    np.querySelector('.np-artist').textContent = song.artist;
+    np.hidden = false;
+    document.querySelector('.who-empty').hidden = true;
   }
 
   // contributions calendar: only in the Action's file (it needs a server to fetch)
