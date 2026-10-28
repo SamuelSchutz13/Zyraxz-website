@@ -34,11 +34,11 @@
 
 ## Features
 
-- **Recent projects**: the two repositories pushed most recently, then **all projects** below, newest first, with a **filter by technology**.
+- **Recent projects**: the two repositories pushed most recently, then **all projects** below, newest first, with a **filter by technology** (one icon per tech).
 - **Timeline**: one stop per day showing which projects were born when.
 - **Project pages** with features, architecture, a privacy note and screenshots that open full size (arrows move between them).
 - **About me** (its own page, `sobre.html`): stack grouped by languages, frameworks, databases and testing, each linking to its official site; **recent commits** with each app's icon; a **languages bar** with the share of each language across my repositories; and the **contributions calendar** of the last year.
-- **Coding status**: hover the name to see whether I committed in the last 24 hours, when and in which app.
+- **Coding status** under the name: whether I committed in the last 24 hours, when and in which app.
 - **Settings** (⚙): pastel **light and dark themes**, **Portuguese and English** with flags. Both are remembered.
 - WebP screenshots with thumbnails for the cards, scroll reveal that respects reduced motion, a 404 page, `sitemap.xml`, canonical links and Open Graph previews.
 

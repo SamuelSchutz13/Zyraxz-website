@@ -7,4 +7,7 @@ buttons.forEach(button => button.addEventListener('click', () => {
   document.querySelectorAll('#recent-grid > .card, #all-grid > .card').forEach(card => {
     card.hidden = tech !== '' && !card.dataset.tech.split(',').includes(tech);
   });
+  // no recent project uses this tech: hide the whole section instead of an empty heading
+  const recent = document.getElementById('recentes');
+  recent.hidden = !recent.querySelector('.card:not([hidden])');
 }));

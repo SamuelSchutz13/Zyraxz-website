@@ -216,25 +216,16 @@ html { scroll-padding-top: 24px; }
 .lb-next { right: 16px; top: 50%; translate: 0 -50%; }
 @media (max-width: 700px) { .lightbox { padding: 64px 12px; } .lb-prev, .lb-next { top: auto; bottom: 16px; translate: none; } }
 
-/* hover card on the name: online status (github.js fills it) */
-.who { position: relative; }
+/* status under the name (github.js fills it) */
 .av-wrap { position: relative; display: inline-flex; }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: #8b8b8b; display: inline-block; flex: none; }
 .dot.on { background: #3fb950; }
 .av-wrap .dot { position: absolute; right: -1px; bottom: -1px; box-shadow: 0 0 0 2px var(--bg); }
 .dot.on::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 2s ease-out infinite; }
 .av-wrap .dot.on::after { inset: 0; }
-.status .dot { position: relative; }
 @keyframes ping { from { opacity: .6; scale: 1; } to { opacity: 0; scale: 2.4; } }
 @media (prefers-reduced-motion: reduce) { .dot.on::after { animation: none; } }
-.who-card { position: absolute; top: calc(100% + 10px); left: 0; z-index: 20; width: 290px; padding: 14px; border-radius: 14px; background: var(--surface); box-shadow: 0 16px 40px rgba(0, 0, 0, .25); display: grid; gap: 12px; opacity: 0; translate: 0 -6px; pointer-events: none; transition: opacity .2s, translate .2s; }
-.who:hover .who-card, .who:focus-within .who-card { opacity: 1; translate: 0 0; pointer-events: auto; }
-.who-card::before { content: ""; position: absolute; inset: -12px 0 auto; height: 12px; } /* keeps hover alive across the gap */
-.status { display: flex; align-items: center; gap: 10px; font-size: 14px; }
 .app-ic { width: 16px; height: 16px; object-fit: contain; flex: none; }
-.status-text { line-height: 1.4; }
-.status-app { display: inline-flex; align-items: center; gap: 6px; margin-left: 6px; font-weight: 500; vertical-align: -3px; }
-.status-app:hover { text-decoration: underline; }
 
 .social { display: flex; gap: 16px; align-items: center; }
 
@@ -274,3 +265,22 @@ html { scroll-padding-top: 24px; }
 .about p:not(.lead) { margin-bottom: 28px; line-height: 1.6; }
 .seg svg { width: 16px; height: 16px; flex: none; }
 .nav-link[aria-current] { color: var(--ink); font-weight: 500; text-decoration: underline 2px var(--mark); text-underline-offset: 6px; }
+
+/* status under the name */
+.who-text { display: grid; line-height: 1.2; }
+.status { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.status-app { display: inline-flex; align-items: center; gap: 4px; color: var(--ink); }
+.status .app-ic { width: 13px; height: 13px; }
+
+/* technology filter: icon buttons */
+.filters button.ic { width: 38px; height: 38px; padding: 0; display: grid; place-items: center; }
+.filters button.ic img { width: 20px; height: 20px; object-fit: contain; }
+.filters button.ic[aria-pressed="true"] { background: var(--surface); box-shadow: inset 0 0 0 2px var(--mark); }
+.filters button.ic:hover { transform: translateY(-2px); }
+.filters button { transition: background .2s, color .2s, transform .2s, box-shadow .2s; }
+@media (max-width: 700px) {
+  .who-text { display: none; }
+  header nav { gap: 10px; }
+  .nav-link { font-size: 14px; }
+}
+section[hidden] { display: none; }

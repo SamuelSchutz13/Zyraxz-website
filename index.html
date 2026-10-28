@@ -19,24 +19,19 @@
 <link rel="alternate icon" href="assets/img/favicon.png">
 <script src="assets/js/prefs.js?v=2a43a964"></script>
 <link rel="preload" href="assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-<script src="assets/js/github.js?v=dcf3c8fb" defer></script>
-<script src="assets/js/filters.js?v=2d8951d5" defer></script>
+<script src="assets/js/github.js?v=779b38cf" defer></script>
+<script src="assets/js/filters.js?v=90160bf8" defer></script>
 <script src="assets/js/reveal.js?v=31c127db" defer></script>
 <script src="assets/js/lightbox.js?v=b765a23e" defer></script>
-<link rel="stylesheet" href="assets/css/main.css?v=b8a90df5">
+<link rel="stylesheet" href="assets/css/main.css?v=8bcb63b8">
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="who">
-      <a class="logo" href="index.html"><span class="av-wrap"><img src="assets/img/avatar.png" width="236" height="236" alt=""><i class="dot" hidden></i></span>Zyraxz</a>
-      <div class="who-card" role="tooltip">
-        <p class="status" hidden><i class="dot"></i><span class="status-text"></span></p>
-        <p class="muted who-empty"><span lang="pt">Desenvolvedor full-stack</span><span lang="en">Full-stack developer</span></p>
-      </div>
-    </div>
+    <a class="logo" href="index.html"><span class="av-wrap"><img src="assets/img/avatar.png" width="236" height="236" alt=""><i class="dot" hidden></i></span><span class="who-text">Zyraxz<small class="status" hidden></small></span></a>
     <nav aria-label="Principal">
-      <a class="nav-link" href="index.html#projetos" aria-current="page"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
+      <a class="nav-link" href="index.html" aria-current="page"><span lang="pt">Início</span><span lang="en">Home</span></a>
+      <a class="nav-link" href="index.html#projetos"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
       <a class="nav-link" href="sobre.html"><span lang="pt">Sobre mim</span><span lang="en">About me</span></a>
       <button class="gear" type="button" popovertarget="settings" aria-label="Configurações / Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
       <div id="settings" popover>
@@ -80,23 +75,23 @@
       <h2><span lang="pt">Projetos</span><span lang="en">Projects</span></h2>
       <div class="filters" role="group" aria-label="Filtrar por tecnologia">
         <button type="button" aria-pressed="true" data-tech=""><span lang="pt">Todos</span><span lang="en">All</span></button>
-        <button type="button" aria-pressed="false" data-tech="AutoHotkey">AutoHotkey</button>
-        <button type="button" aria-pressed="false" data-tech="CSS">CSS</button>
-        <button type="button" aria-pressed="false" data-tech="GitHub Actions">GitHub Actions</button>
-        <button type="button" aria-pressed="false" data-tech="HTML">HTML</button>
-        <button type="button" aria-pressed="false" data-tech="JavaScript">JavaScript</button>
-        <button type="button" aria-pressed="false" data-tech="Jest">Jest</button>
-        <button type="button" aria-pressed="false" data-tech="NestJS">NestJS</button>
-        <button type="button" aria-pressed="false" data-tech="Node.js">Node.js</button>
-        <button type="button" aria-pressed="false" data-tech="React">React</button>
-        <button type="button" aria-pressed="false" data-tech="shadcn/ui">shadcn/ui</button>
-        <button type="button" aria-pressed="false" data-tech="Socket.IO">Socket.IO</button>
-        <button type="button" aria-pressed="false" data-tech="Tailwind">Tailwind</button>
-        <button type="button" aria-pressed="false" data-tech="TypeScript">TypeScript</button>
-        <button type="button" aria-pressed="false" data-tech="Vite">Vite</button>
-        <button type="button" aria-pressed="false" data-tech="Vitest">Vitest</button>
-        <button type="button" aria-pressed="false" data-tech="Vue">Vue</button>
-        <button type="button" aria-pressed="false" data-tech="WebRTC">WebRTC</button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="AutoHotkey" title="AutoHotkey" aria-label="AutoHotkey"><img src="assets/img/icons/autohotkey-white.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="CSS" title="CSS" aria-label="CSS"><img src="assets/img/icons/css.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="GitHub Actions" title="GitHub Actions" aria-label="GitHub Actions"><img src="assets/img/icons/githubactions.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="HTML" title="HTML" aria-label="HTML"><img src="assets/img/icons/html5.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="JavaScript" title="JavaScript" aria-label="JavaScript"><img src="assets/img/icons/javascript.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="Jest" title="Jest" aria-label="Jest"><img src="assets/img/icons/jest.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="NestJS" title="NestJS" aria-label="NestJS"><img src="assets/img/icons/nestjs.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="Node.js" title="Node.js" aria-label="Node.js"><img src="assets/img/icons/nodedotjs.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="React" title="React" aria-label="React"><img src="assets/img/icons/react.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="shadcn/ui" title="shadcn/ui" aria-label="shadcn/ui"><img src="assets/img/icons/shadcnui-white.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="Socket.IO" title="Socket.IO" aria-label="Socket.IO"><img src="assets/img/icons/socketdotio-white.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="Tailwind" title="Tailwind" aria-label="Tailwind"><img src="assets/img/icons/tailwindcss.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="TypeScript" title="TypeScript" aria-label="TypeScript"><img src="assets/img/icons/typescript.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="Vite" title="Vite" aria-label="Vite"><img src="assets/img/icons/vite.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="Vitest" title="Vitest" aria-label="Vitest"><img src="assets/img/icons/vitest.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="Vue" title="Vue" aria-label="Vue"><img src="assets/img/icons/vuedotjs.svg" width="20" height="20" alt=""></button>
+        <button type="button" class="ic" aria-pressed="false" data-tech="WebRTC" title="WebRTC" aria-label="WebRTC"><img src="assets/img/icons/webrtc-white.svg" width="20" height="20" alt=""></button>
       </div>
     </div>
     <div class="grid" id="all-grid">

@@ -90,21 +90,21 @@ const renderCommits = (list, commits) => {
     all.replaceChildren(...cards.slice(2));
   }
 
-  // hover card on the name: "coding" = committed in the last 24 h (data refreshes hourly)
+  // status under the name: "coding" = committed in the last 24 h (data refreshes hourly)
   const last = data?.commits?.[0];
   if (last) {
     const on = Date.now() - new Date(last.date) < 24 * 36e5;
-    document.querySelectorAll('.who .dot').forEach(d => { d.hidden = false; d.classList.toggle('on', on); });
+    document.querySelector('.av-wrap .dot').hidden = false;
+    document.querySelector('.av-wrap .dot').classList.toggle('on', on);
     const status = document.querySelector('.status');
     const { name, icon } = app(last.repo);
-    const where = document.createElement('a');
-    where.className = 'status-app'; where.href = last.url; where.append(icon, name);
-    status.querySelector('.status-text').innerHTML =
-      `<span lang="pt">${on ? 'Codando · último' : 'Último'} commit ${ago(last.date, 'pt-BR')} em</span>` +
-      `<span lang="en">${on ? 'Coding · last' : 'Last'} commit ${ago(last.date, 'en')} in</span> `;
-    status.querySelector('.status-text').append(where);
+    const where = document.createElement('span'); // plain text: the whole name block is already a link
+    where.className = 'status-app'; where.append(icon, name);
+    status.innerHTML =
+      `<span lang="pt">${on ? 'Codando · ' : 'Último commit '}${ago(last.date, 'pt-BR')} em</span>` +
+      `<span lang="en">${on ? 'Coding · ' : 'Last commit '}${ago(last.date, 'en')} in</span>`;
+    status.append(where);
     status.hidden = false;
-    document.querySelector('.who-empty').hidden = true;
   }
 
   // languages bar: only in the Action's file (it needs one request per repository)
