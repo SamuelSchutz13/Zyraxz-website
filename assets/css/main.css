@@ -159,7 +159,8 @@ pre.flow .c { color: var(--code-c); } /* notes, comments */
   .logo { font-size: 0; gap: 0; }
 }
 .p-head .stack { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
-.p-head .stack .stars { margin-left: 8px; }
+.p-head .stack .stars { margin-left: 8px; padding: 5px 12px 5px 10px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 15px; font-weight: 500; line-height: 1; }
+.p-head .stack .stars svg { width: 18px; height: 18px; }
 .p-body { padding-bottom: 32px; }
 
 html { scroll-padding-top: 24px; }
