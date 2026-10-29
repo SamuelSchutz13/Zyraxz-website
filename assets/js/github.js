@@ -80,8 +80,9 @@ const renderCommits = (list, commits) => {
     if (n !== undefined) { el.querySelector('b').textContent = n; el.hidden = false; }
   });
 
-  // contributor avatars at the end of each card's tech row: only in the Action's file (one request per repository)
-  document.querySelectorAll('.card[data-repo]').forEach(card => {
+  // contributor avatars at the end of the tech row, on each card and on the project page:
+  // only in the Action's file (one request per repository)
+  document.querySelectorAll('.card[data-repo], .p-head[data-repo]').forEach(card => {
     const people = data?.contributors?.[card.dataset.repo];
     const row = card.querySelector('.stack');
     if (!people?.length || !row) return;

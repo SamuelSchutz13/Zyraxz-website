@@ -335,3 +335,5 @@ section[hidden] { display: none; }
 .contribs img { width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); background: var(--bg); }
 .card:hover .contribs img { box-shadow: 0 0 0 2px var(--hover); }
 .contribs img + img { margin-left: -6px; }
+.p-head .contribs { margin-left: 4px; }
+.p-head .contribs img { box-shadow: 0 0 0 2px var(--bg); }
