@@ -330,7 +330,11 @@ section[hidden] { display: none; }
 .edu-stack img { width: 16px; height: 16px; object-fit: contain; }
 .about p.edu-desc { margin-bottom: 0; }
 
-/* contributor avatars on the right of a card's tech row, same size as the tech icons */
-.contribs { display: flex; gap: 6px; margin-left: auto; }
-.contribs img { width: 22px; height: 22px; border-radius: 50%; background: var(--bg); }
+/* contributor avatars on the right of a card's tech row, overlapping like GitHub's;
+   26px because a circle reads smaller than the 22px square tech icons */
+.contribs { display: flex; margin-left: auto; }
+.contribs img { width: 26px; height: 26px; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); background: var(--bg); }
+.card:hover .contribs img { box-shadow: 0 0 0 2px var(--hover); }
+.contribs img + img { margin-left: -7px; }
 .p-head .contribs { margin-left: 4px; }
+.p-head .contribs img { box-shadow: 0 0 0 2px var(--bg); }

@@ -89,8 +89,8 @@ const renderCommits = (list, commits) => {
     const wrap = document.createElement('span');
     wrap.className = 'contribs';
     wrap.append(...people.slice(0, 5).map(p => {
-      const av = new Image(22, 22);
-      av.src = `${p.avatar}&s=44`; av.alt = p.login; av.title = p.login; av.loading = 'lazy';
+      const av = new Image(26, 26);
+      av.src = `${p.avatar}&s=52`; av.alt = p.login; av.title = p.login; av.loading = 'lazy';
       return av;
     }));
     row.append(wrap);
