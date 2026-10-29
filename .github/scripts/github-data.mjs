@@ -66,13 +66,25 @@ const contributors = Object.fromEntries(await Promise.all(repos.map(r => people(
   .catch(() => [])
   .then(list => [r.name, list]))));
 
+// every author of each recent commit, Co-Authored-By trailers included: GraphQL, one query, needs the token
+const commits = per.flat().filter(c => !c.msg.startsWith('Merge')).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7);
+const authors = commits.length && await fetch('https://api.github.com/graphql', {
+  method: 'POST', headers,
+  body: JSON.stringify({ query: `{ ${commits.map((c, i) => `c${i}: repository(owner: "${user}", name: "${c.repo}") {
+    object(oid: "${c.url.split('/').pop()}") { ... on Commit { authors(first: 5) { nodes { user { login avatarUrl } } } } } }`).join('\n')} }` }),
+}).then(r => r.json()).then(r => r.data).catch(() => null);
+commits.forEach((c, i) => {
+  const people = authors?.[`c${i}`]?.object?.authors.nodes.filter(n => n.user).map(({ user: u }) => ({ login: u.login, avatar: u.avatarUrl }));
+  if (people?.length) c.people = people;
+});
+
 const data = {
   languages,
   contributors,
   t: Date.now(),
   stars: Object.fromEntries(repos.map(r => [r.name, r.stargazers_count])),
   pushed: Object.fromEntries(repos.map(r => [r.name, r.pushed_at])),
-  commits: per.flat().filter(c => !c.msg.startsWith('Merge')).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7),
+  commits,
   contributions,
 };
 

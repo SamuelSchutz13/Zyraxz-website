@@ -59,15 +59,34 @@ const ago = (d, locale = html.lang) => {
 };
 
 const renderCommits = (list, commits) => {
-  list.replaceChildren(...commits.map(c => {
-    const li = document.createElement('li'), a = document.createElement('a');
-    const msg = document.createElement('span'), meta = document.createElement('span'), av = new Image(36, 36);
-    av.className = 'av'; av.src = c.avatar || base + 'img/avatar.png'; av.alt = '';
-    a.href = c.url; msg.className = 'msg'; meta.className = 'meta';
-    msg.textContent = c.msg;
-    const { name, icon } = app(c.repo);
-    meta.append(icon, `${name} · ${ago(c.date)}`);
-    a.append(msg, meta); li.append(av, a); return li;
+  const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
+  // consecutive commits to the same repository share one header
+  const groups = [];
+  commits.forEach(c => groups.at(-1)?.repo === c.repo ? groups.at(-1).items.push(c) : groups.push({ repo: c.repo, items: [c] }));
+  list.replaceChildren(...groups.map(g => {
+    const li = el('li'), head = el('div', 'repo'), node = el('span', 'node'), ol = el('ol');
+    const { name, icon } = app(g.repo);
+    const gh = el('a', 'gh-link'), ghIc = new Image(16, 16);
+    ghIc.src = base + 'img/icons/github-white.svg'; ghIc.alt = 'GitHub';
+    gh.href = `https://github.com/${user}/${g.repo}/commits`; gh.title = `${name} · commits`; gh.append(ghIc);
+    node.append(icon); head.append(node, name, gh);
+    ol.append(...g.items.map(c => {
+      const item = el('li'), a = el('a'), msg = el('span', 'msg'), meta = el('span', 'meta');
+      // a conventional-commit prefix ("feat:", "fix(ui):") becomes a small tag
+      const [, type, text] = c.msg.match(/^(\w+)(?:\([^)]*\))?!?:\s*(.+)$/) || [, '', c.msg];
+      msg.textContent = text[0].toUpperCase() + text.slice(1);
+      // everyone on the commit, overlapping; without the Action's file only the author is known
+      const avs = el('span', 'avs');
+      avs.append(...(c.people || [{ avatar: c.avatar }]).map(p => {
+        const av = new Image(20, 20);
+        av.src = p.avatar || base + 'img/avatar.png'; av.alt = p.login || ''; av.title = p.login || '';
+        return av;
+      }));
+      meta.append(avs, ago(c.date));
+      if (type) { const tag = el('span', 'tag'); tag.dataset.type = tag.textContent = type.toLowerCase(); meta.append(tag); }
+      a.href = c.url; a.append(msg, meta); item.append(a); return item;
+    }));
+    li.append(head, ol); return li;
   }));
 };
 
@@ -153,6 +172,61 @@ const renderCommits = (list, commits) => {
     document.getElementById('contrib-grid').innerHTML = cells.join('');
     document.getElementById('contrib-total').textContent = `· ${total}`;
     contrib.hidden = false;
+  }
+
+  // "By the numbers": streaks and totals from the same calendar, nothing new to fetch
+  const stats = document.getElementById('stats');
+  if (stats && data?.contributions?.days?.length) {
+    const { total, days } = data.contributions;
+    const $ = id => document.getElementById(id);
+    const both = (pt, en) => `<span lang="pt">${pt}</span><span lang="en">${en}</span>`;
+    const dias = v => both(v === 1 ? 'dia' : 'dias', v === 1 ? 'day' : 'days');
+    let longest = 0, run = 0;
+    days.forEach(day => { run = day.c ? run + 1 : 0; longest = Math.max(longest, run); });
+    // today may have no commits yet: the streak only breaks after a full day without any
+    let streak = 0;
+    for (let i = days.length - 1; i >= 0; i--) {
+      if (days[i].c) streak++;
+      else if (i < days.length - 1) break;
+    }
+    const active = days.filter(d => d.c).length;
+    const best = days.reduce((a, d) => d.c > a.c ? d : a);
+    const stars = Object.entries(data.stars).sort((a, b) => b[1] - a[1]);
+    const weeks = [...Array(16)].map((_, w) => days.slice(-7 * (16 - w), -7 * (15 - w) || undefined).reduce((t, d) => t + d.c, 0));
+
+    $('st-streak-unit').innerHTML = dias(streak);
+    $('st-longest').innerHTML = `${longest} ${dias(longest)}`;
+    $('st-days').innerHTML = days.slice(-7).map(d => {
+      const day = new Date(d.d + 'T00:00:00');
+      const wd = loc => day.toLocaleDateString(loc, { weekday: 'narrow' });
+      return `<li class="${d.c ? 'on' : ''}" title="${d.d}: ${d.c}"><i></i>${both(wd('pt-BR'), wd('en'))}</li>`;
+    }).join('');
+    $('st-total-sub').innerHTML = `${both('melhor dia', 'best day')}: ${best.c}`;
+    $('st-active-sub').innerHTML = `${Math.round(active / days.length * 100)}% ${both('do ano', 'of the year')}`;
+    $('st-repos-sub').innerHTML = both('públicos no GitHub', 'public on GitHub');
+    if (stars[0]?.[1]) $('st-stars-sub').innerHTML = `${both('mais em', 'most in')} ${app(stars[0][0]).name}`;
+    $('st-week').textContent = weeks[15];
+
+    const max = Math.sqrt(Math.max(...weeks, 1)); // square root, so one huge week does not flatten the rest
+    $('st-weeks').innerHTML = weeks.map((c, w) =>
+      `<i class="${c ? 'on' : ''}${w === 15 ? ' now' : ''}" style="--h:${Math.max(Math.sqrt(c) / max * 100, 6)}%" title="${c}"></i>`).join('');
+    stats.hidden = false;
+
+    // count up and grow the bars once the card scrolls into view
+    const counts = { 'st-streak': streak, 'st-total': total, 'st-active': active,
+      'st-repos': stars.length, 'st-stars': stars.reduce((t, [, v]) => t + v, 0) };
+    const play = () => {
+      stats.classList.add('in');
+      $('st-bar').style.width = `${longest ? streak / longest * 100 : 0}%`;
+      const t0 = performance.now(), still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const tick = t => {
+        const k = still ? 1 : Math.min(Math.max(t - t0, 0) / 1200, 1), e = 1 - (1 - k) ** 3;
+        for (const [id, v] of Object.entries(counts)) $(id).textContent = Math.round(v * e).toLocaleString(html.lang);
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: .3 }).observe(stats);
   }
 
   if (!list) return;

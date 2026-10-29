@@ -19,11 +19,11 @@
 <link rel="alternate icon" href="assets/img/favicon.png">
 <script src="assets/js/prefs.js?v=6d20cb70"></script>
 <link rel="preload" href="assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-<script src="assets/js/github.js?v=c597a9fd" defer></script>
+<script src="assets/js/github.js?v=1414a61f" defer></script>
 <script src="assets/js/filters.js?v=90160bf8" defer></script>
 <script src="assets/js/reveal.js?v=694ca3ad" defer></script>
 <script src="assets/js/lightbox.js?v=523126a1" defer></script>
-<link rel="stylesheet" href="assets/css/main.css?v=c57dd78b">
+<link rel="stylesheet" href="assets/css/main.css?v=cab436fc">
 </head>
 <body>
 <div class="wrap">
@@ -88,11 +88,37 @@
         <h3><span lang="pt">Bancos e DevOps</span><span lang="en">Databases and DevOps</span></h3><ul class="chips"><li><a href="https://www.postgresql.org/"><img src="assets/img/icons/postgresql.svg" width="22" height="22" alt="">PostgreSQL</a></li><li><a href="https://www.mysql.com/"><img src="assets/img/icons/mysql.svg" width="22" height="22" alt="">MySQL</a></li><li><a href="https://redis.io/"><img src="assets/img/icons/redis.svg" width="22" height="22" alt="">Redis</a></li><li><a href="https://sqlite.org/"><img src="assets/img/icons/sqlite-white.svg" width="22" height="22" alt="">SQLite</a></li><li><a href="https://www.docker.com/"><img src="assets/img/icons/docker.svg" width="22" height="22" alt="">Docker</a></li><li><a href="https://kubernetes.io/"><img src="assets/img/icons/kubernetes.svg" width="22" height="22" alt="">Kubernetes</a></li><li><a href="https://git-scm.com/"><img src="assets/img/icons/git.svg" width="22" height="22" alt="">Git</a></li></ul>
         <h3><span lang="pt">Testes</span><span lang="en">Testing</span></h3><ul class="chips"><li><a href="https://jestjs.io/"><img src="assets/img/icons/jest.svg" width="22" height="22" alt="">Jest</a></li><li><a href="https://vitest.dev/"><img src="assets/img/icons/vitest.svg" width="22" height="22" alt="">Vitest</a></li><li><a href="https://playwright.dev/"><img src="assets/img/icons/playwright.svg" width="22" height="22" alt="">Playwright</a></li></ul>
       </div>
+      <div class="side">
       <div class="card commits-card">
         <div class="body">
           <h3><span lang="pt">Commits recentes</span><span lang="en">Recent commits</span></h3>
           <ol id="commits"><li class="muted"><span lang="pt">Carregando do GitHub…</span><span lang="en">Loading from GitHub…</span></li></ol>
         </div>
+      </div>
+      <div class="card commits-card" id="stats" hidden>
+        <div class="body">
+          <h3><span lang="pt">Em números</span><span lang="en">By the numbers</span></h3>
+          <div class="streak">
+            <span class="streak-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-6 1-9.5z"/></svg></span>
+            <div class="streak-now">
+              <b><span id="st-streak">0</span><small id="st-streak-unit"></small></b>
+              <span class="muted"><span lang="pt">sequência atual</span><span lang="en">current streak</span></span>
+            </div>
+            <ol class="days" id="st-days"></ol>
+            <span class="streak-bar"><i id="st-bar"></i></span>
+            <span class="streak-foot muted"><span><span lang="pt">Recorde</span><span lang="en">Best</span>: <b id="st-longest"></b></span></span>
+          </div>
+          <dl class="stats">
+            <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><dt><span lang="pt">Contribuições</span><span lang="en">Contributions</span></dt><dd id="st-total">0</dd><small class="sub" id="st-total-sub"></small></div>
+            <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><dt><span lang="pt">Dias ativos</span><span lang="en">Active days</span></dt><dd id="st-active">0</dd><small class="sub" id="st-active-sub"></small></div>
+            <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><dt><span lang="pt">Projetos</span><span lang="en">Projects</span></dt><dd id="st-repos">0</dd><small class="sub" id="st-repos-sub"></small></div>
+            <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9z"/></svg><dt><span lang="pt">Estrelas</span><span lang="en">Stars</span></dt><dd id="st-stars">0</dd><small class="sub" id="st-stars-sub"></small></div>
+          </dl>
+          <div class="weeks-head"><span lang="pt">Contribuições por semana</span><span lang="en">Contributions per week</span></div>
+          <div class="weeks" id="st-weeks"></div>
+          <div class="weeks-foot muted"><span lang="pt">há 16 semanas</span><span lang="en">16 weeks ago</span><span><span lang="pt">esta semana</span><span lang="en">this week</span> · <b id="st-week"></b></span></div>
+        </div>
+      </div>
       </div>
     </div>
     <div class="langs" id="langs" hidden>

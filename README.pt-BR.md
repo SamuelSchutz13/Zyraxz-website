@@ -37,7 +37,7 @@
 - **Projetos recentes**: os dois repositórios com push mais recente, e logo abaixo **todos os projetos**, do mais novo para o mais antigo, com **filtro por tecnologia** (um ícone por tecnologia).
 - **Linha do tempo**: um ponto por dia mostrando quando cada projeto nasceu.
 - **Página de cada projeto** com funcionalidades, arquitetura, nota de privacidade e capturas que abrem em tela cheia (com setas entre elas).
-- **Sobre mim** (página própria, `sobre.html`): stack dividida em linguagens, frameworks, bancos e testes, cada uma com link para o site oficial; **commits recentes** com o ícone de cada app; uma **barra de linguagens** com a fatia de cada linguagem nos meus repositórios; e o **calendário de contribuições** do último ano.
+- **Sobre mim** (página própria, `sobre.html`): stack dividida em linguagens, frameworks, bancos e testes, cada uma com link para o site oficial; **commits recentes** agrupados por projeto, com a foto de cada autor (coautores incluídos); um card **em números** com a sequência atual e o recorde, contribuições, dias ativos, projetos, estrelas e as últimas 16 semanas; uma **barra de linguagens** com a fatia de cada linguagem nos meus repositórios; e o **calendário de contribuições** do último ano.
 - **Status "codando"** embaixo do nome: mostra se commitei nas últimas 24 horas, quando e em qual app.
 - **Configurações** (⚙): **tema claro e escuro** em tons pastel, **português e inglês** com bandeiras. As escolhas ficam salvas.
 - Capturas em WebP com miniaturas para os cartões, animação ao rolar que respeita "reduzir movimento", página 404, `sitemap.xml`, links canônicos e prévia ao compartilhar (Open Graph).
