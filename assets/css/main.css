@@ -329,3 +329,9 @@ section[hidden] { display: none; }
 .edu-stack > span { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); padding: 4px 10px; border-radius: 999px; }
 .edu-stack img { width: 16px; height: 16px; object-fit: contain; }
 .about p.edu-desc { margin-bottom: 0; }
+
+/* contributor avatars on the right of a card's tech row, overlapping like GitHub's */
+.contribs { display: flex; margin-left: auto; }
+.contribs img { width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); background: var(--bg); }
+.card:hover .contribs img { box-shadow: 0 0 0 2px var(--hover); }
+.contribs img + img { margin-left: -6px; }

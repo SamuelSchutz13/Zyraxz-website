@@ -12,7 +12,7 @@ const apps = {
   FoculessPDF: ['FoculessPDF', 'img/logos/foculesspdf.svg'], FoculessYT: ['FoculessYT', 'img/logos/foculessyt.svg'],
   FoculessPad: ['FoculessPad', 'img/logos/foculesspad.svg'], 'AHK-SpotifyControl': ['Spotify Control', 'img/icons/spotify.svg'],
   'Zyraxz-website': ['Zyraxz Website', 'img/logos/zyraxz.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
-  'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'],
+  'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'], SistemTemp: ['SistemTemp', 'img/logos/sistemtemp.svg'],
 };
 const app = repo => {
   const [name, logo] = apps[repo] || [repo, null];
@@ -78,6 +78,21 @@ const renderCommits = (list, commits) => {
   document.querySelectorAll('.stars[data-repo]').forEach(el => {
     const n = data?.stars[el.dataset.repo];
     if (n !== undefined) { el.querySelector('b').textContent = n; el.hidden = false; }
+  });
+
+  // contributor avatars at the end of each card's tech row: only in the Action's file (one request per repository)
+  document.querySelectorAll('.card[data-repo]').forEach(card => {
+    const people = data?.contributors?.[card.dataset.repo];
+    const row = card.querySelector('.stack');
+    if (!people?.length || !row) return;
+    const wrap = document.createElement('span');
+    wrap.className = 'contribs';
+    wrap.append(...people.slice(0, 5).map(p => {
+      const av = new Image(22, 22);
+      av.src = `${p.avatar}&s=44`; av.alt = p.login; av.title = p.login; av.loading = 'lazy';
+      return av;
+    }));
+    row.append(wrap);
   });
 
   // the two most recently pushed projects go to "Recent", the rest to "Projects", newest first

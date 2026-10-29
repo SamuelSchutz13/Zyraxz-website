@@ -44,8 +44,31 @@ const languages = Object.entries((await Promise.all(repos.map(r => json(r.langua
   .reduce((sum, langs) => { for (const [k, v] of Object.entries(langs)) sum[k] = (sum[k] || 0) + v; return sum; }, {}))
   .map(([name, bytes]) => ({ name, bytes })).sort((a, b) => b.bytes - a.bytes);
 
+// people on each repository's last 100 commits, most commits first. GraphQL, because REST's
+// contributors list skips Co-Authored-By trailers (that's how Claude shows up); it needs the token
+const people = async repo => {
+  const res = await fetch('https://api.github.com/graphql', {
+    method: 'POST', headers,
+    body: JSON.stringify({ query: `{ repository(owner: "${user}", name: "${repo}") { defaultBranchRef { target { ... on Commit {
+      history(first: 100) { nodes { authors(first: 5) { nodes { user { login avatarUrl } } } } } } } } } }` }),
+  });
+  const commits = (await res.json()).data?.repository?.defaultBranchRef?.target?.history?.nodes;
+  if (!commits) throw new Error(`graphql ${repo}`);
+  const count = {};
+  for (const c of commits) for (const { user: u } of c.authors.nodes) {
+    if (u) (count[u.login] ??= { login: u.login, avatar: u.avatarUrl, n: 0 }).n++;
+  }
+  return Object.values(count).sort((a, b) => b.n - a.n).map(({ login, avatar }) => ({ login, avatar }));
+};
+const contributors = Object.fromEntries(await Promise.all(repos.map(r => people(r.name)
+  .catch(() => json(`https://api.github.com/repos/${user}/${r.name}/contributors?per_page=10`) // no token: authors only
+    .then(cs => cs.filter(c => c.type === 'User').map(c => ({ login: c.login, avatar: c.avatar_url }))))
+  .catch(() => [])
+  .then(list => [r.name, list]))));
+
 const data = {
   languages,
+  contributors,
   t: Date.now(),
   stars: Object.fromEntries(repos.map(r => [r.name, r.stargazers_count])),
   pushed: Object.fromEntries(repos.map(r => [r.name, r.pushed_at])),
