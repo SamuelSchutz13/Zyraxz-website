@@ -324,3 +324,8 @@ section[hidden] { display: none; }
 .edu-logo { width: 18px; height: 18px; object-fit: contain; flex: none; filter: brightness(0); opacity: .85; } /* monochrome: black on light */
 :root[data-theme="dark"] .edu-logo { filter: brightness(0) invert(1); opacity: .9; } /* white on dark */
 .edu-logo.wide { width: auto; height: 12px; }
+.edu-desc { font-size: 15px; line-height: 1.5; margin-top: 6px; max-width: 52ch; }
+.edu-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; font-size: 13px; }
+.edu-stack > span { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); padding: 4px 10px; border-radius: 999px; }
+.edu-stack img { width: 16px; height: 16px; object-fit: contain; }
+.about p.edu-desc { margin-bottom: 0; }
