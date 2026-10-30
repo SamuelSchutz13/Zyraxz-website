@@ -235,13 +235,66 @@ const renderCommits = (list, commits) => {
   if (badges && data?.achievements?.length) {
     document.getElementById('badge-list').replaceChildren(...data.achievements.map(a => {
       const li = document.createElement('li'), link = document.createElement('a'), img = new Image(64, 64);
+      img.crossOrigin = 'anonymous'; // githubassets sends CORS, so showBadge can read the badge's color
       img.src = a.img; img.alt = ''; img.loading = 'lazy';
       link.href = `https://github.com/${user}?achievement=${a.slug}&tab=achievements`;
       link.append(img, a.name);
       if (a.tier) { const t = document.createElement('span'); t.className = 'tier'; t.textContent = a.tier; link.append(t); }
+      link.addEventListener('click', e => { e.preventDefault(); showBadge(a, link.href, link); });
       li.append(link); return li;
     }));
     badges.hidden = false;
+  }
+
+  // click a badge: a small card under it with what it's for (light-dismiss popover, Esc or click outside closes)
+  const pop = document.createElement('div');
+  pop.className = 'badge-pop';
+  pop.popover = 'auto';
+  document.body.append(pop);
+  let closedAt = 0, shown = '';
+  pop.addEventListener('toggle', e => { if (e.newState === 'closed') closedAt = performance.now(); });
+  addEventListener('scroll', () => pop.matches(':popover-open') && pop.hidePopover(), { passive: true });
+  function showBadge(a, href, anchor) {
+    if (shown === a.slug && performance.now() - closedAt < 300) return; // this click just closed it: act as a toggle
+    shown = a.slug;
+    const about = {
+      'quickdraw': ['Fechou uma issue ou pull request em até 5 minutos depois de abrir.', 'Closed an issue or pull request within 5 minutes of opening.'],
+      'pull-shark': ['Abriu pull requests que foram mergeados.', 'Opened pull requests that have been merged.'],
+      'public-sponsor': ['Patrocinou um projeto open source pelo GitHub Sponsors.', 'Sponsored an open source contributor through GitHub Sponsors.'],
+      'yolo': ['Mergeou um pull request sem code review.', 'Merged a pull request without code review.'],
+      'pair-extraordinaire': ['Foi coautor de pull requests mergeados.', 'Coauthored commits on merged pull requests.'],
+      'starstruck': ['Criou um repositório com muitas estrelas.', 'Created a repository that has many stars.'],
+      'galaxy-brain': ['Teve respostas aceitas no GitHub Discussions.', 'Answered discussions that got accepted.'],
+    }[a.slug];
+    pop.innerHTML = `
+      <img src="${a.img}" width="64" height="64" alt="">
+      <div>
+        <span><b></b>${a.tier ? `<span class="tier">${a.tier}</span>` : ''}</span>
+        ${about ? `<p><span lang="pt">${about[0]}</span><span lang="en">${about[1]}</span></p>` : ''}
+        <a href="${href}"><span lang="pt">Ver no GitHub</span><span lang="en">See on GitHub</span> ↗</a>
+      </div>`;
+    pop.querySelector('b').textContent = a.name;
+    pop.style.setProperty('--tint', badgeColor(anchor.querySelector('img')));
+    pop.showPopover();
+    const r = anchor.getBoundingClientRect(), w = pop.offsetWidth;
+    pop.style.left = `${Math.min(Math.max(8, r.left + r.width / 2 - w / 2), document.documentElement.clientWidth - w - 8)}px`; // clientWidth: without the scrollbar
+    pop.style.top = `${r.bottom + 8}px`;
+  }
+
+  // the badge's main color: average of its opaque, colorful pixels (GitHub mobile tints the sheet this way)
+  function badgeColor(img) {
+    try {
+      const c = document.createElement('canvas'), n = c.width = c.height = 24, g = c.getContext('2d', { willReadFrequently: true });
+      g.drawImage(img, 0, 0, n, n);
+      const px = g.getImageData(0, 0, n, n).data;
+      let r = 0, gr = 0, b = 0, w = 0;
+      for (let i = 0; i < px.length; i += 4) {
+        const s = Math.max(px[i], px[i + 1], px[i + 2]) - Math.min(px[i], px[i + 1], px[i + 2]); // 0 for grays
+        const k = px[i + 3] > 200 ? s : 0;
+        r += px[i] * k; gr += px[i + 1] * k; b += px[i + 2] * k; w += k;
+      }
+      return w ? `rgb(${r / w | 0} ${gr / w | 0} ${b / w | 0})` : 'var(--surface)';
+    } catch { return 'var(--surface)'; } // image not loaded yet, or tainted
   }
 
   if (!list) return;

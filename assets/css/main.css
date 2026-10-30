@@ -395,3 +395,16 @@ section[hidden] { display: none; }
 .badges a:hover { background: var(--hover); }
 .badges img { width: 64px; height: 64px; }
 .badges .tier { position: absolute; top: 8px; right: 8px; padding: 0 6px; border-radius: 999px; background: var(--mark); color: #1d1b19; font-size: 11px; font-weight: 600; }
+
+/* small card under a clicked badge (github.js) */
+.badge-pop { inset: auto; margin: 0; width: min(300px, calc(100vw - 16px)); padding: 14px 16px 14px 14px; border: 1px solid color-mix(in srgb, var(--tint, var(--border)) 50%, var(--border)); border-radius: 14px; background: radial-gradient(circle at 46px 46px, color-mix(in srgb, var(--tint, var(--surface)) 70%, var(--surface)), transparent 90px), linear-gradient(160deg, color-mix(in srgb, var(--tint, var(--surface)) 45%, var(--surface)), color-mix(in srgb, var(--tint, var(--surface)) 14%, var(--surface))); color: var(--ink); font-size: 13px; box-shadow: 0 12px 32px rgba(0, 0, 0, .3); }
+.badge-pop:popover-open { display: flex; gap: 14px; align-items: flex-start; }
+.badge-pop img { flex: none; width: 64px; height: 64px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .35)); }
+.badge-pop div { display: grid; gap: 4px; justify-items: start; }
+.badge-pop b { font-size: 15px; font-weight: 600; }
+.badge-pop .tier { margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--mark); color: #1d1b19; font-size: 11px; font-weight: 600; vertical-align: 2px; }
+.badge-pop p { color: var(--muted); line-height: 1.45; }
+.badge-pop a { margin-top: 6px; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 10%, transparent); color: inherit; font-size: 12px; text-decoration: none; }
+.badge-pop a:hover { background: color-mix(in srgb, var(--ink) 18%, transparent); }
+.reveal .badge-pop:popover-open { animation: pop-in .15s ease-out; }
+@keyframes pop-in { from { opacity: 0; translate: 0 -4px; } }
