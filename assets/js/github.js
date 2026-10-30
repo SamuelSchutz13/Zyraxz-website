@@ -41,7 +41,7 @@ const load = async () => {
       json(`https://api.github.com/repos/${user}/${r.name}/commits?per_page=5`).then(cs => cs.map(c => ({
         repo: r.name, avatar: c.author?.avatar_url, msg: c.commit.message.split('\n')[0],
         date: c.commit.author.date, url: c.html_url,
-      })))));
+      }))).catch(() => []))); // an empty repository answers 409
     const commits = per.flat().filter(c => !c.msg.startsWith('Merge'))
       .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7);
     const data = { t: Date.now(), stars, pushed, commits };
