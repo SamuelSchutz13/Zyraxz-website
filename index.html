@@ -19,7 +19,7 @@
 <link rel="alternate icon" href="assets/img/favicon.png">
 <script src="assets/js/prefs.js?v=6d20cb70"></script>
 <link rel="preload" href="assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-<script src="assets/js/github.js?v=686e1559" defer></script>
+<script src="assets/js/github.js?v=965d6132" defer></script>
 <script src="assets/js/filters.js?v=90160bf8" defer></script>
 <script src="assets/js/reveal.js?v=694ca3ad" defer></script>
 <script src="assets/js/lightbox.js?v=523126a1" defer></script>
@@ -59,13 +59,13 @@
   <section id="recentes">
     <h2><span lang="pt">Projetos recentes</span><span lang="en">Recent projects</span></h2>
     <div class="grid" id="recent-grid">
+      <a class="card" href="projects/ujobs.html" data-repo="uJobsGUI" data-pushed="2026-10-30T11:12:06Z" data-tech="Go,Gin,Echo,Chi,Vue,Quasar">
+        <div class="shot"><img src="assets/img/projects/thumbs/ujobs.webp" width="1440" height="900" loading="lazy" alt="Tela de candidaturas do uJobs"><span class="stars badge" data-repo="uJobsGUI" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
+        <div class="body"><h3><img class="logo-p" src="assets/img/logos/ujobs.svg" width="28" height="28" alt="">uJobs</h3><p><span lang="pt">Interface web para o ai-job-search: candidaturas, vagas encontradas e comandos do Claude Code numa página local, num único binário Go.</span><span lang="en">A web interface for ai-job-search: applications, found jobs and Claude Code commands in one local page, in a single Go binary.</span></p><p class="stack"><img src="assets/img/icons/go.svg" width="22" height="22" alt="Go" title="Go"><img src="assets/img/icons/gin.svg" width="22" height="22" alt="Gin" title="Gin"><img src="assets/img/icons/echo.svg" width="22" height="22" alt="Echo" title="Echo"><img src="assets/img/icons/chi.svg" width="22" height="22" alt="Chi" title="Chi"><img src="assets/img/icons/vuedotjs.svg" width="22" height="22" alt="Vue" title="Vue"><img src="assets/img/icons/quasar.svg" width="22" height="22" alt="Quasar" title="Quasar"></p></div>
+      </a>
       <a class="card" href="projects/zyraxz.html" data-repo="Zyraxz-website" data-pushed="2026-10-28T21:00:00Z" data-tech="HTML,CSS,JavaScript,GitHub Actions">
         <div class="shot"><img src="assets/img/projects/thumbs/zyraxz.webp" width="1440" height="900" loading="lazy" alt="Página inicial do Zyraxz Website"><span class="stars badge" data-repo="Zyraxz-website" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
         <div class="body"><h3><img class="logo-p" src="assets/img/logos/zyraxz.svg" width="28" height="28" alt="">Zyraxz Website</h3><p><span lang="pt">Este portfólio: um site estático, sem build e sem rastreadores, que se atualiza sozinho com os dados do meu GitHub.</span><span lang="en">This portfolio: a static site with no build step and no trackers that keeps itself up to date with my GitHub data.</span></p><p class="stack"><img src="assets/img/icons/html5.svg" width="22" height="22" alt="HTML" title="HTML"><img src="assets/img/icons/css.svg" width="22" height="22" alt="CSS" title="CSS"><img src="assets/img/icons/javascript.svg" width="22" height="22" alt="JavaScript" title="JavaScript"><img src="assets/img/icons/githubactions.svg" width="22" height="22" alt="GitHub Actions" title="GitHub Actions"></p></div>
-      </a>
-      <a class="card" href="projects/titanlive.html" data-repo="TitanLive" data-pushed="2026-10-28" data-tech="NestJS,Socket.IO,WebRTC,Vite,TypeScript">
-        <div class="shot"><img src="assets/img/projects/thumbs/titanlive-room.webp" width="1280" height="800" loading="lazy" alt="Sala do TitanLive com tela compartilhada e chat"><span class="stars badge" data-repo="TitanLive" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
-        <div class="body"><h3><img class="logo-p" src="assets/img/logos/titanlive.svg" width="28" height="28" alt="">TitanLive</h3><p><span lang="pt">Assista junto e converse ao vivo: compartilhe a tela e fale por voz com até 10 pessoas, direto do navegador.</span><span lang="en">Watch together and talk live: share your screen and talk by voice with up to 10 people, right from the browser.</span></p><p class="stack"><img src="assets/img/icons/nestjs.svg" width="22" height="22" alt="NestJS" title="NestJS"><img src="assets/img/icons/socketdotio-white.svg" width="22" height="22" alt="Socket.IO" title="Socket.IO"><img src="assets/img/icons/webrtc-white.svg" width="22" height="22" alt="WebRTC" title="WebRTC"><img src="assets/img/icons/vite.svg" width="22" height="22" alt="Vite" title="Vite"></p></div>
       </a>
     </div>
   </section>
@@ -76,8 +76,12 @@
       <div class="filters" role="group" aria-label="Filtrar por tecnologia">
         <button type="button" aria-pressed="true" data-tech=""><span lang="pt">Todos</span><span lang="en">All</span></button>
         <button type="button" aria-pressed="false" data-tech="AutoHotkey">AutoHotkey</button>
+        <button type="button" aria-pressed="false" data-tech="Chi">Chi</button>
         <button type="button" aria-pressed="false" data-tech="CSS">CSS</button>
+        <button type="button" aria-pressed="false" data-tech="Echo">Echo</button>
+        <button type="button" aria-pressed="false" data-tech="Gin">Gin</button>
         <button type="button" aria-pressed="false" data-tech="GitHub Actions">GitHub Actions</button>
+        <button type="button" aria-pressed="false" data-tech="Go">Go</button>
         <button type="button" aria-pressed="false" data-tech="HTML">HTML</button>
         <button type="button" aria-pressed="false" data-tech="JavaScript">JavaScript</button>
         <button type="button" aria-pressed="false" data-tech="Jest">Jest</button>
@@ -85,6 +89,7 @@
         <button type="button" aria-pressed="false" data-tech="Node.js">Node.js</button>
         <button type="button" aria-pressed="false" data-tech="PyQt5">PyQt5</button>
         <button type="button" aria-pressed="false" data-tech="Python">Python</button>
+        <button type="button" aria-pressed="false" data-tech="Quasar">Quasar</button>
         <button type="button" aria-pressed="false" data-tech="React">React</button>
         <button type="button" aria-pressed="false" data-tech="shadcn/ui">shadcn/ui</button>
         <button type="button" aria-pressed="false" data-tech="Socket.IO">Socket.IO</button>
@@ -98,6 +103,10 @@
       </div>
     </div>
     <div class="grid" id="all-grid">
+      <a class="card" href="projects/titanlive.html" data-repo="TitanLive" data-pushed="2026-10-28" data-tech="NestJS,Socket.IO,WebRTC,Vite,TypeScript">
+        <div class="shot"><img src="assets/img/projects/thumbs/titanlive-room.webp" width="1280" height="800" loading="lazy" alt="Sala do TitanLive com tela compartilhada e chat"><span class="stars badge" data-repo="TitanLive" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
+        <div class="body"><h3><img class="logo-p" src="assets/img/logos/titanlive.svg" width="28" height="28" alt="">TitanLive</h3><p><span lang="pt">Assista junto e converse ao vivo: compartilhe a tela e fale por voz com até 10 pessoas, direto do navegador.</span><span lang="en">Watch together and talk live: share your screen and talk by voice with up to 10 people, right from the browser.</span></p><p class="stack"><img src="assets/img/icons/nestjs.svg" width="22" height="22" alt="NestJS" title="NestJS"><img src="assets/img/icons/socketdotio-white.svg" width="22" height="22" alt="Socket.IO" title="Socket.IO"><img src="assets/img/icons/webrtc-white.svg" width="22" height="22" alt="WebRTC" title="WebRTC"><img src="assets/img/icons/vite.svg" width="22" height="22" alt="Vite" title="Vite"></p></div>
+      </a>
       <a class="card" href="projects/spotifycontrol.html" data-repo="AHK-SpotifyControl" data-pushed="2026-10-26" data-tech="AutoHotkey">
         <div class="shot"><img src="assets/img/projects/thumbs/spotifycontrol.webp" width="1440" height="900" loading="lazy" alt="Atalhos do Spotify Control"><span class="stars badge" data-repo="AHK-SpotifyControl" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
         <div class="body"><h3><img class="logo-p" src="assets/img/logos/spotifycontrol.svg" width="28" height="28" alt="">Spotify Control</h3><p><span lang="pt">Controle o Spotify de qualquer lugar do Windows com atalhos globais, sem trazer a janela para a frente.</span><span lang="en">Control Spotify from anywhere in Windows with global shortcuts, without bringing its window to the front.</span></p><p class="stack"><img src="assets/img/icons/autohotkey-white.svg" width="22" height="22" alt="AutoHotkey" title="AutoHotkey"></p></div>
@@ -135,7 +144,7 @@
 
   <section id="linha-do-tempo">
     <h2><span lang="pt">Linha do tempo</span><span lang="en">Timeline</span></h2>
-    <p class="tl-sub"><span lang="pt">10 projetos · agosto a outubro de 2026</span><span lang="en">10 projects · August to October 2026</span></p>
+    <p class="tl-sub"><span lang="pt">11 projetos · agosto a outubro de 2026</span><span lang="en">11 projects · August to October 2026</span></p>
     <ol class="timeline">
       <li><time datetime="2026-08-17"><span lang="pt">17 ago</span><span lang="en">Aug 17</span></time><span class="node"></span><div class="tl-items"><a href="projects/sistemtemp.html"><img src="assets/img/logos/sistemtemp.svg" width="20" height="20" style="width:20px;height:20px" alt="">SistemTemp</a></div></li>
       <li><time datetime="2026-10-23"><span lang="pt">23 out</span><span lang="en">Oct 23</span></time><span class="node"></span><div class="tl-items"><a href="projects/foculesspdf.html"><img src="assets/img/logos/foculesspdf.svg" width="20" height="20" style="width:20px;height:20px" alt="">FoculessPDF</a><a href="projects/matchsim.html"><img src="assets/img/logos/matchsim.svg" width="20" height="20" style="width:20px;height:20px" alt="">MatchSim</a></div></li>
@@ -143,6 +152,7 @@
       <li><time datetime="2026-10-25"><span lang="pt">25 out</span><span lang="en">Oct 25</span></time><span class="node"></span><div class="tl-items"><a href="projects/restyx.html"><img src="assets/img/logos/restyx.svg" width="20" height="20" style="width:20px;height:20px" alt="">Restyx</a></div></li>
       <li><time datetime="2026-10-26"><span lang="pt">26 out</span><span lang="en">Oct 26</span></time><span class="node"></span><div class="tl-items"><a href="projects/spotifycontrol.html"><img src="assets/img/logos/spotifycontrol.svg" width="20" height="20" style="width:20px;height:20px" alt="">Spotify Control</a></div></li>
       <li><time datetime="2026-10-28"><span lang="pt">28 out</span><span lang="en">Oct 28</span></time><span class="node"></span><div class="tl-items"><a href="projects/titanlive.html"><img src="assets/img/logos/titanlive.svg" width="20" height="20" style="width:20px;height:20px" alt="">TitanLive</a><a href="projects/zyraxz.html"><img src="assets/img/logos/zyraxz.svg" width="20" height="20" style="width:20px;height:20px" alt="">Zyraxz Website</a></div></li>
+      <li><time datetime="2026-10-30"><span lang="pt">30 out</span><span lang="en">Oct 30</span></time><span class="node"></span><div class="tl-items"><a href="projects/ujobs.html"><img src="assets/img/logos/ujobs.svg" width="20" height="20" style="width:20px;height:20px" alt="">uJobs</a></div></li>
     </ol>
   </section>
 
