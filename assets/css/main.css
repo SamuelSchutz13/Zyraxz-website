@@ -208,6 +208,8 @@ html { scroll-padding-top: 24px; }
 .filters button { font: inherit; font-size: 14px; color: var(--muted); background: var(--surface); border: 0; padding: 6px 14px; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s; }
 .filters button:hover { color: var(--ink); }
 .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.pager { justify-content: center; margin-top: 24px; }
+.pager[hidden] { display: none; }
 .card[hidden] { display: none; }
 .empty { color: var(--muted); }
 
