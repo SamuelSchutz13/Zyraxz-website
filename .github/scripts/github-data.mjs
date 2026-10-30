@@ -20,7 +20,7 @@ const per = await Promise.all(repos.slice(0, 4).map(r =>
   json(`https://api.github.com/repos/${user}/${r.name}/commits?per_page=5`).then(cs => cs.map(c => ({
     repo: r.name, avatar: c.author?.avatar_url, msg: c.commit.message.split('\n')[0],
     date: c.commit.author.date, url: c.html_url,
-  })))));
+  }))).catch(() => []))); // an empty repository answers 409
 
 // the contributions calendar has no REST endpoint; GitHub serves it as an HTML fragment
 const contributions = await fetch(`https://github.com/users/${user}/contributions`, { headers: { 'User-Agent': 'portfolio-data' } })
