@@ -39,6 +39,17 @@ const contributions = await fetch(`https://github.com/users/${user}/contribution
   })
   .catch(() => ({ total: 0, days: [] }));
 
+// achievements have no API either; each one is a card on the profile's achievements tab
+const achievements = await fetch(`https://github.com/${user}?tab=achievements`, { headers: { 'User-Agent': 'portfolio-data' } })
+  .then(r => r.ok ? r.text() : '')
+  .then(html => html.split('data-achievement-slug="').slice(1).map(card => ({
+    slug: card.slice(0, card.indexOf('"')),
+    name: card.match(/<h3[^>]*>([^<]+)<\/h3>/)?.[1].trim(),
+    img: card.match(/<img src="([^"]+)"[^>]*achievement-badge-card/)?.[1],
+    tier: card.match(/achievement-tier-label[^"]*">\s*(x\d+)/)?.[1],
+  })).filter(a => a.name && a.img))
+  .catch(() => []);
+
 // bytes of code per language, summed over every listed repository
 const languages = Object.entries((await Promise.all(repos.map(r => json(r.languages_url).catch(() => ({})))))
   .reduce((sum, langs) => { for (const [k, v] of Object.entries(langs)) sum[k] = (sum[k] || 0) + v; return sum; }, {}))
@@ -86,8 +97,9 @@ const data = {
   pushed: Object.fromEntries(repos.map(r => [r.name, r.pushed_at])),
   commits,
   contributions,
+  achievements,
 };
 
 await mkdir('assets/data', { recursive: true });
 await writeFile('assets/data/github.json', JSON.stringify(data));
-console.log(`repos ${repos.length}, commits ${data.commits.length}, contribution days ${contributions.days.length}, total ${contributions.total}`);
+console.log(`repos ${repos.length}, commits ${data.commits.length}, contribution days ${contributions.days.length}, total ${contributions.total}, achievements ${achievements.length}`);

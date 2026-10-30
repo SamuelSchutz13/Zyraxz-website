@@ -386,3 +386,10 @@ section[hidden] { display: none; }
 .weeks-foot { display: flex; justify-content: space-between; margin-top: 6px; font-size: 12px; }
 .weeks-foot b { color: var(--ink); font-weight: 500; }
 @media (prefers-reduced-motion: reduce) { .weeks i, .streak-bar i { transition: none; } }
+
+/* GitHub achievements card under "By the numbers" (About page) */
+.badges { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+.badges a { position: relative; display: grid; justify-items: center; gap: 6px; padding: 12px 8px; border-radius: 10px; background: var(--bg); font-size: 12px; text-align: center; color: inherit; text-decoration: none; }
+.badges a:hover { background: var(--hover); }
+.badges img { width: 64px; height: 64px; }
+.badges .tier { position: absolute; top: 8px; right: 8px; padding: 0 6px; border-radius: 999px; background: var(--mark); color: #1d1b19; font-size: 11px; font-weight: 600; }

@@ -229,6 +229,20 @@ const renderCommits = (list, commits) => {
     new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: .3 }).observe(stats);
   }
 
+  // achievements: only in the Action's file (scraped from the profile page)
+  const badges = document.getElementById('badges');
+  if (badges && data?.achievements?.length) {
+    document.getElementById('badge-list').replaceChildren(...data.achievements.map(a => {
+      const li = document.createElement('li'), link = document.createElement('a'), img = new Image(64, 64);
+      img.src = a.img; img.alt = ''; img.loading = 'lazy';
+      link.href = `https://github.com/${user}?achievement=${a.slug}&tab=achievements`;
+      link.append(img, a.name);
+      if (a.tier) { const t = document.createElement('span'); t.className = 'tier'; t.textContent = a.tier; link.append(t); }
+      li.append(link); return li;
+    }));
+    badges.hidden = false;
+  }
+
   if (!list) return;
   if (data?.commits.length) {
     renderCommits(list, data.commits);
