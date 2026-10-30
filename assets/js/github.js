@@ -15,13 +15,32 @@ const apps = {
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'], SistemTemp: ['SistemTemp', 'img/logos/sistemtemp.svg'],
   uJobsGUI: ['uJobs', 'img/logos/ujobs.svg'], Clipted: ['Clipted', 'img/logos/clipted.svg'],
 };
+// AIs that show up as co-authors, for the "Made with" badge on the cards
+const ais = { claude: ['Claude', 'img/icons/claude.svg'] };
+
+// small DOM helpers shared by every block below
+const $ = id => document.getElementById(id);
+const el = (tag, cls, inner) => {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (inner) e.innerHTML = inner;
+  return e;
+};
+const both = (pt, en) => `<span lang="pt">${pt}</span><span lang="en">${en}</span>`;
+const onGitHub = both('Ver no GitHub', 'See on GitHub');
+const avatar = (src, login = '', size) => {
+  const av = new Image(size, size);
+  av.src = src; av.alt = av.title = login; av.loading = 'lazy';
+  return av;
+};
 const app = repo => {
   const [name, logo] = apps[repo] || [repo, null];
-  const icon = document.createElement('img');
-  icon.className = 'app-ic'; icon.width = icon.height = 16; icon.alt = '';
-  icon.src = logo ? base + logo : base + 'img/icons/github-white.svg';
+  const icon = el('img', 'app-ic');
+  icon.width = icon.height = 16; icon.alt = '';
+  icon.src = base + (logo || 'img/icons/github-white.svg');
   return { name, icon };
 };
+const day = d => new Date(d + 'T00:00:00'); // calendar days are local dates, not UTC instants
 
 const load = async () => {
   // on the published site an hourly GitHub Action writes this file, so visitors never hit the API limit
@@ -56,11 +75,12 @@ const load = async () => {
 const ago = (d, locale = html.lang) => {
   const m = Math.round((Date.now() - new Date(d)) / 60000);
   const f = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
-  return m < 60 ? f.format(-m, 'minute') : m < 1440 ? f.format(-Math.round(m / 60), 'hour') : f.format(-Math.round(m / 1440), 'day');
+  return m < 60 ? f.format(-m, 'minute') : m < 1440 ? f.format(-Math.round(m / 60), 'hour')
+    : m < 43200 ? f.format(-Math.round(m / 1440), 'day') : m < 525600 ? f.format(-Math.round(m / 43200), 'month')
+    : f.format(-Math.round(m / 525600), 'year');
 };
 
 const renderCommits = (list, commits) => {
-  const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
   // consecutive commits to the same repository share one header
   const groups = [];
   commits.forEach(c => groups.at(-1)?.repo === c.repo ? groups.at(-1).items.push(c) : groups.push({ repo: c.repo, items: [c] }));
@@ -78,11 +98,7 @@ const renderCommits = (list, commits) => {
       msg.textContent = text[0].toUpperCase() + text.slice(1);
       // everyone on the commit, overlapping; without the Action's file only the author is known
       const avs = el('span', 'avs');
-      avs.append(...(c.people || [{ avatar: c.avatar }]).map(p => {
-        const av = new Image(20, 20);
-        av.src = p.avatar || base + 'img/avatar.png'; av.alt = p.login || ''; av.title = p.login || '';
-        return av;
-      }));
+      avs.append(...(c.people || [{ avatar: c.avatar }]).map(p => avatar(p.avatar || base + 'img/avatar.png', p.login, 20)));
       meta.append(avs, ago(c.date));
       if (type) { const tag = el('span', 'tag'); tag.dataset.type = tag.textContent = type.toLowerCase(); meta.append(tag); }
       a.href = c.url; a.append(msg, meta); item.append(a); return item;
@@ -93,35 +109,43 @@ const renderCommits = (list, commits) => {
 
 (async () => {
   const data = await load();
-  const list = document.getElementById('commits');
 
-  document.querySelectorAll('.stars[data-repo]').forEach(el => {
-    const n = data?.stars[el.dataset.repo];
-    if (n !== undefined) { el.querySelector('b').textContent = n; el.hidden = false; }
-  });
-
-  // contributor avatars at the end of the tech row, on each card and on the project page:
-  // only in the Action's file (one request per repository)
+  // each project card and project page header: last push, stars, badges and contributors
   document.querySelectorAll('.card[data-repo], .p-head[data-repo]').forEach(card => {
-    const people = data?.contributors?.[card.dataset.repo];
-    const row = card.querySelector('.stack');
-    if (!people?.length || !row) return;
-    const wrap = document.createElement('span');
-    wrap.className = 'contribs';
-    wrap.append(...people.slice(0, 5).map(p => {
-      const av = new Image(26, 26);
-      av.src = `${p.avatar}&s=52`; av.alt = p.login; av.title = p.login; av.loading = 'lazy';
-      return av;
-    }));
-    row.append(wrap);
+    const repo = card.dataset.repo, row = card.querySelector('.stack'), shot = card.querySelector('.shot');
+    if (data?.pushed?.[repo]) card.dataset.pushed = data.pushed[repo];
+
+    // "updated 3 days ago" above the tech row
+    if (card.dataset.pushed && row) {
+      row.before(el('p', 'updated', both(`Atualizado ${ago(card.dataset.pushed, 'pt-BR')}`, `Updated ${ago(card.dataset.pushed, 'en')}`)));
+    }
+
+    const stars = card.querySelector('.stars');
+    if (stars && data?.stars[repo] !== undefined) { stars.querySelector('b').textContent = data.stars[repo]; stars.hidden = false; }
+
+    // contributors: only in the Action's file (one request per repository)
+    const people = data?.contributors?.[repo] || [];
+
+    // "Made with Claude" left of the stars, when an AI is a co-author of the repository
+    const ai = people.map(p => ais[p.login]).find(Boolean);
+    if (ai && shot) {
+      const tags = el('span', 'tags');
+      tags.append(el('span', 'ai badge', `<img src="${base + ai[1]}" width="14" height="14" alt="">${both(`Feito com ${ai[0]}`, `Made with ${ai[0]}`)}`), ...shot.querySelectorAll('.stars'));
+      shot.append(tags);
+    }
+
+    // avatars at the end of the tech row, overlapping
+    if (people.length && row) {
+      const wrap = el('span', 'contribs');
+      wrap.append(...people.slice(0, 5).map(p => avatar(`${p.avatar}&s=52`, p.login, 26)));
+      row.append(wrap);
+    }
   });
 
   // the two most recently pushed projects go to "Recent", the rest to "Projects", newest first
-  const recent = document.getElementById('recent-grid'), all = document.getElementById('all-grid');
+  const recent = $('recent-grid'), all = $('all-grid');
   if (recent && all) {
-    const cards = [...document.querySelectorAll('#recent-grid > .card, #all-grid > .card')];
-    cards.forEach(c => { if (data?.pushed?.[c.dataset.repo]) c.dataset.pushed = data.pushed[c.dataset.repo]; });
-    cards.sort((a, b) => b.dataset.pushed.localeCompare(a.dataset.pushed));
+    const cards = [...recent.children, ...all.children].sort((a, b) => b.dataset.pushed.localeCompare(a.dataset.pushed));
     recent.replaceChildren(...cards.slice(0, 2));
     all.replaceChildren(...cards.slice(2));
   }
@@ -130,60 +154,53 @@ const renderCommits = (list, commits) => {
   const last = data?.commits?.[0];
   if (last) {
     const on = Date.now() - new Date(last.date) < 24 * 36e5;
-    document.querySelector('.av-wrap .dot').hidden = false;
-    document.querySelector('.av-wrap .dot').classList.toggle('on', on);
+    const dot = document.querySelector('.av-wrap .dot');
+    dot.hidden = false; dot.classList.toggle('on', on);
     const status = document.querySelector('.status');
     const { name, icon } = app(last.repo);
-    const where = document.createElement('span'); // plain text: the whole name block is already a link
-    where.className = 'status-app'; where.append(icon, name);
-    status.innerHTML =
-      `<span lang="pt">${on ? 'Codando · ' : 'Último commit '}${ago(last.date, 'pt-BR')} em</span>` +
-      `<span lang="en">${on ? 'Coding · ' : 'Last commit '}${ago(last.date, 'en')} in</span>`;
+    const where = el('span', 'status-app'); // plain text: the whole name block is already a link
+    where.append(icon, name);
+    status.innerHTML = both(`${on ? 'Codando · ' : 'Último commit '}${ago(last.date, 'pt-BR')} em`, `${on ? 'Coding · ' : 'Last commit '}${ago(last.date, 'en')} in`);
     status.append(where);
     status.hidden = false;
   }
 
   // languages bar: only in the Action's file (it needs one request per repository)
-  const langs = document.getElementById('langs');
+  const langs = $('langs');
   if (langs && data?.languages?.length) {
     const colors = { TypeScript: '#3178c6', JavaScript: '#f1e05a', Vue: '#41b883', Go: '#00add8', Python: '#3572a5',
       CSS: '#663399', HTML: '#e34c26', Lua: '#000080', AutoHotkey: '#6594b9', PHP: '#4f5d95', Shell: '#89e051' };
+    const icons = { TypeScript: 'typescript', JavaScript: 'javascript', Vue: 'vuedotjs', Go: 'go', Python: 'python',
+      CSS: 'css', HTML: 'html5', Lua: 'lua', AutoHotkey: 'autohotkey-white', PHP: 'php', Shell: 'gnubash' };
     const total = data.languages.reduce((n, l) => n + l.bytes, 0);
     const top = data.languages.slice(0, 6);
     const rest = total - top.reduce((n, l) => n + l.bytes, 0);
     if (rest > 0) top.push({ name: html.lang === 'en' ? 'Other' : 'Outros', bytes: rest, other: true });
-    const pct = b => (b / total * 100);
-    document.getElementById('lang-bar').innerHTML = top
-      .map(l => `<i style="width:${pct(l.bytes)}%;background:${l.other ? 'var(--hover)' : colors[l.name] || '#9a9080'}" title="${l.name}"></i>`).join('');
-    const icons = { TypeScript: 'typescript', JavaScript: 'javascript', Vue: 'vuedotjs', Go: 'go', Python: 'python',
-      CSS: 'css', HTML: 'html5', Lua: 'lua', AutoHotkey: 'autohotkey-white', PHP: 'php', Shell: 'gnubash' };
+    const pct = b => b / total * 100;
+    const color = l => l.other ? 'var(--hover)' : colors[l.name] || '#9a9080';
     const icon = l => icons[l.name] ? `<img src="${base}img/icons/${icons[l.name]}.svg" width="16" height="16" style="width:16px;height:16px" alt="">` : '';
-    document.getElementById('lang-legend').innerHTML = top
-      .map(l => `<li><i style="background:${l.other ? 'var(--hover)' : colors[l.name] || '#9a9080'}"></i>${icon(l)}${l.other ? '<span lang="pt">Outros</span><span lang="en">Other</span>' : l.name} <span class="muted">${pct(l.bytes).toFixed(1)}%</span></li>`).join('');
+    $('lang-bar').innerHTML = top.map(l => `<i style="width:${pct(l.bytes)}%;background:${color(l)}" title="${l.name}"></i>`).join('');
+    $('lang-legend').innerHTML = top
+      .map(l => `<li><i style="background:${color(l)}"></i>${icon(l)}${l.other ? both('Outros', 'Other') : l.name} <span class="muted">${pct(l.bytes).toFixed(1)}%</span></li>`).join('');
     langs.hidden = false;
   }
 
-  // contributions calendar: only in the Action's file (it needs a server to fetch)
-  const contrib = document.getElementById('contrib');
-  if (contrib && data?.contributions?.days?.length) {
-    const { total, days } = data.contributions;
-    const pad = new Date(days[0].d + 'T00:00:00').getDay(); // weeks start on Sunday, like GitHub
-    const cells = [...Array(pad)].map(() => '<i style="visibility:hidden"></i>');
-    days.forEach(day => cells.push(`<i data-l="${day.l}" title="${day.d}: ${day.c}"></i>`));
-    document.getElementById('contrib-grid').innerHTML = cells.join('');
-    document.getElementById('contrib-total').textContent = `· ${total}`;
+  // contributions calendar, and "By the numbers" from the same days: only in the Action's file
+  const days = data?.contributions?.days || [], total = data?.contributions?.total;
+  const contrib = $('contrib');
+  if (contrib && days.length) {
+    const pad = day(days[0].d).getDay(); // weeks start on Sunday, like GitHub
+    $('contrib-grid').innerHTML = '<i style="visibility:hidden"></i>'.repeat(pad) +
+      days.map(d => `<i data-l="${d.l}" title="${d.d}: ${d.c}"></i>`).join('');
+    $('contrib-total').textContent = `· ${total}`;
     contrib.hidden = false;
   }
 
-  // "By the numbers": streaks and totals from the same calendar, nothing new to fetch
-  const stats = document.getElementById('stats');
-  if (stats && data?.contributions?.days?.length) {
-    const { total, days } = data.contributions;
-    const $ = id => document.getElementById(id);
-    const both = (pt, en) => `<span lang="pt">${pt}</span><span lang="en">${en}</span>`;
+  const stats = $('stats');
+  if (stats && days.length) {
     const dias = v => both(v === 1 ? 'dia' : 'dias', v === 1 ? 'day' : 'days');
     let longest = 0, run = 0;
-    days.forEach(day => { run = day.c ? run + 1 : 0; longest = Math.max(longest, run); });
+    days.forEach(d => { run = d.c ? run + 1 : 0; longest = Math.max(longest, run); });
     // today may have no commits yet: the streak only breaks after a full day without any
     let streak = 0;
     for (let i = days.length - 1; i >= 0; i--) {
@@ -198,8 +215,7 @@ const renderCommits = (list, commits) => {
     $('st-streak-unit').innerHTML = dias(streak);
     $('st-longest').innerHTML = `${longest} ${dias(longest)}`;
     $('st-days').innerHTML = days.slice(-7).map(d => {
-      const day = new Date(d.d + 'T00:00:00');
-      const wd = loc => day.toLocaleDateString(loc, { weekday: 'narrow' });
+      const wd = loc => day(d.d).toLocaleDateString(loc, { weekday: 'narrow' });
       return `<li class="${d.c ? 'on' : ''}" title="${d.d}: ${d.c}"><i></i>${both(wd('pt-BR'), wd('en'))}</li>`;
     }).join('');
     $('st-total-sub').innerHTML = `${both('melhor dia', 'best day')}: ${best.c}`;
@@ -231,15 +247,15 @@ const renderCommits = (list, commits) => {
   }
 
   // achievements: only in the Action's file (scraped from the profile page)
-  const badges = document.getElementById('badges');
+  const badges = $('badges');
   if (badges && data?.achievements?.length) {
-    document.getElementById('badge-list').replaceChildren(...data.achievements.map(a => {
-      const li = document.createElement('li'), link = document.createElement('a'), img = new Image(64, 64);
+    $('badge-list').replaceChildren(...data.achievements.map(a => {
+      const li = el('li'), link = el('a'), img = new Image(64, 64);
       img.crossOrigin = 'anonymous'; // githubassets sends CORS, so showBadge can read the badge's color
       img.src = a.img; img.alt = ''; img.loading = 'lazy';
       link.href = `https://github.com/${user}?achievement=${a.slug}&tab=achievements`;
       link.append(img, a.name);
-      if (a.tier) { const t = document.createElement('span'); t.className = 'tier'; t.textContent = a.tier; link.append(t); }
+      if (a.tier) { const t = el('span', 'tier'); t.textContent = a.tier; link.append(t); }
       link.addEventListener('click', e => { e.preventDefault(); showBadge(a, link.href, link); });
       li.append(link); return li;
     }));
@@ -247,8 +263,7 @@ const renderCommits = (list, commits) => {
   }
 
   // click a badge: a small card under it with what it's for (light-dismiss popover, Esc or click outside closes)
-  const pop = document.createElement('div');
-  pop.className = 'badge-pop';
+  const pop = el('div', 'badge-pop');
   pop.popover = 'auto';
   document.body.append(pop);
   let closedAt = 0, shown = '';
@@ -270,21 +285,21 @@ const renderCommits = (list, commits) => {
       <img src="${a.img}" width="64" height="64" alt="">
       <div>
         <span><b></b>${a.tier ? `<span class="tier">${a.tier}</span>` : ''}</span>
-        ${about ? `<p><span lang="pt">${about[0]}</span><span lang="en">${about[1]}</span></p>` : ''}
-        <a href="${href}"><span lang="pt">Ver no GitHub</span><span lang="en">See on GitHub</span> ↗</a>
+        ${about ? `<p>${both(...about)}</p>` : ''}
+        <a href="${href}">${onGitHub} ↗</a>
       </div>`;
     pop.querySelector('b').textContent = a.name;
     pop.style.setProperty('--tint', badgeColor(anchor.querySelector('img')));
     pop.showPopover();
     const r = anchor.getBoundingClientRect(), w = pop.offsetWidth;
-    pop.style.left = `${Math.min(Math.max(8, r.left + r.width / 2 - w / 2), document.documentElement.clientWidth - w - 8)}px`; // clientWidth: without the scrollbar
+    pop.style.left = `${Math.min(Math.max(8, r.left + r.width / 2 - w / 2), html.clientWidth - w - 8)}px`; // clientWidth: without the scrollbar
     pop.style.top = `${r.bottom + 8}px`;
   }
 
   // the badge's main color: average of its opaque, colorful pixels (GitHub mobile tints the sheet this way)
   function badgeColor(img) {
     try {
-      const c = document.createElement('canvas'), n = c.width = c.height = 24, g = c.getContext('2d', { willReadFrequently: true });
+      const c = el('canvas'), n = c.width = c.height = 24, g = c.getContext('2d', { willReadFrequently: true });
       g.drawImage(img, 0, 0, n, n);
       const px = g.getImageData(0, 0, n, n).data;
       let r = 0, gr = 0, b = 0, w = 0;
@@ -297,11 +312,12 @@ const renderCommits = (list, commits) => {
     } catch { return 'var(--surface)'; } // image not loaded yet, or tainted
   }
 
+  const list = $('commits');
   if (!list) return;
   if (data?.commits.length) {
     renderCommits(list, data.commits);
     document.addEventListener('langchange', () => renderCommits(list, data.commits));
   } else {
-    list.innerHTML = `<li class="muted fail"><span lang="pt">Não deu para carregar agora.</span><span lang="en">Couldn't load right now.</span> <a href="https://github.com/${user}"><span lang="pt">Ver no GitHub</span><span lang="en">See on GitHub</span></a></li>`;
+    list.innerHTML = `<li class="muted fail">${both('Não deu para carregar agora.', "Couldn't load right now.")} <a href="https://github.com/${user}">${onGitHub}</a></li>`;
   }
 })();

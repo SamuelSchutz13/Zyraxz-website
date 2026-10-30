@@ -12,6 +12,10 @@ const json = async url => {
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.json();
 };
+// github.com pages (no API for these): only the User-Agent, the API token has no business there
+const page = url => fetch(url, { headers: { 'User-Agent': headers['User-Agent'] } }).then(r => r.ok ? r.text() : '');
+const graphql = query => fetch('https://api.github.com/graphql', { method: 'POST', headers, body: JSON.stringify({ query }) }).then(r => r.json());
+const person = ({ user: u }) => ({ login: u.login, avatar: u.avatarUrl });
 
 const repos = (await json(`https://api.github.com/users/${user}/repos?sort=pushed&per_page=100`))
   .filter(r => !r.fork && !hidden.includes(r.name));
@@ -23,8 +27,7 @@ const per = await Promise.all(repos.slice(0, 4).map(r =>
   }))).catch(() => []))); // an empty repository answers 409
 
 // the contributions calendar has no REST endpoint; GitHub serves it as an HTML fragment
-const contributions = await fetch(`https://github.com/users/${user}/contributions`, { headers: { 'User-Agent': 'portfolio-data' } })
-  .then(r => r.ok ? r.text() : '')
+const contributions = await page(`https://github.com/users/${user}/contributions`)
   .then(html => {
     // each day cell has an id; its tooltip ("5 contributions on …") points back to it with for="<id>"
     const tips = Object.fromEntries([...html.matchAll(/<tool-tip[^>]*\bfor="([^"]+)"[^>]*>([^<]*)/g)].map(([, id, text]) => [id, text]));
@@ -40,8 +43,7 @@ const contributions = await fetch(`https://github.com/users/${user}/contribution
   .catch(() => ({ total: 0, days: [] }));
 
 // achievements have no API either; each one is a card on the profile's achievements tab
-const achievements = await fetch(`https://github.com/${user}?tab=achievements`, { headers: { 'User-Agent': 'portfolio-data' } })
-  .then(r => r.ok ? r.text() : '')
+const achievements = await page(`https://github.com/${user}?tab=achievements`)
   .then(html => html.split('data-achievement-slug="').slice(1).map(card => ({
     slug: card.slice(0, card.indexOf('"')),
     name: card.match(/<h3[^>]*>([^<]+)<\/h3>/)?.[1].trim(),
@@ -58,16 +60,13 @@ const languages = Object.entries((await Promise.all(repos.map(r => json(r.langua
 // people on each repository's last 100 commits, most commits first. GraphQL, because REST's
 // contributors list skips Co-Authored-By trailers (that's how Claude shows up); it needs the token
 const people = async repo => {
-  const res = await fetch('https://api.github.com/graphql', {
-    method: 'POST', headers,
-    body: JSON.stringify({ query: `{ repository(owner: "${user}", name: "${repo}") { defaultBranchRef { target { ... on Commit {
-      history(first: 100) { nodes { authors(first: 5) { nodes { user { login avatarUrl } } } } } } } } } }` }),
-  });
-  const commits = (await res.json()).data?.repository?.defaultBranchRef?.target?.history?.nodes;
+  const res = await graphql(`{ repository(owner: "${user}", name: "${repo}") { defaultBranchRef { target { ... on Commit {
+    history(first: 100) { nodes { authors(first: 5) { nodes { user { login avatarUrl } } } } } } } } } }`);
+  const commits = res.data?.repository?.defaultBranchRef?.target?.history?.nodes;
   if (!commits) throw new Error(`graphql ${repo}`);
   const count = {};
-  for (const c of commits) for (const { user: u } of c.authors.nodes) {
-    if (u) (count[u.login] ??= { login: u.login, avatar: u.avatarUrl, n: 0 }).n++;
+  for (const c of commits) for (const node of c.authors.nodes) {
+    if (node.user) (count[node.user.login] ??= { ...person(node), n: 0 }).n++;
   }
   return Object.values(count).sort((a, b) => b.n - a.n).map(({ login, avatar }) => ({ login, avatar }));
 };
@@ -79,13 +78,11 @@ const contributors = Object.fromEntries(await Promise.all(repos.map(r => people(
 
 // every author of each recent commit, Co-Authored-By trailers included: GraphQL, one query, needs the token
 const commits = per.flat().filter(c => !c.msg.startsWith('Merge')).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7);
-const authors = commits.length && await fetch('https://api.github.com/graphql', {
-  method: 'POST', headers,
-  body: JSON.stringify({ query: `{ ${commits.map((c, i) => `c${i}: repository(owner: "${user}", name: "${c.repo}") {
-    object(oid: "${c.url.split('/').pop()}") { ... on Commit { authors(first: 5) { nodes { user { login avatarUrl } } } } } }`).join('\n')} }` }),
-}).then(r => r.json()).then(r => r.data).catch(() => null);
+const authors = commits.length && await graphql(`{ ${commits.map((c, i) => `c${i}: repository(owner: "${user}", name: "${c.repo}") {
+  object(oid: "${c.url.split('/').pop()}") { ... on Commit { authors(first: 5) { nodes { user { login avatarUrl } } } } } }`).join('\n')} }`)
+  .then(r => r.data).catch(() => null);
 commits.forEach((c, i) => {
-  const people = authors?.[`c${i}`]?.object?.authors.nodes.filter(n => n.user).map(({ user: u }) => ({ login: u.login, avatar: u.avatarUrl }));
+  const people = authors?.[`c${i}`]?.object?.authors.nodes.filter(n => n.user).map(person);
   if (people?.length) c.people = people;
 });
 
