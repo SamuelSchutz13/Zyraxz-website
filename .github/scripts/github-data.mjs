@@ -1,6 +1,6 @@
 // Writes assets/data/github.json for the site: stars, last push per repo,
 // recent commits and the contributions calendar. Run by the deploy workflow.
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 
 const user = 'SamuelSchutz13';
 const hidden = ['REST-API-Test', 'Blog.ts-backend', 'eCommerce-Backend', 'ai-job-search', user];
@@ -16,6 +16,9 @@ const json = async url => {
 const page = url => fetch(url, { headers: { 'User-Agent': headers['User-Agent'] } }).then(r => r.ok ? r.text() : '');
 const graphql = query => fetch('https://api.github.com/graphql', { method: 'POST', headers, body: JSON.stringify({ query }) }).then(r => r.json());
 const person = ({ user: u }) => ({ login: u.login, avatar: u.avatarUrl });
+// REST contributors list: commit authors only, no Co-Authored-By trailers
+const restContributors = repo => json(`https://api.github.com/repos/${repo}/contributors?per_page=10`)
+  .then(cs => cs.filter(c => c.type === 'User').map(c => ({ login: c.login, avatar: c.avatar_url })));
 
 const repos = (await json(`https://api.github.com/users/${user}/repos?sort=pushed&per_page=100`))
   .filter(r => !r.fork && !hidden.includes(r.name));
@@ -71,10 +74,16 @@ const people = async repo => {
   return Object.values(count).sort((a, b) => b.n - a.n).map(({ login, avatar }) => ({ login, avatar }));
 };
 const contributors = Object.fromEntries(await Promise.all(repos.map(r => people(r.name)
-  .catch(() => json(`https://api.github.com/repos/${user}/${r.name}/contributors?per_page=10`) // no token: authors only
-    .then(cs => cs.filter(c => c.type === 'User').map(c => ({ login: c.login, avatar: c.avatar_url }))))
+  .catch(() => restContributors(`${user}/${r.name}`)) // no token: authors only
   .catch(() => [])
   .then(list => [r.name, list]))));
+
+// projects another one needs, marked data-dep="owner/repo" on its project page: their contributors
+const pages = await Promise.all((await readdir('projects')).map(f => readFile(`projects/${f}`, 'utf8')));
+const depRepos = new Set(pages.flatMap(html => [...html.matchAll(/data-dep="([^"]+)"/g)].map(m => m[1])));
+const deps = Object.fromEntries(await Promise.all([...depRepos].map(repo => restContributors(repo)
+  .catch(() => [])
+  .then(list => [repo, list]))));
 
 // every author of each recent commit, Co-Authored-By trailers included: GraphQL, one query, needs the token
 const commits = per.flat().filter(c => !c.msg.startsWith('Merge')).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7);
@@ -89,6 +98,7 @@ commits.forEach((c, i) => {
 const data = {
   languages,
   contributors,
+  deps,
   t: Date.now(),
   stars: Object.fromEntries(repos.map(r => [r.name, r.stargazers_count])),
   pushed: Object.fromEntries(repos.map(r => [r.name, r.pushed_at])),
