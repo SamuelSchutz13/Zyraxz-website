@@ -14,6 +14,7 @@ const apps = {
   'Zyraxz-website': ['Zyraxz Website', 'img/logos/zyraxz.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'], SistemTemp: ['SistemTemp', 'img/logos/sistemtemp.svg'],
   uJobsGUI: ['uJobs', 'img/logos/ujobs.svg'], Clipted: ['Clipted', 'img/logos/clipted.svg'],
+  Orion: ['Orion Logger', 'img/logos/orion.svg'],
 };
 
 // small DOM helpers shared by every block below
