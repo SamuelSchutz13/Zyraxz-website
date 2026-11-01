@@ -15,8 +15,6 @@ const apps = {
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'], SistemTemp: ['SistemTemp', 'img/logos/sistemtemp.svg'],
   uJobsGUI: ['uJobs', 'img/logos/ujobs.svg'], Clipted: ['Clipted', 'img/logos/clipted.svg'],
 };
-// AIs that show up as co-authors, for the "Made with" badge on the cards
-const ais = { claude: ['Claude', 'img/icons/claude.svg'] };
 
 // small DOM helpers shared by every block below
 const $ = id => document.getElementById(id);
@@ -32,6 +30,12 @@ const avatar = (src, login = '', size) => {
   const av = new Image(size, size);
   av.src = src; av.alt = av.title = login; av.loading = 'lazy';
   return av;
+};
+// overlapping contributor avatars, like GitHub's
+const contribs = (people, size) => {
+  const wrap = el('span', 'contribs');
+  wrap.append(...people.slice(0, 5).map(p => avatar(`${p.avatar}&s=${size * 2}`, p.login, size)));
+  return wrap;
 };
 const app = repo => {
   const [name, logo] = apps[repo] || [repo, null];
@@ -112,7 +116,7 @@ const renderCommits = (list, commits) => {
 
   // each project card and project page header: last push, stars, badges and contributors
   document.querySelectorAll('.card[data-repo], .p-head[data-repo]').forEach(card => {
-    const repo = card.dataset.repo, row = card.querySelector('.stack'), shot = card.querySelector('.shot');
+    const repo = card.dataset.repo, row = card.querySelector('.stack');
     if (data?.pushed?.[repo]) card.dataset.pushed = data.pushed[repo];
 
     // "updated 3 days ago" above the tech row
@@ -126,20 +130,14 @@ const renderCommits = (list, commits) => {
     // contributors: only in the Action's file (one request per repository)
     const people = data?.contributors?.[repo] || [];
 
-    // "Made with Claude" left of the stars, when an AI is a co-author of the repository
-    const ai = people.map(p => ais[p.login]).find(Boolean);
-    if (ai && shot) {
-      const tags = el('span', 'tags');
-      tags.append(el('span', 'ai badge', `<img src="${base + ai[1]}" width="14" height="14" alt="">${both(`Feito com ${ai[0]}`, `Made with ${ai[0]}`)}`), ...shot.querySelectorAll('.stars'));
-      shot.append(tags);
-    }
+    // avatars at the end of the tech row
+    if (people.length && row) row.append(contribs(people, 26));
+  });
 
-    // avatars at the end of the tech row, overlapping
-    if (people.length && row) {
-      const wrap = el('span', 'contribs');
-      wrap.append(...people.slice(0, 5).map(p => avatar(`${p.avatar}&s=52`, p.login, 26)));
-      row.append(wrap);
-    }
+  // a project this one needs (data-dep="owner/repo" on its button): who builds it
+  document.querySelectorAll('[data-dep]').forEach(link => {
+    const people = data?.deps?.[link.dataset.dep];
+    if (people?.length) link.append(contribs(people, 22));
   });
 
   // the two most recently pushed projects go to "Recent", the rest to "Projects", newest first

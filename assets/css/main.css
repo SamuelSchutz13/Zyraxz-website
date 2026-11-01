@@ -104,6 +104,9 @@ footer a:hover { color: var(--ink); }
 :root[data-theme="dark"] .btn img { filter: invert(1); }
 :root[data-theme="light"] .btn img { filter: none; }
 .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+/* a project this one needs, beside "View on GitHub", with its contributors (github.js) */
+.btn.dep { background: var(--surface); color: var(--ink); font-weight: 400; }
+.btn.dep b { font-weight: 500; }
 
 /* ---------- project cards ---------- */
 .card { display: block; background: var(--surface); border-radius: 12px; overflow: hidden; transition: transform .25s, background .25s; }
@@ -123,14 +126,11 @@ footer a:hover { color: var(--ink); }
 .stars { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
 .stars svg { width: 16px; height: 16px; fill: var(--mark); }
 
-/* translucent badges over an image: stars and "Made with" on the cards, captions in the galleries */
-.shot > .stars.badge, .shot .tags { position: absolute; top: 12px; right: 12px; }
-.shot .tags { display: flex; gap: 8px; }
+/* translucent badges over an image: stars on the cards, captions in the galleries */
+.shot > .stars.badge { position: absolute; top: 12px; right: 12px; }
 .shot .badge, .gallery figcaption > span { padding: 6px 12px; border-radius: 12px; background: rgba(20, 19, 17, .55); color: #f3ead8; font-weight: 500; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
 .shot .badge { margin: 0; }
 .stars.badge svg { fill: #f1d87a; }
-.ai.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
-.ai.badge img { width: 14px; height: 14px; }
 
 /* contributor avatars on the right of the tech row, overlapping like GitHub's;
    26px because a circle reads smaller than the 22px square tech icons */
@@ -177,6 +177,9 @@ footer a:hover { color: var(--ink); }
 
 /* ---------- project pages ---------- */
 .p-head { padding-block: 32px 48px; display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 24px; }
+/* the text gives way so the buttons stay on the right; below ~360px of text it wraps (phones) */
+.p-head > div:first-child { flex: 1 1 360px; }
+.p-head .btns { flex: none; }
 .p-head h1 { display: flex; align-items: center; gap: 16px; }
 .p-head h1 img { width: 52px; height: 52px; object-fit: contain; }
 .p-head p { color: var(--muted); font-size: 19px; max-width: 640px; margin-top: 16px; }
@@ -187,6 +190,8 @@ footer a:hover { color: var(--ink); }
 .p-head .stack .stars svg { width: 18px; height: 18px; }
 .p-head .contribs { margin-left: 4px; }
 .p-head .contribs img { box-shadow: 0 0 0 2px var(--bg); }
+/* not the GitHub-mark filters of .btn img: these are photos */
+:root .btn.dep .contribs img { width: 22px; height: 22px; filter: none; box-shadow: 0 0 0 2px var(--surface); }
 .shot-lg { border-radius: 12px; overflow: hidden; background: var(--surface); }
 .shot-lg img { height: auto; cursor: zoom-in; }
 .p-body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding-block: 72px 32px; }
