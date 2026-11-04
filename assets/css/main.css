@@ -289,7 +289,7 @@ pre.flow .c { color: var(--code-c); } /* notes, comments */
 .edu-stack img { width: 16px; height: 16px; object-fit: contain; }
 
 /* side column: recent commits, "By the numbers", achievements */
-.side { display: grid; gap: 24px; }
+.side, .side-b { display: grid; gap: 24px; }
 .about .commits-card.card, .about .commits-card.card:hover { background: var(--surface); transform: none; }
 .commits-card h3 { margin-top: 0; margin-bottom: 20px; }
 #commits { list-style: none; display: grid; gap: 16px; }
@@ -414,4 +414,15 @@ pre.flow .c { color: var(--code-c); } /* notes, comments */
   .timeline time { margin-bottom: 8px; }
   .lightbox { padding: 64px 12px; }
   .lb-prev, .lb-next { top: auto; bottom: 16px; translate: none; }
+}
+
+/* ---------- ultrawide: About me spreads into four columns (bio, skills, commits, numbers) ---------- */
+@media (min-width: 1800px) {
+  .wrap:has(.about) { padding-inline: var(--m); }
+  .about { grid-template-columns: repeat(4, 1fr); gap: 48px; }
+  .about-main, .side { display: contents; }
+  .about-main > div > h3:first-child { margin-top: 0; }
+  /* language bar beside the contributions calendar */
+  #sobre { display: grid; grid-template-columns: 1fr auto; column-gap: 48px; align-items: start; }
+  #sobre > :is(.page-title, .about) { grid-column: 1 / -1; }
 }
