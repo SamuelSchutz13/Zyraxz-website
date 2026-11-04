@@ -14,7 +14,8 @@ const apps = {
   'Zyraxz-website': ['Zyraxz Website', 'img/logos/zyraxz.svg'], 'Youtube-Ultrawide': ['YouTube Ultrawide', 'img/icons/youtube.svg'],
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'], SistemTemp: ['SistemTemp', 'img/logos/sistemtemp.svg'],
   uJobsGUI: ['uJobs', 'img/logos/ujobs.svg'], Clipted: ['Clipted', 'img/logos/clipted.svg'],
-  Orion: ['Orion Logger', 'img/logos/orion.svg'],
+  Orion: ['Orion Logger', 'img/logos/orion.svg'], 'Swiss-pocketknife': ['DevKit', 'img/logos/devkit.svg'],
+  'FM27-Translator-Installer': ['FM27 Translator Installer', 'img/logos/fm27.webp'],
 };
 
 // small DOM helpers shared by every block below
@@ -141,12 +142,12 @@ const renderCommits = (list, commits) => {
     if (people?.length) link.append(contribs(people, 22));
   });
 
-  // the two most recently pushed projects go to "Recent", the rest to "Projects", newest first
+  // the four most recently pushed projects go to "Recent", the rest to "Projects", newest first
   const recent = $('recent-grid'), all = $('all-grid');
   if (recent && all) {
     const cards = [...recent.children, ...all.children].sort((a, b) => b.dataset.pushed.localeCompare(a.dataset.pushed));
-    recent.replaceChildren(...cards.slice(0, 2));
-    all.replaceChildren(...cards.slice(2));
+    recent.replaceChildren(...cards.slice(0, 4));
+    all.replaceChildren(...cards.slice(4));
   }
 
   // status under the name: "coding" = committed in the last 24 h (data refreshes hourly)
@@ -309,6 +310,22 @@ const renderCommits = (list, commits) => {
       }
       return w ? `rgb(${r / w | 0} ${gr / w | 0} ${b / w | 0})` : 'var(--surface)';
     } catch { return 'var(--surface)'; } // image not loaded yet, or tainted
+  }
+
+  // videos page: the channel's videos, from the Action's file (the YouTube feed has no CORS)
+  const vids = $('videos');
+  if (vids && data?.videos?.length) {
+    const views = n => both(`${n.toLocaleString('pt-BR')} visualizações`, `${n.toLocaleString('en')} views`);
+    vids.replaceChildren(...data.videos.map(v => {
+      const a = el('a', 'card in'), shot = el('div', 'shot'), img = new Image(1280, 720), body = el('div', 'body'), h = el('h3');
+      a.href = `https://www.youtube.com/watch?v=${v.id}`;
+      img.loading = 'lazy'; img.alt = '';
+      img.src = `https://i.ytimg.com/vi/${v.id}/hq720.jpg`;
+      img.onerror = () => { img.onerror = null; img.src = `https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`; }; // older uploads have no hq720
+      h.textContent = v.title;
+      shot.append(img); body.append(h, el('p', 'updated', `${both(`Publicado ${ago(v.date, 'pt-BR')}`, `Published ${ago(v.date, 'en')}`)} · ${views(v.views)}`));
+      a.append(shot, body); return a;
+    }));
   }
 
   const list = $('commits');

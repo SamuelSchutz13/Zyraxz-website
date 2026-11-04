@@ -43,12 +43,16 @@ strong, b { font-weight: 600; }
 mark { background: linear-gradient(100deg, color-mix(in srgb, var(--hl) 75%, transparent), var(--hl) .4em, var(--hl) calc(100% - .4em), color-mix(in srgb, var(--hl) 80%, transparent)); color: #1d1b19; padding: .05em .3em; margin: 0 -.1em; border-radius: .3em .2em .35em .25em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .muted { color: var(--muted); font-size: 14px; }
 
-.wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--m); }
+.wrap { padding: 0 var(--m); } /* full width: ultrawide screens get more cards, not empty sides */
+/* pages of prose and screenshots keep a readable width (the screenshots are 1440px) */
+.wrap:has(.p-body, .about) { padding-inline: max(var(--m), (100% - 1440px) / 2); }
 section { padding-bottom: 112px; }
 h2 { font-size: 24px; font-weight: 500; margin-bottom: 32px; }
 .intro h1, .p-head h1, .page-title { font-size: clamp(36px, 5vw, 56px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
 .page-title { margin: 24px 0 40px; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+#recent-grid, #all-grid, #videos { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1100px) { #recent-grid, #all-grid, #videos { grid-template-columns: 1fr 1fr; } }
 .back { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 15px; margin-top: 48px; }
 .back:hover { color: var(--ink); }
 
@@ -103,6 +107,12 @@ footer a:hover { color: var(--ink); }
 /* the GitHub mark must contrast with the button, not the page */
 :root[data-theme="dark"] .btn img { filter: invert(1); }
 :root[data-theme="light"] .btn img { filter: none; }
+:root[data-theme] .btn img.yt { filter: none; } /* the red YouTube logo reads on both */
+#videos .shot { aspect-ratio: 16 / 9; }
+#videos .shot img { object-position: center; }
+#videos .body { padding: 14px 16px 16px; }
+#videos h3 { font-size: 16px; margin-bottom: 0; }
+#videos .updated { margin-top: 6px; font-size: 12px; }
 .btns { display: flex; gap: 10px; flex-wrap: wrap; }
 /* a project this one needs, beside "View on GitHub", with its contributors (github.js) */
 .btn.dep { background: var(--surface); color: var(--ink); font-weight: 400; }
@@ -116,7 +126,7 @@ footer a:hover { color: var(--ink); }
 .card h3 { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 500; margin-bottom: 8px; }
 .card h3 .logo-p { width: 28px; height: 28px; object-fit: contain; }
 .card p { color: var(--muted); }
-.card .stack { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+.card .stack { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; } /* four columns are narrow: avatars drop to a new line instead of spilling out */
 
 /* "updated 3 days ago" over the tech row (github.js) */
 .updated { margin-top: 14px; font-size: 13px; color: var(--muted); }
@@ -388,10 +398,11 @@ pre.flow .c { color: var(--code-c); } /* notes, comments */
 @media (max-width: 700px) {
   header nav { gap: 10px; }
   .nav-link { font-size: 14px; }
+  header nav > a:not(.nav-link) { display: none; } /* GitHub and LinkedIn stay in the footer: four links and the gear fill a phone */
   .logo { font-size: 0; gap: 0; }
   .who-text { display: none; }
   #settings { top: 76px; right: 16px; }
-  .grid, .p-body { grid-template-columns: 1fr; }
+  .grid, .p-body, #recent-grid, #all-grid, #videos { grid-template-columns: 1fr; }
   .p-body { gap: 32px; }
   .intro { padding-block: 56px 72px; }
   section { padding-bottom: 72px; }

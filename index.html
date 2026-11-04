@@ -19,11 +19,11 @@
 <link rel="alternate icon" href="assets/img/favicon.png">
 <script src="assets/js/prefs.js?v=6d20cb70"></script>
 <link rel="preload" href="assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-<script src="assets/js/github.js?v=4aa5f775" defer></script>
-<script src="assets/js/filters.js?v=8270e6af" defer></script>
+<script src="assets/js/github.js?v=d43b3dce" defer></script>
+<script src="assets/js/filters.js?v=759e3bd1" defer></script>
 <script src="assets/js/reveal.js?v=694ca3ad" defer></script>
 <script src="assets/js/lightbox.js?v=523126a1" defer></script>
-<link rel="stylesheet" href="assets/css/main.css?v=702d3457">
+<link rel="stylesheet" href="assets/css/main.css?v=4fc77fdb">
 </head>
 <body>
 <div class="wrap">
@@ -32,6 +32,7 @@
     <nav aria-label="Principal">
       <a class="nav-link" href="index.html" aria-current="page"><span lang="pt">Início</span><span lang="en">Home</span></a>
       <a class="nav-link" href="index.html#projetos"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
+      <a class="nav-link" href="videos.html"><span lang="pt">Vídeos</span><span lang="en">Videos</span></a>
       <a class="nav-link" href="sobre.html"><span lang="pt">Sobre mim</span><span lang="en">About me</span></a>
       <button class="gear" type="button" popovertarget="settings" aria-label="Configurações / Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
       <div id="settings" popover>
@@ -59,6 +60,14 @@
   <section id="recentes">
     <h2><span lang="pt">Projetos recentes</span><span lang="en">Recent projects</span></h2>
     <div class="grid" id="recent-grid">
+      <a class="card" href="projects/devkit.html" data-repo="Swiss-pocketknife" data-pushed="2026-11-04T19:47:08Z" data-tech="React,TypeScript,Vite,Vitest">
+        <div class="shot"><img src="assets/img/projects/thumbs/devkit.webp" width="1440" height="900" loading="lazy" alt="DevKit formatando um JSON, com a lista de ferramentas à esquerda"><span class="stars badge" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
+        <div class="body"><h3><img class="logo-p" src="assets/img/logos/devkit.svg" width="28" height="28" alt="">DevKit</h3><p><span lang="pt">Caixa de ferramentas para desenvolvedores que roda toda no navegador: JSON, JWT, regex, diff, cores, cron e mais, sem nada sair da sua máquina.</span><span lang="en">A developer toolbox that runs entirely in the browser: JSON, JWT, regex, diff, colors, cron and more, with nothing leaving your machine.</span></p><p class="stack"><img src="assets/img/icons/react.svg" width="22" height="22" alt="React" title="React"><img src="assets/img/icons/typescript.svg" width="22" height="22" alt="TypeScript" title="TypeScript"><img src="assets/img/icons/vite.svg" width="22" height="22" alt="Vite" title="Vite"><img src="assets/img/icons/vitest.svg" width="22" height="22" alt="Vitest" title="Vitest"></p></div>
+      </a>
+      <a class="card" href="projects/fm27.html" data-repo="FM27-Translator-Installer" data-pushed="2026-11-03T11:38:01Z" data-tech="Rust">
+        <div class="shot"><img src="assets/img/projects/thumbs/fm27.webp" width="752" height="739" loading="lazy" alt="Janela do instalador da tradução PT-BR do FM27 com a escolha da versão"><span class="stars badge" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
+        <div class="body"><h3><img class="logo-p" src="assets/img/logos/fm27.webp" width="28" height="28" alt="">FM27 Translator Installer</h3><p><span lang="pt">Instala a tradução PT-BR do Football Manager 27 com um clique, nas versões Steam e Epic, num único .exe que só fala com o GitHub.</span><span lang="en">Installs the Brazilian Portuguese translation of Football Manager 27 in one click, on Steam and Epic, in a single .exe that only talks to GitHub.</span></p><p class="stack"><img src="assets/img/icons/rust-white.svg" width="22" height="22" alt="Rust" title="Rust"></p></div>
+      </a>
       <a class="card" href="projects/orion.html" data-repo="Orion" data-pushed="2026-11-01T21:03:50Z" data-tech="Go,Gin,Vue,TypeScript,Tailwind,shadcn/ui">
         <div class="shot"><img src="assets/img/projects/thumbs/orion.webp" width="1440" height="860" loading="lazy" alt="Painel do Orion Logger com processos, containers e pods e o log ao vivo de um npm run dev"><span class="stars badge" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></div>
         <div class="body"><h3><img class="logo-p" src="assets/img/logos/orion.svg" width="28" height="28" alt="">Orion Logger</h3><p><span lang="pt">Raio-X da máquina de desenvolvimento: portas, processos, containers Docker e pods do Kubernetes com logs ao vivo, numa tela e num único .exe.</span><span lang="en">An X-ray of your dev machine: ports, processes, Docker containers and Kubernetes pods with live logs, on one screen in a single .exe.</span></p><p class="stack"><img src="assets/img/icons/go.svg" width="22" height="22" alt="Go" title="Go"><img src="assets/img/icons/gin.svg" width="22" height="22" alt="Gin" title="Gin"><img src="assets/img/icons/vuedotjs.svg" width="22" height="22" alt="Vue" title="Vue"><img src="assets/img/icons/typescript.svg" width="22" height="22" alt="TypeScript" title="TypeScript"><img src="assets/img/icons/tailwindcss.svg" width="22" height="22" alt="Tailwind" title="Tailwind"><img src="assets/img/icons/shadcnui-white.svg" width="22" height="22" alt="shadcn/ui" title="shadcn/ui"></p></div>
@@ -93,6 +102,7 @@
         <button type="button" aria-pressed="false" data-tech="Python">Python</button>
         <button type="button" aria-pressed="false" data-tech="Quasar">Quasar</button>
         <button type="button" aria-pressed="false" data-tech="React">React</button>
+        <button type="button" aria-pressed="false" data-tech="Rust">Rust</button>
         <button type="button" aria-pressed="false" data-tech="shadcn/ui">shadcn/ui</button>
         <button type="button" aria-pressed="false" data-tech="Socket.IO">Socket.IO</button>
         <button type="button" aria-pressed="false" data-tech="SQLite">SQLite</button>
@@ -155,7 +165,7 @@
 
   <section id="linha-do-tempo">
     <h2><span lang="pt">Linha do tempo</span><span lang="en">Timeline</span></h2>
-    <p class="tl-sub"><span lang="pt">13 projetos · agosto a novembro de 2026</span><span lang="en">13 projects · August to November 2026</span></p>
+    <p class="tl-sub"><span lang="pt">15 projetos · agosto a novembro de 2026</span><span lang="en">15 projects · August to November 2026</span></p>
     <ol class="timeline">
       <li><time datetime="2026-08-17"><span lang="pt">17 ago</span><span lang="en">Aug 17</span></time><span class="node"></span><div class="tl-items"><a href="projects/sistemtemp.html"><img src="assets/img/logos/sistemtemp.svg" width="20" height="20" style="width:20px;height:20px" alt="">SistemTemp</a></div></li>
       <li><time datetime="2026-10-23"><span lang="pt">23 out</span><span lang="en">Oct 23</span></time><span class="node"></span><div class="tl-items"><a href="projects/foculesspdf.html"><img src="assets/img/logos/foculesspdf.svg" width="20" height="20" style="width:20px;height:20px" alt="">FoculessPDF</a><a href="projects/matchsim.html"><img src="assets/img/logos/matchsim.svg" width="20" height="20" style="width:20px;height:20px" alt="">MatchSim</a></div></li>
@@ -165,6 +175,8 @@
       <li><time datetime="2026-10-28"><span lang="pt">28 out</span><span lang="en">Oct 28</span></time><span class="node"></span><div class="tl-items"><a href="projects/titanlive.html"><img src="assets/img/logos/titanlive.svg" width="20" height="20" style="width:20px;height:20px" alt="">TitanLive</a><a href="projects/zyraxz.html"><img src="assets/img/logos/zyraxz.svg" width="20" height="20" style="width:20px;height:20px" alt="">Zyraxz Website</a></div></li>
       <li><time datetime="2026-10-30"><span lang="pt">30 out</span><span lang="en">Oct 30</span></time><span class="node"></span><div class="tl-items"><a href="projects/ujobs.html"><img src="assets/img/logos/ujobs.svg" width="20" height="20" style="width:20px;height:20px" alt="">uJobs</a><a href="projects/clipted.html"><img src="assets/img/logos/clipted.svg" width="20" height="20" style="width:20px;height:20px" alt="">Clipted</a></div></li>
       <li><time datetime="2026-11-01"><span lang="pt">1 nov</span><span lang="en">Nov 1</span></time><span class="node"></span><div class="tl-items"><a href="projects/orion.html"><img src="assets/img/logos/orion.svg" width="20" height="20" style="width:20px;height:20px" alt="">Orion Logger</a></div></li>
+      <li><time datetime="2026-11-03"><span lang="pt">3 nov</span><span lang="en">Nov 3</span></time><span class="node"></span><div class="tl-items"><a href="projects/fm27.html"><img src="assets/img/logos/fm27.webp" width="20" height="20" style="width:20px;height:20px" alt="">FM27 Translator Installer</a></div></li>
+      <li><time datetime="2026-11-04"><span lang="pt">4 nov</span><span lang="en">Nov 4</span></time><span class="node"></span><div class="tl-items"><a href="projects/devkit.html"><img src="assets/img/logos/devkit.svg" width="20" height="20" style="width:20px;height:20px" alt="">DevKit</a></div></li>
     </ol>
   </section>
 
