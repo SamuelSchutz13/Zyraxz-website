@@ -311,6 +311,22 @@ const renderCommits = (list, commits) => {
     } catch { return 'var(--surface)'; } // image not loaded yet, or tainted
   }
 
+  // videos page: the channel's videos, from the Action's file (the YouTube feed has no CORS)
+  const vids = $('videos');
+  if (vids && data?.videos?.length) {
+    const views = n => both(`${n.toLocaleString('pt-BR')} visualizações`, `${n.toLocaleString('en')} views`);
+    vids.replaceChildren(...data.videos.map(v => {
+      const a = el('a', 'card in'), shot = el('div', 'shot'), img = new Image(1280, 720), body = el('div', 'body'), h = el('h3');
+      a.href = `https://www.youtube.com/watch?v=${v.id}`;
+      img.loading = 'lazy'; img.alt = '';
+      img.src = `https://i.ytimg.com/vi/${v.id}/hq720.jpg`;
+      img.onerror = () => { img.onerror = null; img.src = `https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`; }; // older uploads have no hq720
+      h.textContent = v.title;
+      shot.append(img); body.append(h, el('p', 'updated', `${both(`Publicado ${ago(v.date, 'pt-BR')}`, `Published ${ago(v.date, 'en')}`)} · ${views(v.views)}`));
+      a.append(shot, body); return a;
+    }));
+  }
+
   const list = $('commits');
   if (!list) return;
   if (data?.commits.length) {
