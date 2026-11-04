@@ -15,6 +15,7 @@ const apps = {
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'], SistemTemp: ['SistemTemp', 'img/logos/sistemtemp.svg'],
   uJobsGUI: ['uJobs', 'img/logos/ujobs.svg'], Clipted: ['Clipted', 'img/logos/clipted.svg'],
   Orion: ['Orion Logger', 'img/logos/orion.svg'], 'Swiss-pocketknife': ['DevKit', 'img/logos/devkit.svg'],
+  'FM27-Translator-Installer': ['FM27 Translator Installer', 'img/logos/fm27.webp'],
 };
 
 // small DOM helpers shared by every block below
@@ -141,12 +142,12 @@ const renderCommits = (list, commits) => {
     if (people?.length) link.append(contribs(people, 22));
   });
 
-  // the two most recently pushed projects go to "Recent", the rest to "Projects", newest first
+  // the four most recently pushed projects go to "Recent", the rest to "Projects", newest first
   const recent = $('recent-grid'), all = $('all-grid');
   if (recent && all) {
     const cards = [...recent.children, ...all.children].sort((a, b) => b.dataset.pushed.localeCompare(a.dataset.pushed));
-    recent.replaceChildren(...cards.slice(0, 2));
-    all.replaceChildren(...cards.slice(2));
+    recent.replaceChildren(...cards.slice(0, 4));
+    all.replaceChildren(...cards.slice(4));
   }
 
   // status under the name: "coding" = committed in the last 24 h (data refreshes hourly)

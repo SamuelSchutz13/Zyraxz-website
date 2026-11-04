@@ -1,9 +1,9 @@
 // Tech filter for the projects: shows only the cards whose stack includes the chosen tech.
-// "Projects" is paginated, 6 cards per page, over the cards the filter leaves visible.
+// "Projects" is paginated, 8 cards per page (two rows of four), over the cards the filter leaves visible.
 const buttons = document.querySelectorAll('.filters button');
 const all = document.getElementById('all-grid');
 const pager = document.getElementById('pager');
-const perPage = 6;
+const perPage = 8;
 let tech = '', page = 0;
 
 function paginate() {
