@@ -95,20 +95,7 @@ commits.forEach((c, i) => {
   if (people?.length) c.people = people;
 });
 
-// YouTube channel videos for videos.html: the public feed, no API key
-// shortcut: the feed only lists the 15 newest videos, switch to the YouTube Data API past that
-const unxml = s => s.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-const videos = await page('https://www.youtube.com/feeds/videos.xml?channel_id=UCwaRzaYW9QQLWEAqj5KcmtA')
-  .then(xml => xml.split('<entry>').slice(1).map(e => ({
-    id: e.match(/<yt:videoId>([^<]+)/)?.[1],
-    title: unxml(e.match(/<title>([^<]*)/)?.[1] ?? ''),
-    date: e.match(/<published>([^<]+)/)?.[1],
-    views: Number(e.match(/views="(\d+)"/)?.[1] ?? 0),
-  })).filter(v => v.id))
-  .catch(() => []);
-
 const data = {
-  videos,
   languages,
   contributors,
   deps,
@@ -122,4 +109,4 @@ const data = {
 
 await mkdir('assets/data', { recursive: true });
 await writeFile('assets/data/github.json', JSON.stringify(data));
-console.log(`repos ${repos.length}, commits ${data.commits.length}, contribution days ${contributions.days.length}, total ${contributions.total}, achievements ${achievements.length}, videos ${videos.length}`);
+console.log(`repos ${repos.length}, commits ${data.commits.length}, contribution days ${contributions.days.length}, total ${contributions.total}, achievements ${achievements.length}`);
