@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SistemTemp — Zyraxz</title>
-<meta name="description" content="Monitor climático para desktop: temperatura, umidade, pressão e ponto de orvalho com alertas, gráfico e histórico salvo em SQLite.">
+<meta name="description" content="Monitor do celular no PC: um app Android manda por Bluetooth a temperatura e o nível da bateria, a tensão e a RAM, e o desktop mostra tudo ao vivo com alertas, gráfico e histórico.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SistemTemp — Zyraxz">
-<meta property="og:description" content="Monitor climático para desktop: temperatura, umidade, pressão e ponto de orvalho com alertas, gráfico e histórico salvo em SQLite.">
+<meta property="og:description" content="Monitor do celular no PC: um app Android manda por Bluetooth a temperatura e o nível da bateria, a tensão e a RAM, e o desktop mostra tudo ao vivo com alertas, gráfico e histórico.">
 <meta property="og:image" content="https://samuelschutz13.github.io/Zyraxz-website/assets/img/og.png">
 <meta property="og:url" content="https://samuelschutz13.github.io/Zyraxz-website/projects/sistemtemp.html">
 <link rel="canonical" href="https://samuelschutz13.github.io/Zyraxz-website/projects/sistemtemp.html">
@@ -55,40 +55,41 @@
   <div class="p-head" data-repo="SistemTemp">
     <div>
       <h1><img class="logo-p" src="../assets/img/logos/sistemtemp.svg" width="52" height="52" alt="">SistemTemp</h1>
-      <p><span lang="pt">Monitor climático para desktop: temperatura, umidade, pressão e ponto de orvalho com alertas, gráfico e histórico salvo em SQLite.</span><span lang="en">A desktop weather monitor: temperature, humidity, pressure and dew point with alerts, a chart and a history saved in SQLite.</span></p>
-      <p class="stack"><img src="../assets/img/icons/python.svg" width="22" height="22" alt="Python" title="Python"><img src="../assets/img/icons/sqlite-white.svg" width="22" height="22" alt="SQLite" title="SQLite"><span class="stars" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></p>
+      <p><span lang="pt">Monitor do celular no PC: um app Android manda por Bluetooth a temperatura e o nível da bateria, a tensão e a RAM, e o desktop mostra tudo ao vivo com alertas, gráfico e histórico.</span><span lang="en">Your phone, monitored from the PC: an Android app sends battery temperature and level, voltage and RAM over Bluetooth, and the desktop app shows it live with alerts, a chart and a history.</span></p>
+      <p class="stack"><img src="../assets/img/icons/python.svg" width="22" height="22" alt="Python" title="Python"><img src="../assets/img/icons/sqlite-white.svg" width="22" height="22" alt="SQLite" title="SQLite"><img src="../assets/img/icons/kotlin.svg" width="22" height="22" alt="Kotlin" title="Kotlin"><span class="stars" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></p>
     </div>
     <div class="btns">
-      
+      <a class="btn" href="https://github.com/SamuelSchutz13/SistemTemp/releases/latest"><span lang="pt">Baixar</span><span lang="en">Download</span></a>
       <a class="btn" href="https://github.com/SamuelSchutz13/SistemTemp"><img src="../assets/img/icons/github-white.svg" width="18" height="18" alt=""><span lang="pt">Ver no GitHub</span><span lang="en">View on GitHub</span></a>
     </div>
   </div>
 
-  <div class="shot-lg"><img src="../assets/img/projects/sistemtemp.webp" width="1100" height="760" alt="Painel do SistemTemp no modo escuro com gráfico de temperatura e histórico"></div>
+  <div class="shot-lg"><img src="../assets/img/projects/sistemtemp.webp" width="1100" height="760" alt="Painel do SistemTemp conectado a um Galaxy S21, com temperatura e nível da bateria no gráfico e o histórico de leituras"></div>
 
   <div class="p-body">
     <section>
       <h2><span lang="pt">O que faz</span><span lang="en">What it does</span></h2>
-      <ul class="feat"><li lang="pt">Mostra <b>temperatura</b>, <b>umidade</b> e <b>pressão</b> de cada leitura, e calcula o <b>ponto de orvalho</b>.</li><li lang="en">Shows the <b>temperature</b>, <b>humidity</b> and <b>pressure</b> of each reading and works out the <b>dew point</b>.</li><li lang="pt">Card de status que muda de cor: <b>calor extremo</b>, <b>frio intenso</b>, <b>ar muito seco</b> ou clima estável.</li><li lang="en">A status card that changes color: <b>extreme heat</b>, <b>intense cold</b>, <b>very dry air</b> or stable weather.</li><li lang="pt">Gráfico do histórico de temperatura, atualizado a cada leitura.</li><li lang="en">A temperature history chart, updated on every reading.</li><li lang="pt">Histórico salvo em <b>SQLite</b>, com filtro por data e por temperatura alta ou baixa.</li><li lang="en">History saved in <b>SQLite</b>, filtered by date and by high or low temperature.</li><li lang="pt">Limites de alerta configuráveis e um log de tudo que acontece no app.</li><li lang="en">Configurable alert limits and a log of everything the app does.</li><li lang="pt">Interface em <b>modo escuro</b>.</li><li lang="en"><b>Dark mode</b> interface.</li></ul>
+      <ul class="feat"><li lang="pt">Conecta ao <b>celular Android</b> por <b>Bluetooth</b> e mostra o nome, o modelo, a versão do Android e a saúde da bateria.</li><li lang="en">Connects to an <b>Android phone</b> over <b>Bluetooth</b> and shows its name, model, Android version and battery health.</li><li lang="pt">Cards ao vivo com <b>temperatura da bateria</b>, <b>nível</b> (⚡ quando carrega), <b>tensão</b> e <b>RAM usada</b>.</li><li lang="en">Live cards for <b>battery temperature</b>, <b>level</b> (⚡ while charging), <b>voltage</b> and <b>RAM in use</b>.</li><li lang="pt">Status que muda de cor: <b>aparelho OK</b>, <b>carregando</b>, <b>bateria quente</b>, <b>bateria fria</b> ou <b>bateria fraca</b>, com aviso só quando entra em alerta.</li><li lang="en">A status that changes color: <b>device OK</b>, <b>charging</b>, <b>hot battery</b>, <b>cold battery</b> or <b>low battery</b>, with a warning only when it enters an alert.</li><li lang="pt">Gráfico com temperatura (°C) e bateria (%) na mesma linha do tempo.</li><li lang="en">A chart with temperature (°C) and battery (%) on the same timeline.</li><li lang="pt">Histórico salvo em <b>SQLite</b>, com filtro por data, só alertas ou só carregando.</li><li lang="en">History saved in <b>SQLite</b>, filtered by date, alerts only or charging only.</li><li lang="pt">App Android que lê o aparelho a cada 5 s, guarda o próprio histórico e envia ao PC.</li><li lang="en">An Android app that reads the device every 5 s, keeps its own history and sends it to the PC.</li><li lang="pt">Limites de alerta configuráveis, log de eventos e <b>modo escuro</b>. Sem celular, o botão <i>Simular Leitura</i> gera dados de teste.</li><li lang="en">Configurable alert limits, an event log and <b>dark mode</b>. No phone? The <i>Simulate reading</i> button makes test data.</li></ul>
     </section>
     <section>
       <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
-      <p><span lang="pt">Um app desktop em <b>Python</b> com <b>PyQt5</b>, organizado em MVC: as telas são arquivos <code>.ui</code> do Qt Designer, as regras de alerta e o ponto de orvalho ficam no model, um controller para cada parte da tela (janela, gráfico, histórico e configurações) liga tudo, e o banco é um <b>SQLite</b> local. O gráfico usa <b>pyqtgraph</b> e as leituras são simuladas, prontas para receber dados de um sensor de verdade.</span><span lang="en">A <b>Python</b> desktop app with <b>PyQt5</b>, organized as MVC: the screens are Qt Designer <code>.ui</code> files, the alert rules and dew point live in the model, one controller per part of the screen (window, chart, history and settings) ties it together, and the database is a local <b>SQLite</b> file. The chart uses <b>pyqtgraph</b>, and the readings are simulated, ready to take data from a real sensor.</span></p>
+      <p><span lang="pt">Duas partes. No celular, um app <b>Android</b> em <b>Kotlin</b> lê a bateria e a memória e manda uma linha JSON a cada 5 s pelo <b>Bluetooth</b> (SPP). No PC, um app em <b>Python</b> com <b>PyQt5</b> recebe pela porta COM do Bluetooth, valida cada leitura e mostra na tela. O desktop segue MVC: as telas são arquivos <code>.ui</code> do Qt Designer, as regras de alerta ficam no model e um controller cuida de cada parte (janela, Bluetooth, gráfico, histórico e configurações). O gráfico usa <b>pyqtgraph</b> e o histórico fica num <b>SQLite</b> local.</span><span lang="en">Two parts. On the phone, an <b>Android</b> app in <b>Kotlin</b> reads the battery and memory and sends one JSON line every 5 s over <b>Bluetooth</b> (SPP). On the PC, a <b>Python</b> app with <b>PyQt5</b> takes it from the Bluetooth COM port, validates each reading and puts it on screen. The desktop side is MVC: the screens are Qt Designer <code>.ui</code> files, the alert rules live in the model and one controller handles each part (window, Bluetooth, chart, history and settings). The chart uses <b>pyqtgraph</b> and the history sits in a local <b>SQLite</b> file.</span></p>
       <div class="note"><span lang="pt"><b>Feito em dupla</b> com Gabriel Erharter, como trabalho da faculdade.</span><span lang="en"><b>Built as a pair</b> with Gabriel Erharter, as a university assignment.</span></div>
       <h3 class="run-h"><span lang="pt">Como rodar</span><span lang="en">Run it</span></h3>
       <pre class="flow run"><span class="k">git</span> clone <span class="s">https://github.com/SamuelSchutz13/SistemTemp.git</span>
 <span class="k">cd</span> SistemTemp
 <span class="k">pip</span> install -r requirements.txt
-<span class="k">python</span> main.py</pre>
+<span class="k">python</span> main.py
+<span class="c"># celular: cd android &amp;&amp; gradlew assembleDebug</span></pre>
     </section>
   </div>
 
   <section>
     <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
     <div class="gallery">
-      <figure><div class="shot-lg"><img src="../assets/img/projects/sistemtemp-alerta.webp" width="1100" height="760" loading="lazy" alt="Alerta de calor extremo no card de status"></div><figcaption><span lang="pt">Alerta de calor extremo no card de status</span><span lang="en">Extreme heat alert on the status card</span></figcaption></figure>
-      <figure><div class="shot-lg"><img src="../assets/img/projects/sistemtemp-config.webp" width="1100" height="760" loading="lazy" alt="Limites de alerta configuráveis"></div><figcaption><span lang="pt">Limites de alerta configuráveis</span><span lang="en">Configurable alert limits</span></figcaption></figure>
-      <figure><div class="shot-lg"><img src="../assets/img/projects/sistemtemp-filtro.webp" width="1100" height="760" loading="lazy" alt="Histórico filtrado por temperatura alta"></div><figcaption><span lang="pt">Histórico filtrado por temperatura alta</span><span lang="en">History filtered by high temperature</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/sistemtemp-alerta.webp" width="1100" height="760" loading="lazy" alt="Aviso de bateria quente quando o celular passa de 40 °C"></div><figcaption><span lang="pt">Aviso de bateria quente quando o celular passa de 40 °C</span><span lang="en">Hot battery warning when the phone goes over 40 °C</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/sistemtemp-config.webp" width="1100" height="760" loading="lazy" alt="Limites de bateria quente, fria e fraca"></div><figcaption><span lang="pt">Limites de bateria quente, fria e fraca</span><span lang="en">Hot, cold and low battery limits</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/sistemtemp-filtro.webp" width="1100" height="760" loading="lazy" alt="Histórico filtrado só com os alertas"></div><figcaption><span lang="pt">Histórico filtrado só com os alertas</span><span lang="en">History filtered to alerts only</span></figcaption></figure>
     </div>
   </section>
 
