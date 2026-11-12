@@ -15,7 +15,7 @@ const apps = {
   'PES21-UltrawideFix': ['PES 2021 Ultrawide', 'img/icons/lua.svg'], SistemTemp: ['SistemTemp', 'img/logos/sistemtemp.svg'],
   uJobsGUI: ['uJobs', 'img/logos/ujobs.svg'], Clipted: ['Clipted', 'img/logos/clipted.svg'],
   Orion: ['Orion Logger', 'img/logos/orion.svg'], 'Swiss-pocketknife': ['DevKit', 'img/logos/devkit.svg'],
-  'FM27-Translator-Installer': ['FM27 Translator Installer', 'img/logos/fm27.webp'],
+  'FM27-Translator-Installer': ['FM27 Translator Installer', 'img/logos/fm27.webp'], Chorus: ['Chorus', 'img/logos/chorus.svg'],
 };
 
 // small DOM helpers shared by every block below
