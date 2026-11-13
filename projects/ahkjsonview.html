@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AHK-JsonView — Zyraxz</title>
+<meta name="description" content="Visualizador de JSON para AutoHotkey v2: navegue em qualquer JSON como árvore, em colunas ou como texto, com um inspetor que entende URLs, arquivos, cores, datas e Markdown.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AHK-JsonView — Zyraxz">
+<meta property="og:description" content="Visualizador de JSON para AutoHotkey v2: navegue em qualquer JSON como árvore, em colunas ou como texto, com um inspetor que entende URLs, arquivos, cores, datas e Markdown.">
+<meta property="og:image" content="https://samuelschutz13.github.io/Zyraxz-website/assets/img/og.png">
+<meta property="og:url" content="https://samuelschutz13.github.io/Zyraxz-website/projects/ahkjsonview.html">
+<link rel="canonical" href="https://samuelschutz13.github.io/Zyraxz-website/projects/ahkjsonview.html">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1d1b19">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../assets/img/favicon.png">
+<script src="../assets/js/prefs.js?v=6d20cb70"></script>
+<link rel="preload" href="../assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<script src="../assets/js/github.js?v=3ffd458f" defer></script>
+<script src="../assets/js/filters.js?v=759e3bd1" defer></script>
+<script src="../assets/js/reveal.js?v=694ca3ad" defer></script>
+<script src="../assets/js/lightbox.js?v=523126a1" defer></script>
+<link rel="stylesheet" href="../assets/css/main.css?v=bce03510">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="../index.html"><span class="av-wrap"><img src="../assets/img/avatar.png" width="236" height="236" alt=""><i class="dot" hidden></i></span><span class="who-text">Zyraxz<small class="status" hidden></small></span></a>
+    <nav aria-label="Principal">
+      <a class="nav-link" href="../index.html"><span lang="pt">Início</span><span lang="en">Home</span></a>
+      <a class="nav-link" href="../index.html#projetos" aria-current="page"><span lang="pt">Projetos</span><span lang="en">Projects</span></a>
+      <a class="nav-link" href="../sobre.html"><span lang="pt">Sobre mim</span><span lang="en">About me</span></a>
+      <button class="gear" type="button" popovertarget="settings" aria-label="Configurações / Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+      <div id="settings" popover>
+        <p class="set-title"><span lang="pt">Tema</span><span lang="en">Theme</span></p>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="theme" value="light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span lang="pt">Claro</span><span lang="en">Light</span></label>
+          <label><input type="radio" name="theme" value="dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span lang="pt">Escuro</span><span lang="en">Dark</span></label>
+        </div>
+        <p class="set-title"><span lang="pt">Idioma</span><span lang="en">Language</span></p>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="lang" value="pt"><img class="flag" src="../assets/img/flags/br.svg" width="20" height="14" alt="">Português</label>
+          <label><input type="radio" name="lang" value="en"><img class="flag" src="../assets/img/flags/us.svg" width="20" height="14" alt="">English</label>
+        </div>
+      </div>
+      <a href="https://github.com/SamuelSchutz13" title="GitHub"><img class="gh" src="../assets/img/icons/github-white.svg" width="22" height="22" alt="GitHub"></a>
+      <a href="https://www.linkedin.com/in/samuel-schutz-a3304a244/" title="LinkedIn"><img class="gh" src="../assets/img/icons/linkedin-white.svg" width="22" height="22" alt="LinkedIn"></a>
+    </nav>
+  </header>
+
+  <a class="back" href="../index.html#projetos">← <span lang="pt">Todos os projetos</span><span lang="en">All projects</span></a>
+  <div class="p-head" data-repo="AHK-JSONView">
+    <div>
+      <h1><img class="logo-p" src="../assets/img/logos/ahkjsonview.svg" width="52" height="52" alt="">AHK-JsonView</h1>
+      <p><span lang="pt">Visualizador de JSON para AutoHotkey v2: navegue em qualquer JSON como árvore, em colunas ou como texto, com um inspetor que entende URLs, arquivos, cores, datas e Markdown.</span><span lang="en">A JSON viewer for AutoHotkey v2: browse any JSON as a tree, as columns or as raw text, with an inspector that understands URLs, files, colors, dates and Markdown.</span></p>
+      <p class="stack"><img src="../assets/img/icons/autohotkey-white.svg" width="22" height="22" alt="AutoHotkey" title="AutoHotkey"><img src="../assets/img/icons/javascript.svg" width="22" height="22" alt="JavaScript" title="JavaScript"><span class="stars" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></svg><b>0</b></span></p>
+    </div>
+    <div class="btns">
+      <a class="btn" href="https://github.com/SamuelSchutz13/AHK-JSONView"><img src="../assets/img/icons/github-white.svg" width="18" height="18" alt=""><span lang="pt">Ver no GitHub</span><span lang="en">View on GitHub</span></a>
+    </div>
+  </div>
+
+  <div class="shot-lg"><img src="../assets/img/projects/ahkjsonview.webp" width="1400" height="850" alt="Visão em árvore no tema escuro com uma cor selecionada: propriedades, valor e amostra da cor no inspetor"></div>
+
+  <div class="p-body">
+    <section>
+      <h2><span lang="pt">O que faz</span><span lang="en">What it does</span></h2>
+      <ul class="feat"><li lang="pt"><b>Três visões</b>: <b>Árvore</b> com guias de profundidade, <b>Colunas</b> (colunas de Miller) e o <b>JSON</b> bruto com destaque de sintaxe. Troque com <code>1</code>, <code>2</code>, <code>3</code>.</li><li lang="en"><b>Three views</b>: <b>Tree</b> with depth guides, <b>Columns</b> (Miller columns) and the raw <b>JSON</b> with syntax highlighting. Switch with <code>1</code>, <code>2</code>, <code>3</code>.</li><li lang="pt"><b>Inspetor</b> do nó selecionado: caminho, tipo, tamanho e um valor que você copia com um clique.</li><li lang="en"><b>Inspector</b> for the selected node: path, type, size and a value you copy with a click.</li><li lang="pt"><b>URLs e arquivos</b>: abre links no navegador e mostra imagens; para caminhos de arquivo diz se existe, tamanho e data, e mostra o conteúdo: imagem, áudio com player, código com cores e Markdown.</li><li lang="en"><b>URLs and files</b>: opens links in the browser and shows images; for file paths it tells whether the file exists, its size and date, and shows the content: image, audio with a player, highlighted code and Markdown.</li><li lang="pt"><b>Cores e datas</b>: amostra com hex, rgb, hsl e luminância; datas ISO 8601 ou Unix por extenso, com o calendário do mês.</li><li lang="en"><b>Colors and dates</b>: a swatch with hex, rgb, hsl and luminance; ISO 8601 or Unix dates written out, with the month's calendar.</li><li lang="pt"><b>Busca</b> por chaves, valores e caminhos, com várias palavras e trechos destacados.</li><li lang="en"><b>Search</b> across keys, values and paths, multi-word, with highlighted matches.</li><li lang="pt"><b>Devolve um valor</b>: com <code>submit_on_enter</code>, apertar <code>Enter</code> fecha o visualizador e entrega o nó selecionado ao seu script.</li><li lang="en"><b>Returns a value</b>: with <code>submit_on_enter</code>, pressing <code>Enter</code> closes the viewer and gives the selected node back to your script.</li><li lang="pt"><b>Temas claro e escuro</b> seguindo o Windows, histórico de voltar e avançar e menu do botão direito para copiar e exportar.</li><li lang="en"><b>Light and dark themes</b> following Windows, back and forward history and a right-click menu to copy and export.</li></ul>
+    </section>
+    <section>
+      <h2><span lang="pt">Como funciona</span><span lang="en">How it works</span></h2>
+      <p><span lang="pt">Tudo fica num arquivo só: a página (HTML, CSS e JS) mora dentro do <code>AHK-JsonView.ahk</code> como template. O AHK valida a entrada com o <a href="https://github.com/G33kDude/cJson.ahk">cJson</a>, preenche título, opções e dados e abre a página num <b>WebView2</b>. A página fala com o AHK pelos host objects do WebView2 para copiar, abrir links e arquivos, ler prévias e salvar.</span><span lang="en">Everything lives in one file: the page (HTML, CSS and JS) sits inside <code>AHK-JsonView.ahk</code> as a template. AHK validates the input with <a href="https://github.com/G33kDude/cJson.ahk">cJson</a>, fills in the title, options and data and opens the page in <b>WebView2</b>. The page talks to AHK through WebView2 host objects to copy, open links and files, read previews and save.</span></p>
+      <div class="note"><span lang="pt"><b>Seus dados ficam no seu computador.</b> O JSON é embutido na página e tratado como não confiável: o Markdown passa pelo DOMPurify e só links <code>http(s)</code> são abertos. Sem internet tudo funciona, só o Markdown aparece como texto e o código fica sem cores.</span><span lang="en"><b>Your data stays on your machine.</b> The JSON is embedded in the page and treated as untrusted: Markdown goes through DOMPurify and only <code>http(s)</code> links are opened. Without internet everything works, only Markdown shows as plain text and code has no colors.</span></div>
+      <h3 class="run-h"><span lang="pt">Como usar</span><span lang="en">Use it</span></h3>
+      <pre class="flow run"><span class="c">; AutoHotkey v2 + WebView2 (Windows 10/11)</span>
+<span class="k">#Include</span> <span class="s">AHK-JsonView\AHK-JsonView.ahk</span>
+
+json_viewer(<span class="s">'C:\data\config.json'</span>)
+r := json_viewer(data, {submit_on_enter: <span class="k">true</span>})
+<span class="k">MsgBox</span>(r.selected)   <span class="c">; Enter</span></pre>
+    </section>
+  </div>
+
+  <section>
+    <h2><span lang="pt">Imagens</span><span lang="en">Images</span></h2>
+    <div class="gallery">
+      <figure><div class="shot-lg"><img src="../assets/img/projects/ahkjsonview-colunas.webp" width="1400" height="850" loading="lazy" alt="Visão em colunas no tema escuro com uma data e o calendário do mês no inspetor"></div><figcaption><span lang="pt">Colunas, com uma data e o calendário do mês</span><span lang="en">Columns, with a date and the month's calendar</span></figcaption></figure>
+      <figure><div class="shot-lg"><img src="../assets/img/projects/ahkjsonview-markdown.webp" width="1400" height="850" loading="lazy" alt="Visão em árvore no tema claro com um texto Markdown renderizado no inspetor"></div><figcaption><span lang="pt">Texto em Markdown renderizado no inspetor</span><span lang="en">A Markdown string rendered in the inspector</span></figcaption></figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Zyraxz</span>
+    <span class="social"><a href="https://github.com/SamuelSchutz13" title="GitHub"><img class="gh" src="../assets/img/icons/github-white.svg" width="22" height="22" alt="GitHub"></a>
+      <a href="https://www.linkedin.com/in/samuel-schutz-a3304a244/" title="LinkedIn"><img class="gh" src="../assets/img/icons/linkedin-white.svg" width="22" height="22" alt="LinkedIn"></a></span>
+  </footer>
+</div>
+</body>
+</html>
