@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16a34a"/>
+      <stop offset="1" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- horseshoe -->
+  <path d="M14 50 A18 18 0 1 1 50 50" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="5" stroke-linecap="round"/>
+  <!-- horse head, facing right -->
+  <path fill="url(#gold)" d="M22 52 L24 38 C20 34 19 27 23 21 L21 12 L27 17 C31 14 36 14 40 17 L50 27 C53 30 52 35 48 36 L41 35 C39 40 38 46 40 52 Z"/>
+  <path d="M26 18 C24 24 24 30 27 36" fill="none" stroke="#78350f" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="38" cy="24" r="2.2" fill="#1c1917"/>
+  <circle cx="48.5" cy="31" r="1.2" fill="#78350f"/>
+</svg>
