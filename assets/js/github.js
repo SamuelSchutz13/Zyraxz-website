@@ -17,6 +17,7 @@ const apps = {
   Orion: ['Orion Logger', 'img/logos/orion.svg'], 'Swiss-pocketknife': ['DevKit', 'img/logos/devkit.svg'],
   'FM27-Translator-Installer': ['FM27 Translator Installer', 'img/logos/fm27.webp'], Chorus: ['Chorus', 'img/logos/chorus.svg'],
   'AHK-JSONView': ['AHK-JsonView', 'img/logos/ahkjsonview.svg'], 'Hipodromo-Simulator': ['Hipódromo Virtual', 'img/logos/hipodromo.svg'],
+  Notinha: ['Notinha', 'img/logos/notinha.svg'], Kiln: ['Kiln', 'img/logos/kiln.svg'],
 };
 
 // small DOM helpers shared by every block below
